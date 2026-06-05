@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tolba Store — صندل زارا سويدي فاخر</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream: '#FAF9F6', cream2: '#FDFCFB',
+        charcoal: '#1A1A1A', charcoal2: '#222222', charcoal3: '#333333',
+        muted: '#6B7280', muted2: '#71717A',
+        sand: '#C4A484', sand2: '#BCA37F', sand3: '#B8956A',
+        dark: '#1A1A1A',
+      },
+      fontFamily: { cairo: ['Cairo','Segoe UI','sans-serif'] },
+    }
+  }
+}
+</script>
+<style>
+@keyframes slideBg { 0%{background-position:0 0} 100%{background-position:200% 0} }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+@keyframes fadeInDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.animate-slide-bg { background-size:200% 100%; animation:slideBg 4s linear infinite; }
+.animate-pulse-dot { animation:pulse-dot 1.5s infinite; }
+.animate-fade-in-down { animation:fadeInDown .5s ease; }
+.animate-fade-in-up { animation:fadeInUp .5s ease both; }
+.delay-100 { animation-delay:.1s; } .delay-200 { animation-delay:.2s; } .delay-300 { animation-delay:.3s; }
+.delay-350 { animation-delay:.35s; } .delay-400 { animation-delay:.4s; }
+.active-img { opacity:1 !important; position:relative !important; }
+.hidden-img { opacity:0 !important; pointer-events:none; position:absolute; inset:0; }
+.active-color { border-color:#1A1A1A !important; box-shadow:0 0 0 3px rgba(0,0,0,.1), 0 4px 24px rgba(0,0,0,.08); }
+.active-color .check-mark { opacity:1 !important; transform:scale(1) !important; }
+.active-dot { background:white !important; transform:scale(1.2); }
+</style>
+<base target="_blank">
+</head>
+<body class="font-cairo bg-cream text-charcoal overflow-x-hidden">
+
+<!-- TOP BAR -->
+<div class="bg-charcoal text-white text-center py-2.5 px-4 text-[10px] md:text-xs font-semibold tracking-wide max-md:leading-relaxed">
+  <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse-dot"></span>
+  <span class="max-md:hidden">شحن مجاني لجميع مدن المغرب 🇲🇦 | الدفع عند الاستلام | توصيل خلال 24-48 ساعة</span>
+  <span class="md:hidden">🇲🇦 شحن مجاني لجميع مدن المغرب · دفع عند الاستلام · توصيل 24-48 س</span>
+</div>
+
+<!-- HEADER -->
+<header class="bg-cream2/95 backdrop-blur-md border-b border-stone-200 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_2px_16px_rgba(108,92,231,.07)]">
+  <div class="flex items-center gap-1.5 text-[18px] md:text-[22px] font-black text-charcoal">
+    <div class="w-8 h-8 bg-charcoal rounded-lg flex items-center justify-center">
+      <svg class="w-[18px] h-[18px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    Tolba <span class="text-charcoal">Store</span>
+  </div>
+  <div class="flex items-center gap-2 md:gap-3">
+    <svg class="hidden md:block w-3.5 h-3.5 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div class="flex items-center gap-1.5">
+      <span class="tabular-nums font-black text-charcoal text-sm md:text-base" id="header-cd-h">05</span>
+      <span class="text-muted text-[10px] md:text-xs font-bold">س</span>
+      <span class="text-muted text-xs font-bold">:</span>
+      <span class="tabular-nums font-black text-charcoal text-sm md:text-base" id="header-cd-m">47</span>
+      <span class="text-muted text-[10px] md:text-xs font-bold">د</span>
+      <span class="text-muted text-xs font-bold">:</span>
+      <span class="tabular-nums font-black text-charcoal text-sm md:text-base" id="header-cd-s">22</span>
+      <span class="text-muted text-[10px] md:text-xs font-bold">ث</span
+    </button>
+    <button class="w-[34px] h-[34px] md:w-[38px] md:h-[38px] rounded-[10px] border-[1.5px] border-stone-200 bg-cream2 flex items-center justify-center cursor-pointer hover:border-charcoal hover:bg-stone-100 transition-colors relative">
+      <svg class="w-[15px] h-[15px] md:w-[18px] md:h-[18px] stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="absolute -top-1.5 -right-1.5 bg-charcoal text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">2</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-cream2 grid md:grid-cols-2 min-h-[540px] border-b border-stone-200 overflow-hidden relative">
+  <div class="absolute -top-[100px] -right-[100px] w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(108,92,231,.08)_0%,transparent_70%)] rounded-full pointer-events-none"></div>
+
+  <!-- Text Column -->
+  <div class="py-13 px-11 pb-13 pl-7 flex flex-col justify-center relative z-10 max-md:px-4 max-md:py-6 max-md:order-2">
+    <div class="inline-flex items-center gap-1.5 bg-gradient-to-br from-stone-100 to-stone-200 text-charcoal2 text-[11px] font-bold py-1.5 px-3.5 rounded-full mb-5 w-fit border border-charcoal/20 animate-fade-in-down">
+      <svg class="w-[13px] h-[13px] fill-sand stroke-none" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      الأكثر مبيعاً هذا الموسم
+    </div>
+      <h1 class="text-4xl max-md:text-[22px] font-black text-charcoal3 leading-tight mb-3 animate-fade-in-up delay-100">
+      صندل زارا <span class="text-transparent bg-clip-text bg-gradient-to-br from-charcoal to-charcoal3">سويدي فاخر</span>
+    </h1>
+    <p class="text-sm text-muted leading-relaxed mb-5.5 animate-fade-in-up delay-200">
+      تصميم إيطالي راقٍ من الجلد السويدي الطبيعي مع تفاصيل ذهبية أنيقة.<br>مريح طوال اليوم لكل المناسبات.
+    </p>
+    <div class="flex items-center gap-3 mb-2.5 animate-fade-in-up delay-300">
+      <span class="text-[38px] max-md:text-[28px] font-black text-charcoal leading-none">299 درهم</span>
+      <span class="text-[17px] text-muted line-through">450 درهم</span>
+      <span class="bg-gradient-to-br from-sand to-sand2 text-white text-[11px] font-bold py-1 px-3 rounded-full shadow-[0_2px_8px_rgba(239,68,68,.3)]">خصم 33%</span>
+    </div>
+    <div class="flex items-center gap-3.5 mb-6 animate-fade-in-up delay-350 max-md:flex-wrap max-md:gap-2 text-[10px] md:text-[11px]">
+      <span class="flex items-center gap-1 text-[11px] text-muted font-semibold">
+        <svg class="w-[13px] h-[13px] stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> ضمان الجودة
+      </span>
+      <span class="flex items-center gap-1 text-[11px] text-muted font-semibold">
+        <svg class="w-[13px] h-[13px] stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> شحن مجاني
+      </span>
+      <span class="flex items-center gap-1 text-[11px] text-muted font-semibold">
+        <svg class="w-[13px] h-[13px] stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> إرجاع مجاني 7 أيام
+      </span>
+    </div>
+    <div class="mb-6 animate-fade-in-up delay-350">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xs font-bold text-charcoal3">📐 اختر مقاسك</span>
+        <span class="text-[11px] text-charcoal font-bold cursor-pointer underline">دليل المقاسات</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="selectSize(this)" class="min-w-[38px] md:min-w-[44px] py-1.5 md:py-2 px-2.5 md:px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[12px] md:text-[13px] cursor-pointer text-muted hover:border-charcoal4 hover:text-charcoal hover:bg-stone-100 transition-all">37</button>
+        <button onclick="selectSize(this)" class="min-w-[38px] md:min-w-[44px] py-1.5 md:py-2 px-2.5 md:px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[12px] md:text-[13px] cursor-pointer text-muted hover:border-charcoal4 hover:text-charcoal hover:bg-stone-100 transition-all">38</button>
+        <button onclick="selectSize(this)" class="min-w-[38px] md:min-w-[44px] py-1.5 md:py-2 px-2.5 md:px-3.5 border-2 border-charcoal rounded-full bg-charcoal font-bold text-[12px] md:text-[13px] cursor-pointer text-white shadow-[0_4px_12px_rgba(0,0,0,.15)]">39</button>
+        <button onclick="selectSize(this)" class="min-w-[38px] md:min-w-[44px] py-1.5 md:py-2 px-2.5 md:px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[12px] md:text-[13px] cursor-pointer text-muted hover:border-charcoal4 hover:text-charcoal hover:bg-stone-100 transition-all">40</button>
+        <button class="min-w-[38px] md:min-w-[44px] py-1.5 md:py-2 px-2.5 md:px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[12px] md:text-[13px] cursor-not-allowed text-muted opacity-35 line-through" title="غير متوفر">41</button>
+      </div>
+      <div class="flex items-center gap-1 mt-2.5 text-[11px] text-sand font-bold">
+        <svg class="w-[13px] h-[13px] stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        تبقى 8 قطع فقط — اطلب الآن قبل النفاد!
+      </div>
+    </div>
+    <div class="flex gap-2.5 animate-fade-in-up delay-400 max-md:flex-col">
+      <button class="bg-charcoal text-white border-none rounded-xl py-3.5 px-5 md:px-6 text-[12px] md:text-sm font-bold cursor-pointer flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,.25)] transition-all active:translate-y-0">
+        <svg class="w-[16px] h-[16px] md:w-[18px] md:h-[18px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        اطلب الآن
+      </button>
+      <button class="bg-cream2 text-charcoal border-2 border-charcoal rounded-xl py-3.5 px-4 md:px-5 text-[12px] md:text-sm font-bold cursor-pointer flex items-center gap-2 hover:bg-stone-100 hover:-translate-y-0.5 transition-all">
+        <svg class="w-[16px] h-[16px] md:w-[18px] md:h-[18px] stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        احفظ
+      </button>
+    </div>
+  </div>
+
+  <!-- Gallery Column -->
+  <div class="relative bg-stone-100 overflow-hidden max-md:min-h-[320px] max-md:order-1">
+    <div class="relative w-full h-full min-h-[480px] max-md:min-h-[260px]">
+      <img src="ChatGPT%20Image%20Jun%203,%202026,%2011_57_18%20PM.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 active-img" id="himg-0" alt="صندل زارا - صورة 1">
+      <img src="ChatGPT%20Image%20Jun%203,%202026,%2011_59_29%20PM.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-1" alt="صندل زارا - صورة 2">
+      <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_01_11%20AM.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-2" alt="صندل زارا - صورة 3">
+      <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_02_40%20AM.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-3" alt="صندل زارا - صورة 4">
+      <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_04_32%20AM.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-4" alt="صندل زارا - صورة 5">
+      <img src="TolbaStore_1087x1358.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-5" alt="صندل زارا - صورة 6">
+      <img src="wmremove-transformed%20(4).png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" id="himg-6" alt="صندل زارا - صورة 7">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/25 pointer-events-none"></div>
+      <div class="absolute top-4 right-4 bg-gradient-to-br from-sand to-sand2 text-white text-[11px] font-bold py-1.5 px-3.5 rounded-full shadow-[0_2px_10px_rgba(245,158,11,.4)] z-10">🔥 عرض محدود</div>
+      <div class="absolute bottom-5 left-5 bg-cream2/95 backdrop-blur-md rounded-xl p-3 border border-white/80 flex items-center gap-2.5 shadow-[0_4px_24px_rgba(0,0,0,.08)] z-10">
+        <svg class="w-5 h-5 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <div><span class="text-xs font-bold text-charcoal3">ضمان الجودة</span><small class="text-[11px] text-muted block">استبدال أو استرجاع مجاني</small></div>
+      </div>
+      <div class="hero-thumbs absolute left-2.5 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 z-20 max-md:flex-row max-md:left-1/2 max-md:top-auto max-md:bottom-2 max-md:-translate-x-1/2 max-md:translate-y-0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="bg-gradient-to-br from-charcoal to-charcoal2 py-4.5 px-8 grid grid-cols-4 gap-3 max-md:grid-cols-2 max-md:px-4 max-md:py-3.5">
+  <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream2/5 border border-white/20 hover:bg-cream2/10 transition-colors">
+    <div class="w-[38px] h-[38px] min-w-[38px] rounded-[10px] bg-cream2/10 flex items-center justify-center">
+      <svg class="w-[19px] h-[19px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    <div><p class="text-xs text-white font-bold">شحن مجاني</p><small class="text-[10px] text-white/55 block">لجميع مدن المغرب</small></div>
+  </div>
+  <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream2/5 border border-white/20 hover:bg-cream2/10 transition-colors">
+    <div class="w-[38px] h-[38px] min-w-[38px] rounded-[10px] bg-cream2/10 flex items-center justify-center">
+      <svg class="w-[19px] h-[19px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    </div>
+    <div><p class="text-xs text-white font-bold">الدفع عند الاستلام</p><small class="text-[10px] text-white/55 block">لا تدفع مسبقاً</small></div>
+  </div>
+  <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream2/5 border border-white/20 hover:bg-cream2/10 transition-colors">
+    <div class="w-[38px] h-[38px] min-w-[38px] rounded-[10px] bg-cream2/10 flex items-center justify-center">
+      <svg class="w-[19px] h-[19px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    </div>
+    <div><p class="text-xs text-white font-bold">إرجاع مجاني</p><small class="text-[10px] text-white/55 block">خلال 7 أيام</small></div>
+  </div>
+  <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cream2/5 border border-white/20 hover:bg-cream2/10 transition-colors">
+    <div class="w-[38px] h-[38px] min-w-[38px] rounded-[10px] bg-cream2/10 flex items-center justify-center">
+      <svg class="w-[19px] h-[19px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    </div>
+    <div><p class="text-xs text-white font-bold">ضمان الجودة</p><small class="text-[10px] text-white/55 block">100% منتج أصلي</small></div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="bg-gradient-to-br from-charcoal to-charcoal2 py-4 px-8 flex items-center justify-center gap-5 flex-wrap border-b-2 border-charcoal/30 max-md:px-4 max-md:py-3 max-md:gap-3">
+  <span class="text-white/80 text-[13px] font-semibold">⏰ ينتهي العرض خلال:</span>
+  <div class="flex items-center gap-2">
+    <div class="text-center">
+      <span class="bg-cream2/10 border border-white/15 rounded-lg py-1.5 px-3 text-xl font-black text-white min-w-[44px] block tabular-nums backdrop-blur-sm" id="cd-h">05</span>
+      <small class="text-[10px] text-white/50 block mt-1">ساعة</small>
+    </div>
+    <span class="text-white/50 text-xl font-bold -mt-1">:</span>
+    <div class="text-center">
+      <span class="bg-cream2/10 border border-white/15 rounded-lg py-1.5 px-3 text-xl font-black text-white min-w-[44px] block tabular-nums backdrop-blur-sm" id="cd-m">47</span>
+      <small class="text-[10px] text-white/50 block mt-1">دقيقة</small>
+    </div>
+    <span class="text-white/50 text-xl font-bold -mt-1">:</span>
+    <div class="text-center">
+      <span class="bg-cream2/10 border border-white/15 rounded-lg py-1.5 px-3 text-xl font-black text-white min-w-[44px] block tabular-nums backdrop-blur-sm" id="cd-s">22</span>
+      <small class="text-[10px] text-white/50 block mt-1">ثانية</small>
+    </div>
+  </div>
+  <div class="flex items-center gap-1.5 bg-sand/15 border border-sand/30 rounded-full py-1.5 px-3.5">
+    <svg class="w-3.5 h-3.5 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span class="text-sand text-xs font-bold">تبقى 8 قطع فقط!</span>
+  </div>
+</div>
+
+<!-- COLORS -->
+<div class="py-9 px-8 bg-cream2 border-b border-stone-200 max-md:px-4 max-md:py-5">
+  <div class="flex justify-between items-center mb-5.5">
+    <div class="flex items-center gap-2 text-[19px] font-black text-charcoal3">
+      <div class="w-1.5 h-[22px] bg-gradient-to-b from-charcoal to-charcoal3 rounded-[3px]"></div>
+      اختر لونك
+    </div>
+    <a href="#" class="text-xs text-charcoal font-bold flex items-center gap-1 py-1.5 px-3 rounded-lg border-[1.5px] border-stone-200 hover:bg-stone-100 hover:border-charcoal transition-colors">
+      دليل المقاسات
+      <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </a>
+  </div>
+  <div class="grid grid-cols-2 gap-4 max-md:grid-cols-1 max-md:gap-2.5">
+    <!-- Color 1 -->
+    <div class="rounded-[18px] overflow-hidden border-2 border-stone-200 bg-cream cursor-pointer hover:border-charcoal4 hover:-translate-y-1 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all relative active-color" onclick="selectColor(this,'color1')">
+      <div class="absolute top-2.5 left-2.5 w-[26px] h-[26px] rounded-full bg-charcoal flex items-center justify-center opacity-0 scale-50 transition-all check-mark z-10">
+        <svg class="w-3.5 h-3.5 stroke-white fill-none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="overflow-hidden relative bg-stone-100 min-h-[220px]" id="gallery-color1">
+        <img src="ChatGPT%20Image%20Jun%203,%202026,%2011_57_18%20PM.png" class="w-full h-full object-cover block transition-transform duration-500 active-img" alt="لون أول - صورة 1">
+        <img src="ChatGPT%20Image%20Jun%203,%202026,%2011_59_29%20PM.png" class="w-full h-full object-cover block transition-transform duration-500 hidden-img" alt="لون أول - صورة 2">
+        <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_01_11%20AM.png" class="w-full h-full object-cover block transition-transform duration-500 hidden-img" alt="لون أول - صورة 3">
+        <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_02_40%20AM.png" class="w-full h-full object-cover block transition-transform duration-500 hidden-img" alt="لون أول - صورة 4">
+        <span class="absolute top-2.5 right-2.5 bg-cream2 rounded-full py-1 px-2.5 text-[11px] font-bold text-charcoal3 border border-stone-200 shadow-[0_2px_8px_rgba(0,0,0,.08)] z-10">الأكثر طلباً</span>
+        <button class="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full bg-cream2/85 backdrop-blur-sm border-none cursor-pointer flex items-center justify-center z-10 hover:bg-cream2 hover:shadow-md transition-all" onclick="event.stopPropagation();shiftCard('color1',-1)">
+          <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="absolute top-1/2 -translate-y-1/2 left-2 w-7 h-7 rounded-full bg-cream2/85 backdrop-blur-sm border-none cursor-pointer flex items-center justify-center z-10 hover:bg-cream2 hover:shadow-md transition-all" onclick="event.stopPropagation();shiftCard('color1',1)">
+          <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1 z-10" id="dots-color1">
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer active-dot"></div>
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer"></div>
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer"></div>
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer"></div>
+        </div>
+      </div>
+      <div class="py-3.5 px-4 flex justify-between items-center">
+        <div><div class="text-sm font-bold text-charcoal3">لون أول</div><div class="text-[11px] text-muted mt-0.5">4 صور متاحة</div></div>
+        <div class="flex items-center gap-2">
+          <div class="w-[18px] h-[18px] rounded-full border-2 border-stone-200" style="background:#b5a28a"></div>
+          <span class="text-[15px] font-black text-charcoal">299 درهم</span>
+        </div>
+      </div>
+    </div>
+    <!-- Color 2 -->
+    <div class="rounded-[18px] overflow-hidden border-2 border-stone-200 bg-cream cursor-pointer hover:border-charcoal4 hover:-translate-y-1 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all relative" onclick="selectColor(this,'color2')">
+      <div class="absolute top-2.5 left-2.5 w-[26px] h-[26px] rounded-full bg-charcoal flex items-center justify-center opacity-0 scale-50 transition-all check-mark z-10">
+        <svg class="w-3.5 h-3.5 stroke-white fill-none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="overflow-hidden relative bg-stone-100 min-h-[220px]" id="gallery-color2">
+        <img src="ChatGPT%20Image%20Jun%204,%202026,%2012_04_32%20AM.png" class="w-full h-full object-cover block transition-transform duration-500 active-img" alt="لون ثاني - صورة 1">
+        <img src="TolbaStore_1087x1358.png" class="w-full h-full object-cover block transition-transform duration-500 hidden-img" alt="لون ثاني - صورة 2">
+        <img src="wmremove-transformed%20(4).png" class="w-full h-full object-cover block transition-transform duration-500 hidden-img" alt="لون ثاني - صورة 3">
+        <span class="absolute top-2.5 right-2.5 bg-charcoal text-white rounded-full py-1 px-2.5 text-[11px] font-bold border border-charcoal shadow-[0_2px_8px_rgba(0,0,0,.08)] z-10">جديد</span>
+        <button class="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full bg-cream2/85 backdrop-blur-sm border-none cursor-pointer flex items-center justify-center z-10 hover:bg-cream2 hover:shadow-md transition-all" onclick="event.stopPropagation();shiftCard('color2',-1)">
+          <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button class="absolute top-1/2 -translate-y-1/2 left-2 w-7 h-7 rounded-full bg-cream2/85 backdrop-blur-sm border-none cursor-pointer flex items-center justify-center z-10 hover:bg-cream2 hover:shadow-md transition-all" onclick="event.stopPropagation();shiftCard('color2',1)">
+          <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1 z-10" id="dots-color2">
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer active-dot"></div>
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer"></div>
+          <div class="w-[7px] h-[7px] rounded-full bg-cream2/50 border-[1.5px] border-white/70 cursor-pointer"></div>
+        </div>
+      </div>
+      <div class="py-3.5 px-4 flex justify-between items-center">
+        <div><div class="text-sm font-bold text-charcoal3">لون ثاني</div><div class="text-[11px] text-muted mt-0.5">3 صور متاحة</div></div>
+        <div class="flex items-center gap-2">
+          <div class="w-[18px] h-[18px] rounded-full border-2 border-stone-200" style="background:#6b4f3a"></div>
+          <span class="text-[15px] font-black text-charcoal">299 درهم</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECS -->
+<div class="py-9 px-8 bg-stone-100 border-b border-stone-200 max-md:px-4 max-md:py-5">
+  <div class="flex items-center gap-2 text-[19px] font-black text-charcoal3 mb-4">
+    <div class="w-1.5 h-[22px] bg-gradient-to-b from-charcoal to-charcoal3 rounded-[3px]"></div>
+    مواصفات المنتج
+  </div>
+  <div class="grid grid-cols-4 gap-3 max-md:grid-cols-2">
+    <div class="bg-cream2 rounded-[14px] p-4 border-[1.5px] border-stone-200 flex flex-col items-start gap-2.5 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+        <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div><div class="text-[13px] font-bold text-charcoal3">جلد سويدي طبيعي</div><div class="text-[11px] text-muted mt-0.5 leading-relaxed">100% أصلي عالي الجودة</div></div>
+    </div>
+    <div class="bg-cream2 rounded-[14px] p-4 border-[1.5px] border-stone-200 flex flex-col items-start gap-2.5 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+        <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div><div class="text-[13px] font-bold text-charcoal3">راحة فائقة</div><div class="text-[11px] text-muted mt-0.5 leading-relaxed">نعل مبطن مريح طوال اليوم</div></div>
+    </div>
+    <div class="bg-cream2 rounded-[14px] p-4 border-[1.5px] border-stone-200 flex flex-col items-start gap-2.5 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+        <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div><div class="text-[13px] font-bold text-charcoal3">تفاصيل ذهبية</div><div class="text-[11px] text-muted mt-0.5 leading-relaxed">إبزيم وزخارف معدنية أنيقة</div></div>
+    </div>
+    <div class="bg-cream2 rounded-[14px] p-4 border-[1.5px] border-stone-200 flex flex-col items-start gap-2.5 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+        <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div><div class="text-[13px] font-bold text-charcoal3">تصميم إيطالي</div><div class="text-[11px] text-muted mt-0.5 leading-relaxed">صناعة يدوية دقيقة</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="py-9 px-8 bg-cream2 border-b border-stone-200 max-md:px-4 max-md:py-5">
+  <div class="flex items-center gap-2 text-[19px] font-black text-charcoal3 mb-4">
+    <div class="w-1.5 h-[22px] bg-gradient-to-b from-charcoal to-charcoal3 rounded-[3px]"></div>
+    آراء العملاء
+  </div>
+  <div class="flex items-center gap-4 mb-5 p-4 bg-stone-100 rounded-[14px] border border-stone-200 max-md:flex-col max-md:items-start max-md:gap-3">
+    <div class="text-center">
+      <div class="text-[42px] font-black text-charcoal3 leading-none">4.9</div>
+      <div class="flex justify-center gap-0.5 mt-1.5">
+        <svg class="w-[18px] h-[18px] fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-[18px] h-[18px] fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-[18px] h-[18px] fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-[18px] h-[18px] fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-[18px] h-[18px] fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="text-xs text-muted font-semibold mt-1">124 تقييم</div>
+    </div>
+    <div class="flex-1 flex flex-col gap-1 max-md:w-full">
+      <div class="flex items-center gap-2 text-[11px] text-muted">5 <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><div class="flex-1 h-[5px] bg-gray2 rounded-[3px] overflow-hidden"><div class="h-full bg-gradient-to-r from-charcoal to-charcoal3 rounded-[3px]" style="width:82%"></div></div>82%</div>
+      <div class="flex items-center gap-2 text-[11px] text-muted">4 <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><div class="flex-1 h-[5px] bg-gray2 rounded-[3px] overflow-hidden"><div class="h-full bg-gradient-to-r from-charcoal to-charcoal3 rounded-[3px]" style="width:12%"></div></div>12%</div>
+      <div class="flex items-center gap-2 text-[11px] text-muted">3 <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><div class="flex-1 h-[5px] bg-gray2 rounded-[3px] overflow-hidden"><div class="h-full bg-gradient-to-r from-charcoal to-charcoal3 rounded-[3px]" style="width:4%"></div></div>4%</div>
+      <div class="flex items-center gap-2 text-[11px] text-muted">2 <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><div class="flex-1 h-[5px] bg-gray2 rounded-[3px] overflow-hidden"><div class="h-full bg-gradient-to-r from-charcoal to-charcoal3 rounded-[3px]" style="width:1%"></div></div>1%</div>
+      <div class="flex items-center gap-2 text-[11px] text-muted">1 <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><div class="flex-1 h-[5px] bg-gray2 rounded-[3px] overflow-hidden"><div class="h-full bg-gradient-to-r from-charcoal to-charcoal3 rounded-[3px]" style="width:1%"></div></div>1%</div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 max-md:grid-cols-1">
+    <div class="bg-stone-100 rounded-[14px] p-4 border-[1.5px] border-stone-200 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="flex items-center gap-2.5 mb-2.5">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center text-xs font-black text-charcoal2 border-2 border-charcoal4">فز</div>
+        <div><div class="text-[13px] font-bold text-charcoal3">فاطمة الزهراء</div><div class="text-[10px] text-muted">منذ 3 أيام</div></div>
+        <div class="flex gap-0.5 mr-auto">
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+      </div>
+      <p class="text-xs text-muted leading-relaxed">جودة ممتازة ومريح جداً. التفاصيل الذهبية تعطيه لمسة راقية جداً. سأطلب مقاساً آخر قريباً.</p>
+      <div class="inline-flex items-center gap-1 text-[10px] text-sand font-bold mt-2">
+        <svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        مشتري موثق
+      </div>
+    </div>
+    <div class="bg-stone-100 rounded-[14px] p-4 border-[1.5px] border-stone-200 hover:border-charcoal4 hover:shadow-[0_4px_24px_rgba(0,0,0,.08)] transition-all">
+      <div class="flex items-center gap-2.5 mb-2.5">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center text-xs font-black text-charcoal2 border-2 border-charcoal4">سم</div>
+        <div><div class="text-[13px] font-bold text-charcoal3">سارة منصوري</div><div class="text-[10px] text-muted">منذ أسبوع</div></div>
+        <div class="flex gap-0.5 mr-auto">
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3 h-3 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+      </div>
+      <p class="text-xs text-muted leading-relaxed">وصل بسرعة والتغليف جميل جداً. اللون البني الداكن رائع مع كل شيء. أنصح به بشدة!</p>
+      <div class="inline-flex items-center gap-1 text-[10px] text-sand font-bold mt-2">
+        <svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        مشتري موثق
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<section class="py-9 px-8 bg-cream2 border-b border-stone-200 max-md:px-4 max-md:py-5" id="order-form">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-2 text-[19px] font-black text-charcoal3 mb-4">
+      <div class="w-1.5 h-[22px] bg-gradient-to-b from-charcoal to-charcoal3 rounded-[3px]"></div>
+      نموذج الطلب
+    </div>
+    <div class="bg-cream rounded-[18px] p-6 border-[1.5px] border-stone-200 shadow-[0_4px_24px_rgba(0,0,0,.06)] max-md:p-4">
+      <form id="orderForm" onsubmit="submitOrder(event)" class="grid grid-cols-2 gap-x-5 gap-y-4 max-md:grid-cols-1">
+        <!-- Full Name -->
+        <div class="col-span-2 max-md:col-span-1">
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> الاسم الكامل</label>
+          <input type="text" name="fullName" required placeholder="مثال: فاطمة الزهراء"
+            class="w-full bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-3 px-4 text-sm text-charcoal3 font-semibold outline-none focus:border-charcoal focus:shadow-[0_0_0_3px_rgba(0,0,0,.06)] transition-all placeholder:text-muted/60">
+        </div>
+        <!-- Phone -->
+        <div>
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> رقم الهاتف</label>
+          <input type="tel" name="phone" required placeholder="06XXXXXXXX"
+            class="w-full bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-3 px-4 text-sm text-charcoal3 font-semibold outline-none focus:border-charcoal focus:shadow-[0_0_0_3px_rgba(0,0,0,.06)] transition-all placeholder:text-muted/60">
+        </div>
+        <!-- City -->
+        <div>
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/></svg> المدينة</label>
+          <input type="text" name="city" required placeholder="مثال: الدار البيضاء"
+            class="w-full bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-3 px-4 text-sm text-charcoal3 font-semibold outline-none focus:border-charcoal focus:shadow-[0_0_0_3px_rgba(0,0,0,.06)] transition-all placeholder:text-muted/60">
+        </div>
+        <!-- Full Address -->
+        <div class="col-span-2 max-md:col-span-1">
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> العنوان الكامل</label>
+          <textarea name="address" required rows="2" placeholder="الشارع، رقم المنزل/العمارة، الطابق..."
+            class="w-full bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-3 px-4 text-sm text-charcoal3 font-semibold outline-none focus:border-charcoal focus:shadow-[0_0_0_3px_rgba(0,0,0,.06)] transition-all placeholder:text-muted/60 resize-none"></textarea>
+        </div>
+        <!-- Size -->
+        <div>
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> المقاس</label>
+          <div class="flex flex-wrap gap-1.5" id="form-sizes">
+            <button type="button" onclick="selectFormSize(this)" class="min-w-[44px] py-2 px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[13px] cursor-pointer text-muted hover:border-charcoal hover:text-charcoal hover:bg-stone-100 transition-all">37</button>
+            <button type="button" onclick="selectFormSize(this)" class="min-w-[44px] py-2 px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[13px] cursor-pointer text-muted hover:border-charcoal hover:text-charcoal hover:bg-stone-100 transition-all">38</button>
+            <button type="button" onclick="selectFormSize(this)" class="min-w-[44px] py-2 px-3.5 border-2 border-charcoal rounded-full bg-charcoal font-bold text-[13px] cursor-pointer text-white shadow-[0_4px_12px_rgba(0,0,0,.15)]">39</button>
+            <button type="button" onclick="selectFormSize(this)" class="min-w-[44px] py-2 px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[13px] cursor-pointer text-muted hover:border-charcoal hover:text-charcoal hover:bg-stone-100 transition-all">40</button>
+            <button type="button" class="min-w-[44px] py-2 px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[13px] cursor-not-allowed text-muted opacity-35 line-through" title="غير متوفر">41</button>
+          </div>
+          <input type="hidden" name="size" id="form-size-input" value="39">
+        </div>
+        <!-- Color -->
+        <div>
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-1 0-.83.67-1.5 1.5-1.5H16c3.31 0 6-2.69 6-6 0-4.42-4.5-8-10-8z"/></svg> اللون</label>
+          <div class="flex gap-2.5" id="form-colors">
+            <button type="button" onclick="selectFormColor(this,'لون أول')" class="flex items-center gap-1.5 py-2 px-3.5 border-2 border-charcoal rounded-full bg-charcoal font-bold text-[13px] cursor-pointer text-white shadow-[0_4px_12px_rgba(0,0,0,.15)] transition-all active-color-btn">
+              <span class="w-3.5 h-3.5 rounded-full border border-white/30" style="background:#b5a28a"></span>
+              لون أول
+            </button>
+            <button type="button" onclick="selectFormColor(this,'لون ثاني')" class="flex items-center gap-1.5 py-2 px-3.5 border-2 border-stone-200 rounded-full bg-cream2 font-bold text-[13px] cursor-pointer text-muted hover:border-charcoal hover:text-charcoal hover:bg-stone-100 transition-all">
+              <span class="w-3.5 h-3.5 rounded-full border border-white/30" style="background:#6b4f3a"></span>
+              لون ثاني
+            </button>
+          </div>
+          <input type="hidden" name="color" id="form-color-input" value="لون أول">
+        </div>
+        <!-- Quantity -->
+        <div>
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="16" y2="21"/></svg> الكمية</label>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="changeQty(-1)" class="w-10 h-10 rounded-xl border-[1.5px] border-stone-200 bg-cream2 flex items-center justify-center cursor-pointer hover:border-charcoal hover:bg-stone-100 transition-all">
+              <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <input type="number" name="quantity" id="form-qty" value="1" min="1" max="10" readonly
+              class="w-14 text-center bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-2.5 px-2 text-sm font-black text-charcoal outline-none">
+            <button type="button" onclick="changeQty(1)" class="w-10 h-10 rounded-xl border-[1.5px] border-stone-200 bg-cream2 flex items-center justify-center cursor-pointer hover:border-charcoal hover:bg-stone-100 transition-all">
+              <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+        <!-- Notes -->
+        <div class="col-span-2 max-md:col-span-1">
+          <label class="text-xs font-bold text-charcoal3 block mb-1.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> ملاحظات (اختياري)</label>
+          <textarea name="notes" rows="1" placeholder="ملاحظات إضافية للطلب..."
+            class="w-full bg-cream2 border-[1.5px] border-stone-200 rounded-xl py-3 px-4 text-sm text-charcoal3 font-semibold outline-none focus:border-charcoal focus:shadow-[0_0_0_3px_rgba(0,0,0,.06)] transition-all placeholder:text-muted/60 resize-none"></textarea>
+        </div>
+        <!-- Order Summary -->
+        <div class="col-span-2 bg-stone-100 rounded-[14px] p-4 border-[1.5px] border-stone-200 max-md:col-span-1">
+          <div class="text-xs font-bold text-charcoal3 mb-2.5"><svg class="w-3.5 h-3.5 inline stroke-charcoal fill-none ml-1 -mt-0.5" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> ملخص الطلب</div>
+          <div class="flex justify-between items-center text-sm">
+            <span class="text-muted">صندل زارا سويدي فاخر × <span id="summary-qty">1</span></span>
+            <span class="font-black text-charcoal">299 <span class="text-xs">درهم</span></span>
+          </div>
+          <div class="border-t border-stone-200 my-2.5"></div>
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-charcoal3">المجموع</span>
+            <span class="text-xl font-black text-charcoal" id="summary-total">299 <span class="text-sm">درهم</span></span>
+          </div>
+        </div>
+        <!-- Submit -->
+        <div class="col-span-2 max-md:col-span-1">
+          <button type="submit" class="w-full bg-charcoal text-white border-none rounded-xl py-4 px-6 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,.25)] transition-all active:translate-y-0">
+            <svg class="w-[18px] h-[18px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            تأكيد الطلب — الدفع عند الاستلام
+          </button>
+          <div id="form-success" class="hidden mt-4 bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+            <div class="mb-1"><svg class="w-7 h-7 stroke-green-600 fill-none mx-auto" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="text-sm font-bold text-green-800">تم استلام طلبك بنجاح!</div>
+            <div class="text-xs text-green-600 mt-1">سنتواصل معك قريباً لتأكيد الطلب</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="bg-gradient-to-br from-charcoal via-charcoal2 to-charcoal py-14 px-8 text-center relative overflow-hidden max-md:px-4 max-md:py-8">
+  <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse,rgba(108,92,231,.25)_0%,transparent_70%)] pointer-events-none"></div>
+  <div class="text-[28px] max-md:text-[22px] font-black text-white mb-2 relative z-10 flex items-center justify-center gap-2"><svg class="w-7 h-7 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M16 16l-4 4-4-4"/><path d="M8 8l4-4 4 4"/></svg> لا تفوّتي الفرصة</div>
+  <p class="text-sm text-white/65 mb-7 relative z-10">الكمية محدودة — اطلبي الآن والدفع عند الاستلام</p>
+  <div class="flex items-center justify-center gap-3.5 mb-7 relative z-10 max-md:flex-wrap">
+    <span class="text-[44px] max-md:text-[34px] font-black text-white leading-none">299 درهم</span>
+    <span class="text-[19px] text-white/40 line-through">450 درهم</span>
+    <span class="bg-gradient-to-br from-sand to-sand2 text-white text-xs font-bold py-1.5 px-3.5 rounded-full shadow-[0_2px_10px_rgba(239,68,68,.4)]">وفّري 151 درهم</span>
+  </div>
+  <button class="bg-cream2 text-charcoal2 border-none rounded-[14px] py-4 px-10 text-base font-black cursor-pointer inline-flex items-center gap-2.5 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(0,0,0,.3)] hover:bg-stone-100 transition-all relative z-10">
+    <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    اطلبي الآن — الدفع عند الاستلام
+  </button>
+  <div class="flex justify-center gap-5 mt-5 flex-wrap relative z-10">
+    <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
+      <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      ضمان الجودة
+    </span>
+    <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
+      <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      إرجاع مجاني
+    </span>
+    <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
+      <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      دفع آمن عند الاستلام
+    </span>
+  </div>
+</div>
+
+<!-- STICKY CTA mobile -->
+<div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-50 bg-cream2 border-t border-stone-200 py-3 px-5 items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,.1)]">
+  <div class="text-xl font-black text-charcoal">
+    299 درهم
+    <small class="text-xs text-muted line-through font-normal block">450 درهم</small>
+  </div>
+  <button class="flex-1 bg-charcoal text-white border-none rounded-xl py-3.5 text-sm font-bold cursor-pointer max-w-[220px] flex items-center justify-center gap-2">اطلب الآن <svg class="w-4 h-4 stroke-white fill-none inline" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-charcoal text-stone-400 py-7 px-8 flex flex-col gap-4 max-md:px-4 max-md:py-5">
+  <div class="flex justify-between items-center flex-wrap gap-3.5 max-md:flex-col max-md:items-start">
+    <div class="flex items-center gap-1.5 text-lg font-black text-charcoal4">
+      <div class="w-7 h-7 bg-charcoal rounded-[7px] flex items-center justify-center">
+        <svg class="w-[15px] h-[15px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      Tolba <span class="text-white">Store</span>
+    </div>
+    <div class="flex gap-1.5 flex-wrap">
+      <a href="#" class="text-stone-400 text-xs py-1 px-2.5 rounded-[7px] border border-[#222] hover:text-charcoal4 hover:border-[#444] transition-colors">الشروط والأحكام</a>
+      <a href="#" class="text-stone-400 text-xs py-1 px-2.5 rounded-[7px] border border-[#222] hover:text-charcoal4 hover:border-[#444] transition-colors">سياسة الإرجاع</a>
+      <a href="#" class="text-stone-400 text-xs py-1 px-2.5 rounded-[7px] border border-[#222] hover:text-charcoal4 hover:border-[#444] transition-colors">الأسئلة الشائعة</a>
+      <a href="#" class="text-stone-400 text-xs py-1 px-2.5 rounded-[7px] border border-[#222] hover:text-charcoal4 hover:border-[#444] transition-colors">تواصل معنا</a>
+    </div>
+  </div>
+  <div class="text-[11px] text-stone-600 text-center pt-3.5 border-t border-charcoal3">© 2025 Tolba Store — جميع الحقوق محفوظة 🇲🇦</div>
+</footer>
+
+<script>
+// Color card selection + hero gallery sync
+function selectColor(el, colorId){
+  document.querySelectorAll('.active-color').forEach(c => c.classList.remove('active-color'));
+  el.classList.add('active-color');
+  const map = {color1:[0,1,2,3], color2:[4,5,6]};
+  if(map[colorId]) heroGoto(map[colorId][0]);
+}
+
+// Size selection
+function selectSize(el){
+  if(el.classList.contains('opacity-35')) return;
+  el.parentElement.querySelectorAll('button').forEach(b => {
+    b.classList.remove('bg-gradient-to-br', 'from-primary', 'to-primary2', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    b.classList.add('bg-cream2', 'text-muted', 'border-stone-200');
+  });
+  el.classList.remove('bg-cream2', 'text-muted', 'border-stone-200');
+  el.classList.add('bg-gradient-to-br', 'from-primary', 'to-primary2', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+}
+
+// Hero gallery
+let heroCurrent = 0;
+const heroImgs = document.querySelectorAll('img[id^="himg"]');
+const heroTotal = heroImgs.length;
+const thumbsContainer = document.querySelector('.hero-thumbs');
+
+heroImgs.forEach(function(img, i){
+  if(!img.src || img.src === window.location.href) return;
+  const div = document.createElement('div');
+  div.className = 'w-[54px] h-[54px] rounded-[10px] overflow-hidden border-2 border-white/70 cursor-pointer transition-all shadow-[0_2px_10px_rgba(0,0,0,.3)] bg-[#ddd] flex-shrink-0 hover:border-white hover:scale-[1.06] ' + (i === 0 ? 'border-charcoal shadow-[0_0_0_2px_#1A1A1A]' : '');
+  div.style.position = 'relative';
+  const t = document.createElement('img');
+  t.src = img.src;
+  t.alt = 'صورة مصغرة ' + (i+1);
+  t.loading = 'eager';
+  t.className = 'w-full h-full object-cover block pointer-events-none';
+  t.onerror = function() { this.style.display = 'none'; div.style.background = 'linear-gradient(135deg, #9994b8, #3d3a5e)'; };
+  div.appendChild(t);
+  div.onclick = function(){ heroGoto(i); };
+  thumbsContainer.appendChild(div);
+});
+
+function heroGoto(idx){
+  if(idx < 0 || idx >= heroTotal) return;
+  heroImgs[heroCurrent].classList.remove('active-img');
+  if(thumbsContainer.children[heroCurrent]) thumbsContainer.children[heroCurrent].classList.remove('border-charcoal', 'shadow-[0_0_0_2px_#1A1A1A]');
+  heroCurrent = idx;
+  heroImgs[heroCurrent].classList.add('active-img');
+  if(thumbsContainer.children[heroCurrent]) thumbsContainer.children[heroCurrent].classList.add('border-charcoal', 'shadow-[0_0_0_2px_#1A1A1A]');
+}
+
+// Auto-slide hero gallery (right to left)
+let heroAutoSlide;
+function startHeroAutoSlide(){
+  if(heroAutoSlide) clearInterval(heroAutoSlide);
+  heroAutoSlide = setInterval(function(){
+    let next = (heroCurrent + 1) % heroTotal;
+    heroGoto(next);
+  }, 3000);
+}
+startHeroAutoSlide();
+
+// Pause auto-slide on hover
+document.querySelector('.hero-main-img, [class*="relative bg-stone-100"]')?.addEventListener('mouseenter', function(){
+  if(heroAutoSlide) clearInterval(heroAutoSlide);
+});
+document.querySelector('.hero-main-img, [class*="relative bg-stone-100"]')?.addEventListener('mouseleave', function(){
+  startHeroAutoSlide();
+});
+
+// Also pause when clicking thumbnails
+thumbsContainer?.addEventListener('click', function(){
+  if(heroAutoSlide) clearInterval(heroAutoSlide);
+  setTimeout(startHeroAutoSlide, 5000);
+});
+
+// Color card gallery
+const cardState = {color1:0, color2:0};
+function shiftCard(id, dir){
+  const wrap = document.getElementById('gallery-' + id);
+  const imgs = wrap.querySelectorAll('img');
+  const dots = document.querySelectorAll('#dots-' + id + ' > div');
+  const total = imgs.length;
+  imgs[cardState[id]].classList.remove('active-img');
+  imgs[cardState[id]].classList.add('hidden-img');
+  dots[cardState[id]].classList.remove('active-dot');
+  cardState[id] = (cardState[id] + dir + total) % total;
+  imgs[cardState[id]].classList.remove('hidden-img');
+  imgs[cardState[id]].classList.add('active-img');
+  dots[cardState[id]].classList.add('active-dot');
+}
+
+// Countdown Timer
+(function(){
+  let total = 5*3600 + 47*60 + 22;
+  function update(){
+    if(total <= 0) return;
+    total--;
+    document.getElementById('cd-h').textContent = String(Math.floor(total/3600)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((total%3600)/60)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(total%60).padStart(2,'0');
+  }
+  setInterval(update, 1000);
+})();
+
+// ========== ORDER FORM FUNCTIONS ==========
+
+// Form size selection
+function selectFormSize(el){
+  if(el.classList.contains('opacity-35')) return;
+  const parent = document.getElementById('form-sizes');
+  parent.querySelectorAll('button').forEach(b => {
+    b.classList.remove('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    b.classList.add('bg-cream2', 'text-muted', 'border-stone-200');
+  });
+  el.classList.remove('bg-cream2', 'text-muted', 'border-stone-200');
+  el.classList.add('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+  document.getElementById('form-size-input').value = el.textContent.trim();
+}
+
+// Form color selection
+function selectFormColor(el, colorName){
+  const parent = document.getElementById('form-colors');
+  parent.querySelectorAll('button').forEach(b => {
+    b.classList.remove('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    b.classList.add('bg-cream2', 'text-muted', 'border-stone-200');
+  });
+  el.classList.remove('bg-cream2', 'text-muted', 'border-stone-200');
+  el.classList.add('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+  document.getElementById('form-color-input').value = colorName;
+}
+
+// Quantity change
+function changeQty(delta){
+  const input = document.getElementById('form-qty');
+  let val = parseInt(input.value) + delta;
+  if(val < 1) val = 1;
+  if(val > 10) val = 10;
+  input.value = val;
+  document.getElementById('summary-qty').textContent = val;
+  document.getElementById('summary-total').innerHTML = (299 * val) + ' <span class="text-sm">درهم</span>';
+}
+
+// Form submission
+function submitOrder(event){
+  event.preventDefault();
+  const form = document.getElementById('orderForm');
+  const data = new FormData(form);
+  const order = {
+    fullName: data.get('fullName'),
+    phone: data.get('phone'),
+    city: data.get('city'),
+    address: data.get('address'),
+    size: data.get('size'),
+    color: data.get('color'),
+    quantity: data.get('quantity'),
+    notes: data.get('notes') || '—'
+  };
+  
+  // Build WhatsApp message
+  const msg = `🛍️ *طلب جديد من Tolba Store*\n\n` +
+    `👤 الاسم: ${order.fullName}\n` +
+    `📞 الهاتف: ${order.phone}\n` +
+    `🏙️ المدينة: ${order.city}\n` +
+    `📍 العنوان: ${order.address}\n` +
+    `📐 المقاس: ${order.size}\n` +
+    `🎨 اللون: ${order.color}\n` +
+    `🔢 الكمية: ${order.quantity}\n` +
+    `💬 ملاحظات: ${order.notes}\n\n` +
+    `💰 *المجموع: ${299 * parseInt(order.quantity)} درهم*`;
+  
+  // Show success message
+  const successDiv = document.getElementById('form-success');
+  successDiv.classList.remove('hidden');
+  
+  // Open WhatsApp with pre-filled message
+  const whatsappUrl = `https://wa.me/212600000000?text=${encodeURIComponent(msg)}`;
+  window.open(whatsappUrl, '_blank');
+  
+  // Reset form after 3 seconds
+  setTimeout(() => {
+    form.reset();
+    document.getElementById('form-qty').value = '1';
+    document.getElementById('summary-qty').textContent = '1';
+    document.getElementById('summary-total').innerHTML = '299 <span class="text-sm">درهم</span>';
+    document.getElementById('form-size-input').value = '39';
+    document.getElementById('form-color-input').value = 'لون أول';
+    // Reset size buttons
+    const sizeBtns = document.getElementById('form-sizes').querySelectorAll('button:not(.opacity-35)');
+    sizeBtns.forEach(b => {
+      b.classList.remove('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+      b.classList.add('bg-cream2', 'text-muted', 'border-stone-200');
+    });
+    sizeBtns[2].classList.remove('bg-cream2', 'text-muted', 'border-stone-200');
+    sizeBtns[2].classList.add('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    // Reset color buttons
+    const colorBtns = document.getElementById('form-colors').querySelectorAll('button');
+    colorBtns[0].classList.remove('bg-cream2', 'text-muted', 'border-stone-200');
+    colorBtns[0].classList.add('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    colorBtns[1].classList.remove('bg-charcoal', 'text-white', 'shadow-[0_4px_12px_rgba(0,0,0,.15)]', 'border-charcoal');
+    colorBtns[1].classList.add('bg-cream2', 'text-muted', 'border-stone-200');
+  }, 3000);
+}
+
+// Scroll to order form from CTA buttons
+document.querySelectorAll('button').forEach(btn => {
+  if(btn.textContent.includes('اطلب')) {
+    btn.addEventListener('click', function(){
+      document.getElementById('order-form').scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  }
+});
+</script>
+</body>
+</html>
