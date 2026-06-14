@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tolba Store — صندلة زارا</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -122,36 +124,287 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
 ::-webkit-scrollbar { width:4px;height:4px }
 ::-webkit-scrollbar-track { background:#f5f5f4 }
 ::-webkit-scrollbar-thumb { background:#C4A484;border-radius:4px }
+
+/* ===== ENHANCED DESIGN SYSTEM ===== */
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Better text rendering */
+body { 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(196, 164, 132, 0.3);
+  color: #1A1A1A;
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f5f5f4; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #C4A484, #B8956A); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #B8956A, #A08050); }
+
+/* Enhanced focus states */
+:focus-visible {
+  outline: 2px solid #C4A484;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Better button transitions */
+button, a {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced card hover */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0,0,0,.15), 0 12px 24px rgba(0,0,0,.1);
+}
+
+/* Review card hover */
+.review-card {
+  transition: all 0.3s ease;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,.1);
+}
+
+/* Trust badge hover */
+.trust-badge {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.trust-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced gallery images */
+.g-img { 
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.g-img.on { 
+  opacity: 1; 
+  transform: scale(1);
+}
+.g-img:not(.on) {
+  transform: scale(1.02);
+}
+
+/* Thumbnail hover */
+.thumb {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.thumb:hover:not(.on) {
+  border-color: rgba(196, 164, 132, 0.5);
+  transform: scale(1.05);
+}
+
+/* Size button effects */
+.sz-btn {
+  position: relative;
+  overflow: hidden;
+}
+.sz-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.sz-btn:hover::after {
+  opacity: 1;
+}
+
+/* Form input enhancements */
+input, select, textarea {
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(196, 164, 132, 0.15), inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Sticky CTA blur */
+.sticky-cta {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(253, 252, 251, 0.95);
+}
+
+/* Countdown box */
+.countdown-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* WhatsApp button enhancement */
+#wa-float {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#wa-float:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 8px 32px rgba(37,211,102,.5), 0 4px 12px rgba(0,0,0,.2);
+}
+
+/* Success modal blur */
+.sm-card {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Hero overlay */
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(26,26,26,.9) 0%, rgba(26,26,26,.7) 40%, rgba(196,164,132,.25) 100%);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Badge pulse */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196, 164, 132, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(196, 164, 132, 0); }
+}
+.badge-pulse {
+  animation: badge-pulse 2s infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Skeleton loading */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Mobile tap highlight */
+@media (max-width: 767px) {
+  * { -webkit-tap-highlight-color: rgba(196, 164, 132, 0.2); }
+  .page.active { animation: fadeIn 0.3s ease; }
+}
+
+/* Footer link hover effect */
+footer a {
+  position: relative;
+}
+footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C4A484;
+  transition: width 0.3s ease;
+}
+footer a:hover::after {
+  width: 100%;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #1A1A1A 0%, #C4A484 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ===== HERO SLIDESHOW ===== */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.05);
+}
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
 </style>
+<base target="_blank">
+<base target="_blank">
 </head>
 <body class="font-cairo bg-cream text-charcoal overflow-x-hidden">
 
 <!-- ===== TOP BAR ===== -->
-<div class="bg-charcoal text-white text-center py-2.5 px-4 text-[10px] md:text-xs font-semibold tracking-wide relative z-50">
-  <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full ml-1.5 pulse-dot"></span>
-  <span class="max-md:hidden">التوصيل فابور لجميع مدن المغرب 🇲🇦 | خلصي حتى تقيسي وتشوفي سلعتك | توصيل سريع فـ 24-48 ساعة</span>
-  <span class="md:hidden">توصيل فابور 🇲🇦 · دفع عند الاستلام · 24-48 ساعة</span>
+<div class="bg-charcoal text-white text-center py-2.5 px-4 text-[10px] md:text-xs font-semibold tracking-wide relative z-50 overflow-hidden">
+  <div class="absolute inset-0 opacity-10 shimmer"></div>
+  <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 pulse-dot"></span>
+  <span class="max-md:hidden">التوصيل فابور لجميع مدن المغرب <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg> | خلصي حتى تقيسي وتشوفي سلعتك | توصيل سريع فـ 24-48 ساعة</span>
+  <span class="md:hidden">توصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg> · دفع عند الاستلام · 24-48 ساعة</span>
 </div>
 
 <!-- ===== HEADER ===== -->
-<header class="bg-[#C2A483] border-b border-white/20 py-2.5 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_2px_20px_rgba(0,0,0,.15)]">
+<header class="border-b border-white/20 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_4px_24px_rgba(0,0,0,.2)] backdrop-blur-sm" style="background: linear-gradient(135deg, #C2A483 0%, #B8956A 100%);">
   <!-- Logo -->
   <button onclick="nav('home')" class="flex items-center gap-2 flex-shrink-0 bg-transparent border-0 cursor-pointer p-0">
-    <img src="logo.png" alt="Tolba Store" loading="eager" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'">
+    <img src="logo.png" alt="Tolba Store" loading="eager" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'" loading="lazy">
     <span class="text-white font-black text-lg leading-none hidden md:block drop-shadow-sm">Tolba<span class="text-white/70 font-semibold"> Store</span></span>
   </button>
 
   <!-- Countdown (desktop) -->
   <div class="hidden md:flex items-center gap-2">
-    <span class="text-white text-[11px] font-semibold whitespace-nowrap">⏰ العرض باقي:</span>
+    <span class="text-white text-[11px] font-semibold whitespace-nowrap"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> العرض باقي:</span>
     <div class="flex items-center gap-1">
-      <div class="text-center"><span id="cd-d" class="bg-white/20 border border-white/30 rounded-lg py-1 px-2 text-sm font-black text-white block tabular-nums">10</span><small class="text-[9px] text-white/70 block mt-0.5">أيام</small></div>
+      <div class="text-center"><span id="cd-d" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">10</span><small class="text-[9px] text-white/70 block mt-0.5">أيام</small></div>
       <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-h" class="bg-white/20 border border-white/30 rounded-lg py-1 px-2 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ساعة</small></div>
+      <div class="text-center"><span id="cd-h" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ساعة</small></div>
       <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-m" class="bg-white/20 border border-white/30 rounded-lg py-1 px-2 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">دقيقة</small></div>
+      <div class="text-center"><span id="cd-m" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">دقيقة</small></div>
       <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-s" class="bg-white/20 border border-white/30 rounded-lg py-1 px-2 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ثانية</small></div>
+      <div class="text-center"><span id="cd-s" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ثانية</small></div>
     </div>
   </div>
 
@@ -170,15 +423,17 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
   <!-- Hero Section -->
   <div class="relative overflow-hidden" style="min-height:520px">
 
-    <!-- Background image (unsplash sandals/boutique) -->
-    <div class="absolute inset-0" style="
-      background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=1600&q=80');
-      background-size:cover;
-      background-position:center 40%;
-    "></div>
+        <!-- Hero Product Slideshow -->
+    <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
+      <div class="absolute inset-0 hero-slide active" style="background-image: url('tolba-brown-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('tolba-black-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('tolba-black-suede-1.png'); background-size:cover; background-position:center 40%;"></div>
+    </div>
 
     <!-- Dark overlay with warm sand tint -->
-    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(26,26,26,.82) 0%,rgba(26,26,26,.6) 50%,rgba(196,164,132,.35) 100%)"></div>
+    <div class="absolute inset-0 hero-overlay"></div>
+    <!-- Animated grain overlay -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E');"></div>
 
     <!-- Decorative radial glow -->
     <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 70% 60%,rgba(196,164,132,.18) 0%,transparent 65%)"></div>
@@ -202,13 +457,13 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
       <p class="text-white/70 max-w-md mx-auto leading-relaxed mb-7" style="font-size:clamp(.9rem,2.2vw,1.05rem)">
         اختاري الموديل اللي يعجبك — كل بياسة
         <strong class="text-white font-black">199 درهم</strong>
-        مع التوصيل فابور 🇲🇦
+        مع التوصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg>
       </p>
 
       <!-- CTA row -->
       <div class="flex flex-wrap items-center justify-center gap-3">
         <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
-          class="inline-flex items-center gap-2 font-black text-sm md:text-base text-[#1A1A1A] rounded-full px-7 py-3.5 shadow-[0_8px_32px_rgba(196,164,132,.55)] hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(196,164,132,.7)] transition-all"
+          class="inline-flex items-center gap-2 font-black text-sm md:text-base text-[#1A1A1A] rounded-full px-7 py-3.5 shadow-[0_8px_32px_rgba(196,164,132,.55)] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(196,164,132,.7)] active:scale-95 transition-all"
           style="background:#C4A484">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           تسوّقي دابا
@@ -267,31 +522,32 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
 
   <!-- Trust bar -->
   <div class="relative py-10 px-4 md:px-8 overflow-hidden" style="background:linear-gradient(135deg,#1A1A1A 0%,#252525 50%,#1A1A1A 100%)">
+    <!-- Subtle texture -->
     <div class="absolute inset-0 opacity-[.03]" style="background-image:radial-gradient(circle at 20% 50%,#C4A484 0%,transparent 55%),radial-gradient(circle at 80% 50%,#C4A484 0%,transparent 55%)"></div>
     <div class="relative max-w-5xl mx-auto">
       <div class="text-center mb-7">
         <p class="text-white/40 text-[11px] font-black tracking-widest uppercase">لماذا Tolba Store؟</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
+        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
           <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
             <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">توصيل فابور</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">لجميع مدن المغرب</small></div>
         </div>
-        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
+        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
           <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
             <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">دفع عند الاستلام</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">ما تخلصيش حتى تشوفي</small></div>
         </div>
-        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
+        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
           <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
             <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">التبدال فابور</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">خلال 7 أيام بدون سؤال</small></div>
         </div>
-        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
+        <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
           <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
             <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           </div>
@@ -304,92 +560,70 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
   <!-- Reviews -->
   <div class="py-12 px-4 md:py-16 md:px-8" style="background:linear-gradient(180deg,#F7F5F0 0%,#FAF9F6 100%)">
     <div class="max-w-5xl mx-auto">
+      <!-- Header -->
       <div class="text-center mb-10">
         <span class="inline-block text-[11px] font-black tracking-widest text-sand3 uppercase mb-3 bg-sand/10 px-4 py-1.5 rounded-full border border-sand/20">آراء العملاء</span>
-        <h2 class="text-2xl md:text-3xl font-black text-charcoal mb-2">شنو قالو الزبائن</h2>
+        <h2 class="text-2xl md:text-3xl font-black text-charcoal mb-2">شنو قالو الزبائن <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></h2>
         <div class="flex items-center justify-center gap-1.5 mt-3">
-          <div class="flex text-[#F59E0B] text-xl tracking-tight">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-          </div>
+          <span class="text-[#F59E0B] text-xl tracking-tight">★★★★★</span>
           <span class="text-sm font-black text-charcoal3 mr-1">4.9</span>
           <span class="text-muted text-xs font-semibold">من +150 تقييم</span>
         </div>
       </div>
 
+      <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,.11)] transition-all duration-300">
+
+        <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 review-card">
+          <!-- Quote icon -->
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
           <div class="flex gap-0.5 mb-3 relative z-10">
-            <div class="flex text-[#F59E0B] text-base">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            </div>
+            <span class="text-[#F59E0B] text-base">★★★★★</span>
           </div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">واش مشات عليا مزيانة وخفيفة، وصلات بسرعة كذلك. منصح بيها بزاف!</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">ف</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">فاطمة ز.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-muted fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> الدار البيضاء</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> الدار البيضاء</small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100 flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-green-600 fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
           </div>
         </div>
 
         <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,.11)] transition-all duration-300 md:mt-4">
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
-          <div class="flex gap-0.5 mb-3 relative z-10">
-            <div class="flex text-[#F59E0B] text-base">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            </div>
-          </div>
+          <div class="flex gap-0.5 mb-3 relative z-10"><span class="text-[#F59E0B] text-base">★★★★★</span></div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">شريت الكاميل والبني داكن — الجوج مزيانين بزاف! كاليتي فوق التوقع.</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">م</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">مريم ب.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-muted fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> مراكش</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> مراكش</small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100 flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-green-600 fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
           </div>
         </div>
 
-        <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,.11)] transition-all duration-300">
+        <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 review-card">
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
-          <div class="flex gap-0.5 mb-3 relative z-10">
-            <div class="flex text-[#F59E0B] text-base">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            </div>
-          </div>
+          <div class="flex gap-0.5 mb-3 relative z-10"><span class="text-[#F59E0B] text-base">★★★★★</span></div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">الكحل السويدي نار! واقفة مليح ومريحة. وصلت فـ 24 ساعة بالضبط.</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">ن</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">نسرين أ.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-muted fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> فاس</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> فاس</small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100 flex items-center gap-1"><svg class="w-2.5 h-2.5 stroke-green-600 fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
           </div>
         </div>
+
       </div>
 
+      <!-- Bottom CTA strip -->
       <div class="mt-10 rounded-3xl p-6 md:p-8 text-center" style="background:linear-gradient(135deg,#1A1A1A,#252525);border:1px solid rgba(196,164,132,.15)">
-        <p class="text-white font-black text-lg mb-1">انضمي لـ +2000 زبونة سعيدة</p>
+        <p class="text-white font-black text-lg mb-1">انضمي لـ +2000 زبونة سعيدة <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></p>
         <p class="text-white/50 text-sm mb-5">توصيل فابور · دفع عند الاستلام · تبدال خلال 7 أيام</p>
         <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
           class="inline-flex items-center gap-2 font-black text-sm text-[#1A1A1A] rounded-full px-8 py-3.5 hover:-translate-y-0.5 transition-all shadow-[0_6px_24px_rgba(196,164,132,.4)]"
@@ -406,14 +640,17 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
      PAGE 2 — PRODUCT DETAIL
 ══════════════════════════════════════════ -->
 <div id="pg-product" class="page">
+  <!-- Breadcrumb -->
   <div class="py-3 px-4 md:px-8 bg-cream border-b border-stone-200">
     <button onclick="nav('home')" class="back-btn">
       <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       رجعي للمتجر
     </button>
   </div>
+  <!-- Dynamic content -->
   <div id="product-detail"></div>
-  <div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-40 bg-cream2 border-t border-stone-200 py-3 px-4 items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,.1)]">
+  <!-- Mobile sticky CTA -->
+  <div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-40 sticky-cta border-t border-stone-200 py-3 px-4 items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,.1)]">
     <div>
       <div class="text-xl font-black text-charcoal">199 درهم</div>
       <small class="text-xs text-muted line-through">219 درهم</small>
@@ -429,12 +666,13 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
      PAGE 3 — CART
 ══════════════════════════════════════════ -->
 <div id="pg-cart" class="page">
-  <div class="px-4 md:px-8 py-4 flex items-center justify-between" style="background:linear-gradient(135deg,#1A1A1A,#222);border-bottom:1px solid rgba(196,164,132,.15)">
+  <!-- Cart header bar -->
+  <div class="px-4 md:px-8 py-4 flex items-center justify-between" style="background:linear-gradient(135deg,#1A1A1A,#222);border-bottom:1px solid rgba(196,164,132,.2)">
     <button onclick="nav('home')" class="flex items-center gap-2 text-white/60 hover:text-white text-xs font-bold transition-colors bg-transparent border-0 cursor-pointer font-cairo">
       <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       متابعة التسوق
     </button>
-    <span class="text-white font-black text-sm">سلة الشراء</span>
+    <span class="text-white font-black text-sm">سلة الشراء <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
     <div class="w-16"></div>
   </div>
 
@@ -453,7 +691,7 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
             <div class="flex justify-between items-center"><span class="text-muted font-semibold">المجموع الفرعي</span><span class="font-bold text-charcoal" id="s-sub">0 درهم</span></div>
             <div class="flex justify-between items-center">
               <span class="text-muted font-semibold">التوصيل</span>
-              <span class="font-black text-green-600 flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني</span>
+              <span class="font-black text-green-600 flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 2.5 2.5v5"/><path d="M16.5 8v-2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1-2.5 2.5h-5"/></svg></span>
             </div>
           </div>
         </div>
@@ -462,7 +700,7 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
           <span class="text-2xl font-black text-charcoal" id="s-total">0 درهم</span>
         </div>
         <div class="px-5 pb-5">
-          <button onclick="nav('checkout')" class="w-full text-[#1A1A1A] rounded-2xl py-4 text-sm font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(196,164,132,.5)] transition-all mt-1" style="background:linear-gradient(135deg,#C4A484,#B8956A)">
+          <button onclick="nav('checkout')" class="w-full text-[#1A1A1A] rounded-2xl py-4 text-sm font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(196,164,132,.6)] active:scale-95 transition-all mt-1" style="background:linear-gradient(135deg,#C4A484,#B8956A)">
             <svg class="w-4 h-4 stroke-[#1A1A1A] fill-none" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
             إتمام الطلب
           </button>
@@ -488,6 +726,8 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
   </div>
   <div class="py-6 px-4 md:py-8 md:px-8 bg-cream2">
     <div class="max-w-3xl mx-auto grid md:grid-cols-[1fr_340px] gap-6 items-start">
+
+      <!-- Form -->
       <div>
         <div class="flex items-center gap-2 text-lg font-black text-charcoal3 mb-5">
           <div class="w-1.5 h-5 bg-gradient-to-b from-sand to-sand3 rounded-full"></div>
@@ -522,7 +762,7 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">ملاحظات (اختياري)</label>
             <input type="text" name="notes" placeholder="أي معلومة إضافية..." class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
           </div>
-          <button type="submit" class="w-full bg-charcoal text-white rounded-xl py-4 text-[13px] font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,.3)] transition-all">
+          <button type="submit" class="w-full bg-charcoal text-white rounded-xl py-4 text-[13px] font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,.35)] active:scale-95 transition-all">
             <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
             تأكيدي الطلب — دفع عند الاستلام
           </button>
@@ -532,6 +772,8 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
           </p>
         </form>
       </div>
+
+      <!-- Order summary -->
       <div class="md:sticky md:top-[80px]">
         <div class="flex items-center gap-2 text-lg font-black text-charcoal3 mb-5">
           <div class="w-1.5 h-5 bg-gradient-to-b from-sand to-sand3 rounded-full"></div>
@@ -539,14 +781,19 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
         </div>
         <div id="checkout-summary" class="bg-cream rounded-2xl border border-stone-200 p-4"><!-- JS --></div>
       </div>
+
     </div>
   </div>
 </div>
 
 <!-- ===== FOOTER ===== -->
-<footer style="background:linear-gradient(180deg,#141414 0%,#1A1A1A 100%);border-top:1px solid rgba(196,164,132,.12)">
+<footer style="background:linear-gradient(180deg,#0f0f0f 0%,#1A1A1A 100%);border-top:1px solid rgba(196,164,132,.15)">
   <div class="max-w-5xl mx-auto px-4 md:px-8 py-10 md:py-12">
+
+    <!-- Top row -->
     <div class="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 mb-8">
+
+      <!-- Brand -->
       <div class="flex-1">
         <div class="flex items-center gap-2.5 mb-3">
           <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(196,164,132,.25),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.3)">
@@ -556,26 +803,22 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
         </div>
         <p class="text-stone-500 text-xs leading-relaxed max-w-xs">متجرك المفضّل للصندلة الكلاص بالمغرب. كاليتي ممتازة، توصيل سريع، ودفع عند الاستلام.</p>
         <div class="flex items-center gap-1 mt-3">
-          <div class="flex text-[#F59E0B] text-sm">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27"/></svg>
-          </div>
+          <span class="text-[#F59E0B] text-sm">★★★★★</span>
           <span class="text-stone-500 text-[11px] font-semibold mr-1">+150 تقييم</span>
         </div>
       </div>
 
+      <!-- Quick links -->
       <div>
         <p class="text-white/30 text-[10px] font-black tracking-widest uppercase mb-3">روابط سريعة</p>
         <div class="flex flex-col gap-2">
-          <a href="#" onclick="nav('home')" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors flex items-center gap-1"><svg class="w-3 h-3 stroke-stone-400 fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-7H9v7H5a2 2 0 0 1-2-2z"/></svg> الصفحة الرئيسية</a>
-          <a href="#" onclick="nav('cart')" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors flex items-center gap-1"><svg class="w-3 h-3 stroke-stone-400 fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> السلة</a>
-          <a href="https://wa.me/212612455372" target="_blank" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors flex items-center gap-1"><svg class="w-3 h-3 fill-stone-400" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> تواصل معنا</a>
+          <a href="#" onclick="nav('home')" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> الصفحة الرئيسية</a>
+          <a href="#" onclick="nav('cart')" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> السلة</a>
+          <a href="https://wa.me/212612455372" target="_blank" class="text-stone-400 text-xs font-semibold hover:text-[#C4A484] transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> تواصل معنا</a>
         </div>
       </div>
 
+      <!-- Policies -->
       <div>
         <p class="text-white/30 text-[10px] font-black tracking-widest uppercase mb-3">السياسات</p>
         <div class="flex flex-col gap-2">
@@ -585,6 +828,7 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
         </div>
       </div>
 
+      <!-- Contact -->
       <div>
         <p class="text-white/30 text-[10px] font-black tracking-widest uppercase mb-3">تواصل</p>
         <a href="https://wa.me/212612455372" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/25 text-[#25D366] text-xs font-bold rounded-xl px-4 py-2.5 transition-all">
@@ -594,18 +838,20 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
       </div>
     </div>
 
+    <!-- Divider -->
     <div class="border-t flex flex-col md:flex-row items-center justify-between gap-3 pt-6" style="border-color:rgba(255,255,255,.06)">
-      <p class="text-stone-600 text-[11px] font-semibold">© 2025 Tolba Store — جميع الحقوق محفوظة 🇲🇦</p>
+      <p class="text-stone-600 text-[11px] font-semibold">© 2025 Tolba Store — جميع الحقوق محفوظة <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg></p>
       <div class="flex items-center gap-2">
         <div class="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot"></div>
         <span class="text-stone-600 text-[11px] font-semibold">المتجر شغّال — طلبي الآن</span>
       </div>
     </div>
+
   </div>
 </footer>
 
 <!-- ===== WHATSAPP FLOAT ===== -->
-<a id="wa-float" href="https://wa.me/212612455372?text=السلام عليكم، بغيت نطلب صندلة من Tolba Store 🥿" target="_blank" rel="noopener">
+<a id="wa-float" href="https://wa.me/212612455372?text=السلام عليكم، بغيت نطلب صندلة من Tolba Store <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 18c2-1 4-2 8-2s6 1 8 2"/><path d="M2 18v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4"/><path d="M18 14c0-2 2-4 4-4v8"/></svg>" target="_blank" rel="noopener">
   <span class="wa-ring"></span>
   <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
@@ -620,15 +866,18 @@ fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
           <polyline class="sm-check" points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <div class="text-white text-xl font-black mb-3">تم استلام طلبك!</div>
+      <div class="text-white text-xl font-black mb-3">تم استلام طلبك! <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></div>
       <div class="text-stone-300 text-sm font-semibold leading-relaxed">غادي نتوصلو معاك في أقرب وقت باش نأكدو معاك الطلب</div>
       <button onclick="closeSM()" class="mt-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl py-3 px-8 text-sm font-black cursor-pointer transition-all w-full active:scale-95">
-        حسناً، شكراً
+        حسناً، شكراً <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
       </button>
     </div>
   </div>
 </div>
 
+<!-- ════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
 <script>
 // ─── PRODUCTS DATA ─────────────────────────────────────────
 const PRODS = [
@@ -638,7 +887,7 @@ const PRODS = [
     sub:  'سويدي كلاص — موديل إيطالي',
     price: 199, old: 219,
     color: 'كاميل', hex: '#B46435',
-    badge: '🔥 الأكثر طلباً',
+    badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.214-4.166-1.213-7 0 0-4 3.5-4 8 0 3.5 2.5 6 6 6 3.5 0 6-2.5 6-6 0-4.5-4-8-4-8 1.001 2.834-.141 4.857-1.213 7-.5 1-1 1.62-1 3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> الأكثر طلباً',
     desc: 'موديل إيطالي غزال مخدوم بكاليتي ممتازة وتفاصيل ذهبية أنيقة. خفيفة ومريحة لرجليك نهار كامل، وتواتي أي لبيسة.',
     imgs: ['tolba-brown-1.png','tolba-brown-2.png','tolba-brown-3.png'],
     sizes: ['37','38','39','40'], oos: ['41'], stock: 12
@@ -649,8 +898,8 @@ const PRODS = [
     sub:  'جلد طبيعي — إطار ذهبي',
     price: 199, old: 219,
     color: 'بني داكن', hex: '#3D2B1F',
-    badge: '✨ جديد',
-    desc: 'جلد طبيعي ناعم بلون البني الداكن الكلاسيكي. إطار ذهبي أنيق يعطيها لمسة فاخرة. مناسبة للخروج والمناسبات.',
+    badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> جديد',
+    desc: 'جلد طبيعي ناعم بلون البني الداكن الكلاصيكي. إطار ذهبي أنيق يعطيها لمسة فاخرة. مناسبة للخروج والمناسبات.',
     imgs: ['tolba-black-1.png','tolba-black-2.png','tolba-black-3.png'],
     sizes: ['37','38','39','40','41'], oos: [], stock: 8
   },
@@ -660,8 +909,8 @@ const PRODS = [
     sub:  'سويدي بريميوم — إيطالي',
     price: 199, old: 219,
     color: 'كحل سويدي', hex: '#2D2D3D',
-    badge: '⚡ محدود',
-    desc: 'سويدي فاخر بلون الكحل العميق. قماش ناعم وخفيف على الرجل. ديزاين عصري يواتي اللبيسة العصرية والكلاسيكية.',
+    badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
+    desc: 'سويدي فاخر بلون الكحل العميق. قماش ناعم وخفيف على الرجل. ديزاين عصري يواتي اللبيسة العصرية والكلاصيكية.',
     imgs: ['tolba-black-suede-1.png','tolba-black-suede-2.png','tolba-black-suede-3.png'],
     sizes: ['37','38','39','40'], oos: ['41'], stock: 5
   }
@@ -673,13 +922,13 @@ const saveCart = () => localStorage.setItem('tlb_cart', JSON.stringify(cart));
 
 // ─── PRODUCT PAGE STATE ─────────────────────────────────────
 let curProdId   = null;
-let pdCurrent   = 0;
+let pdCurrent   = 0;   // gallery index
 let pdTotal     = 3;
 let pdSize      = null;
 let pdQty       = 1;
 
 // ─── CARD GALLERY STATE ─────────────────────────────────────
-const cardIdx = {};
+const cardIdx = {};   // { [productId]: currentIndex }
 
 // ═══════════════════════════════════════════════════════════
 // NAVIGATION
@@ -712,26 +961,31 @@ function renderProducts() {
   grid.innerHTML = PRODS.map(p => {
     cardIdx[p.id] = 0;
     const imgs = p.imgs.map((src, i) =>
-      `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'">`
+      `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
     ).join('');
     const dots = p.imgs.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
     ).join('');
 
     return `
-    <div class="rounded-[20px] overflow-hidden border-2 border-stone-200 bg-cream cursor-pointer group hover:border-stone-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,.1)] transition-all duration-200" onclick="nav('product',${p.id})">
+    <div class="rounded-[20px] overflow-hidden border-2 border-stone-200 bg-cream cursor-pointer product-card group" onclick="nav('product',${p.id})">
+      <!-- image gallery -->
       <div class="relative overflow-hidden bg-stone-100" style="height:260px" id="cg-${p.id}">
         ${imgs}
+        <!-- badge -->
         <span class="absolute top-3 right-3 bg-charcoal/90 text-white text-[10px] font-bold py-1 px-2.5 rounded-full z-10">${p.badge}</span>
         ${p.stock <= 5 ? `<span class="absolute top-3 left-3 bg-red-500/90 text-white text-[10px] font-bold py-1 px-2.5 rounded-full z-10">بقات ${p.stock}!</span>` : ''}
+        <!-- arrows -->
         <button class="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full bg-cream2/90 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm" onclick="event.stopPropagation();cShift(${p.id},-1)">
           <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
         <button class="absolute top-1/2 -translate-y-1/2 left-2 w-7 h-7 rounded-full bg-cream2/90 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm" onclick="event.stopPropagation();cShift(${p.id},1)">
           <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
+        <!-- dots -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">${dots}</div>
       </div>
+      <!-- info -->
       <div class="p-4 border-t border-stone-100">
         <div class="flex items-center gap-1.5 mb-1">
           <div class="w-3 h-3 rounded-full border border-stone-300 flex-shrink-0" style="background:${p.hex}"></div>
@@ -751,6 +1005,7 @@ function renderProducts() {
   }).join('');
 }
 
+// card gallery helpers
 function cGoto(id, to) {
   const wrap = document.getElementById('cg-' + id);
   if (!wrap) return;
@@ -780,7 +1035,7 @@ function renderProductPage(id) {
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
 
   const mainImgs = p.imgs.map((src, i) =>
-    `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'">`
+    `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
   ).join('');
 
   const thumbs = p.imgs.map((src, i) =>
@@ -797,24 +1052,30 @@ function renderProductPage(id) {
 
   document.getElementById('product-detail').innerHTML = `
   <div class="grid md:grid-cols-2 bg-cream2">
+    <!-- gallery -->
     <div class="relative bg-stone-100 overflow-hidden max-md:order-1" style="min-height:380px">
       <div class="relative w-full" style="height:420px;max-height:55vw;min-height:280px" id="pd-g">
         ${mainImgs}
+        <!-- arrows -->
         <button onclick="pdShift(-1)" class="absolute top-1/2 -translate-y-1/2 right-3 w-9 h-9 rounded-full bg-cream2/90 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-md hover:bg-cream2 transition-all">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
         <button onclick="pdShift(1)" class="absolute top-1/2 -translate-y-1/2 left-3 w-9 h-9 rounded-full bg-cream2/90 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-md hover:bg-cream2 transition-all">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
+        <!-- badge -->
         <div class="absolute top-4 right-4 bg-charcoal/90 text-white text-[11px] font-bold py-1.5 px-3.5 rounded-full z-10">${p.badge}</div>
+        <!-- quality card -->
         <div class="absolute bottom-4 left-4 bg-cream2/95 backdrop-blur rounded-xl p-2.5 border border-white/80 flex items-center gap-2 shadow-lg z-10">
           <svg class="w-4 h-4 stroke-sand fill-none flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           <div><span class="text-[11px] font-bold text-charcoal3">ضمان الجودة</span><small class="text-[10px] text-muted block">تبدال فابور 7 أيام</small></div>
         </div>
       </div>
+      <!-- thumbnails -->
       <div class="flex gap-2 p-3 bg-cream border-t border-stone-200" id="pd-thumbs" style="overflow-x:auto">${thumbs}</div>
     </div>
 
+    <!-- info -->
     <div class="py-8 px-5 md:py-10 md:px-9 flex flex-col justify-center max-md:order-2 max-md:pb-28">
       <div class="inline-flex items-center gap-1.5 bg-stone-100 text-charcoal3 text-[11px] font-bold py-1.5 px-3.5 rounded-full mb-4 w-fit border border-stone-200">
         <div class="w-3 h-3 rounded-full flex-shrink-0" style="background:${p.hex}"></div>
@@ -823,21 +1084,24 @@ function renderProductPage(id) {
       <h2 class="text-2xl md:text-[28px] font-black text-charcoal3 leading-tight mb-2">${p.name}</h2>
       <p class="text-sm text-muted leading-relaxed mb-5">${p.desc}</p>
 
+      <!-- price -->
       <div class="flex items-center gap-3 mb-5">
         <span class="text-[32px] font-black text-charcoal leading-none">${p.price} درهم</span>
         <span class="text-base text-muted line-through">${p.old} درهم</span>
         <span class="bg-sand text-white text-[11px] font-bold py-1 px-2.5 rounded-full">−${Math.round((1-p.price/p.old)*100)}%</span>
       </div>
 
+      <!-- sizes -->
       <div class="mb-5">
         <div class="flex justify-between items-center mb-2.5">
-          <span class="text-xs font-bold text-charcoal3">📐 اختاري النمرة</span>
+          <span class="text-xs font-bold text-charcoal3"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 22l20-20"/><path d="M6 18L2 22l4-4"/><path d="M18 2l4 4-4-4"/></svg> اختاري النمرة</span>
           <span class="text-[11px] text-charcoal font-bold cursor-pointer underline">دليل القياسات</span>
         </div>
         <div class="flex flex-wrap gap-2" id="pd-sizes">${sizebtns}</div>
         ${p.stock <= 8 ? `<div class="flex items-center gap-1 mt-2 text-[11px] text-sand font-bold"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>بقات غير ${p.stock} بياسات!</div>` : ''}
       </div>
 
+      <!-- quantity -->
       <div class="mb-5">
         <span class="text-xs font-bold text-charcoal3 block mb-2.5">الكمية</span>
         <div class="flex items-center gap-3">
@@ -847,18 +1111,20 @@ function renderProductPage(id) {
         </div>
       </div>
 
+      <!-- trust -->
       <div class="flex flex-wrap gap-3 mb-6 text-[11px] text-muted font-semibold">
         <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>توصيل فابور</span>
         <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>تبدال 7 أيام</span>
         <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>دفع عند الاستلام</span>
       </div>
 
+      <!-- desktop CTAs -->
       <div class="flex gap-2.5 max-md:hidden">
-        <button onclick="addToCart()" class="flex-1 bg-charcoal text-white rounded-xl py-3.5 px-4 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,.25)] transition-all">
+        <button onclick="addToCart()" class="flex-1 bg-charcoal text-white rounded-xl py-3.5 px-4 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,.3)] active:scale-95 transition-all">
           <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           اضيفي للسلة
         </button>
-        <button onclick="addToCart(true)" class="bg-sand text-white rounded-xl py-3.5 px-5 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(196,164,132,.5)] transition-all whitespace-nowrap">
+        <button onclick="addToCart(true)" class="bg-sand text-white rounded-xl py-3.5 px-5 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(196,164,132,.6)] active:scale-95 transition-all whitespace-nowrap">
           اطلبي دابا ←
         </button>
       </div>
@@ -899,7 +1165,7 @@ function pdQtyChange(d) {
 // ═══════════════════════════════════════════════════════════
 function addToCart(goCheckout = false) {
   if (!curProdId) return;
-  if (!pdSize) { showToast('⚠️ اختاري النمرة أولاً', '#C4A484'); return; }
+  if (!pdSize) { showToast('<svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> اختاري النمرة أولاً', '#C4A484'); return; }
 
   const p = PRODS.find(x => x.id === curProdId);
   if (!p) return;
@@ -917,7 +1183,7 @@ function addToCart(goCheckout = false) {
   if (goCheckout) {
     nav('checkout');
   } else {
-    showToast('✅ تمت الإضافة للسلة!', '#1A1A1A');
+    showToast('<svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> تمت الإضافة للسلة!', '#1A1A1A');
   }
 }
 
@@ -937,10 +1203,10 @@ function renderCart() {
   if (!cart.length) {
     list.innerHTML = `
       <div class="text-center py-16">
-        <div class="text-5xl mb-4"><svg class="w-12 h-12 mx-auto stroke-charcoal3 fill-none" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <div class="text-5xl mb-4"><svg class="w-12 h-12 stroke-current fill-none inline-block" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
         <div class="text-lg font-black text-charcoal3 mb-2">السلة فارغة</div>
         <p class="text-sm text-muted mb-6">اختاري موديلك من الكتالوج</p>
-        <button onclick="nav('home')" class="bg-charcoal text-white rounded-xl py-3 px-7 text-sm font-bold cursor-pointer hover:-translate-y-0.5 hover:shadow-lg transition-all">شوفي المنتجات</button>
+        <button onclick="nav('home')" class="bg-charcoal text-white rounded-xl py-3 px-7 text-sm font-bold cursor-pointer hover:-translate-y-0.5 hover:shadow-lg transition-all"><svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 18c2-1 4-2 8-2s6 1 8 2"/><path d="M2 18v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4"/><path d="M18 14c0-2 2-4 4-4v8"/></svg> شوفي المنتجات</button>
       </div>`;
     summary.classList.add('hidden');
     return;
@@ -949,7 +1215,7 @@ function renderCart() {
   list.innerHTML = `<div class="space-y-3">${cart.map((item, idx) => `
     <div class="bg-cream rounded-2xl border border-stone-200 p-4 flex gap-3 items-center" style="animation:slideInRight .25s ease both;animation-delay:${idx*.06}s">
       <div class="w-[68px] h-[68px] rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
-        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'">
+        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" loading="lazy">
       </div>
       <div class="flex-1 min-w-0">
         <div class="text-sm font-black text-charcoal3 leading-tight">${item.name}</div>
@@ -994,7 +1260,7 @@ function renderCheckoutSummary() {
       ${cart.map(item => `
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 rounded-lg overflow-hidden bg-stone-100 flex-shrink-0">
-          <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'">
+          <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" loading="lazy">
         </div>
         <div class="flex-1 min-w-0">
           <div class="text-xs font-bold text-charcoal3 leading-tight">${item.name}</div>
@@ -1005,14 +1271,14 @@ function renderCheckoutSummary() {
     </div>
     <div class="border-t border-stone-200 pt-3 space-y-1.5 text-sm">
       <div class="flex justify-between"><span class="text-muted">المجموع الفرعي</span><span class="font-bold">${total} درهم</span></div>
-      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-bold text-green-600 flex items-center gap-1"><svg class="w-3 h-3 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني</span></div>
+      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-bold text-green-600">مجاني <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 2.5 2.5v5"/><path d="M16.5 8v-2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1-2.5 2.5h-5"/></svg></span></div>
       <div class="flex justify-between pt-2 border-t border-stone-100 mt-1">
         <span class="font-black text-charcoal3">المجموع الكلي</span>
         <span class="text-xl font-black text-charcoal">${total} درهم</span>
       </div>
     </div>
     <div class="mt-4 bg-stone-50 rounded-xl p-3 border border-stone-100">
-      <p class="text-[11px] text-muted text-center font-semibold">💳 الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
+      <p class="text-[11px] text-muted text-center font-semibold"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
     </div>`;
 }
 
@@ -1124,6 +1390,23 @@ function showToast(msg, bg) {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+})();
+
+
+// ─── HERO SLIDESHOW ────────────────────────────────────────
+(function() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+  let current = 0;
+  const interval = 5000; // 5 seconds per slide
+
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  setInterval(nextSlide, interval);
 })();
 
 // ═══════════════════════════════════════════════════════════
