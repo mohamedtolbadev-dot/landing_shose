@@ -6,7 +6,7 @@
 <title>Tolba Store — صندلة زارا</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Reem+Kufi:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -80,30 +80,43 @@ button,a{transition:var(--transition)}
 
 /* ===== TYPOGRAPHY ===== */
 .luxury-title{
-  background:linear-gradient(135deg,#ffffff 0%,#f0ede8 40%,#C4A484 75%,#D4AF6A 100%);
+  font-family:'Reem Kufi','Cairo',sans-serif;
+  background:linear-gradient(135deg,#ffffff 0%,#f5f1ea 45%,#E3CCA8 80%,#D4AF6A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  letter-spacing:-0.025em;line-height:1.1
+  letter-spacing:0;line-height:1.22;font-weight:600
+}
+.luxury-title .accent-en{
+  font-family:'Marcellus',serif;
+  font-style:italic;font-weight:400;
+  letter-spacing:.08em
 }
 .section-label{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-  background:linear-gradient(135deg,rgba(196,164,132,.18),rgba(196,164,132,.08));
-  border:1px solid rgba(196,164,132,.25);color:var(--sand-dk);
-  padding:6px 16px;border-radius:999px;
-  box-shadow:0 2px 8px rgba(196,164,132,.12)
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  background:transparent;
+  border:none;color:var(--sand-dk);
+  padding:0;border-radius:0;
+  box-shadow:none
 }
 
 /* ===== HERO ===== */
-.luxury-hero{min-height:600px;background:linear-gradient(135deg,#100d0a 0%,#1e1812 50%,#100d0a 100%)}
-.luxury-overlay{background:linear-gradient(135deg,rgba(10,7,4,.95) 0%,rgba(26,18,10,.82) 45%,rgba(196,164,132,.12) 100%)}
+.luxury-hero{min-height:640px;background:#0c0a08}
+.luxury-overlay{background:linear-gradient(160deg,rgba(8,6,4,.94) 0%,rgba(20,14,9,.78) 45%,rgba(28,20,12,.55) 100%)}
 
 /* ===== PREMIUM BADGE — HERO ===== */
 .premium-badge{
-  background:linear-gradient(135deg,rgba(196,164,132,.22),rgba(196,164,132,.12),rgba(196,164,132,.22));
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(196,164,132,.35);
-  box-shadow:0 8px 32px rgba(196,164,132,.2),inset 0 1px 0 rgba(255,255,255,.1);
-  letter-spacing:.6px
+  background:transparent;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  border:1px solid rgba(212,175,106,.4);
+  box-shadow:none;
+  letter-spacing:3px;font-weight:600;
+  color:#E3CCA8
+}
+
+/* ===== HERO RULE / DIVIDER ===== */
+.hero-rule{
+  display:inline-block;width:1px;height:34px;
+  background:linear-gradient(to bottom,transparent,rgba(212,175,106,.7),transparent)
 }
 
 /* ===== PRIMARY CTA ===== */
@@ -139,8 +152,8 @@ button,a{transition:var(--transition)}
 
 /* ===== GLASS PILL ===== */
 .glass-pill{
-  background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.03);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.14);
 }
 
 /* ===== PRODUCT CARDS ===== */
@@ -198,9 +211,25 @@ button,a{transition:var(--transition)}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;
   opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1);
-  pointer-events:none
+  pointer-events:none;cursor:zoom-in
 }
 .g-img.on{opacity:1;pointer-events:auto}
+
+/* ===== IMAGE LIGHTBOX ===== */
+#lbx{display:none;position:fixed;inset:0;z-index:10001;align-items:center;justify-content:center;padding:16px}
+#lbx.open{display:flex}
+.lbx-bg{position:absolute;inset:0;background:rgba(5,5,5,.92);backdrop-filter:blur(6px)}
+.lbx-img-wrap{position:relative;z-index:1;width:100%;max-width:640px;max-height:88vh;display:flex;align-items:center;justify-content:center;animation:fadeInUp .35s cubic-bezier(.22,.68,0,1.2) both}
+.lbx-img-wrap img{max-width:100%;max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:var(--radius-lg);box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.lbx-close{position:absolute;top:-14px;left:-14px;width:38px;height:38px;border-radius:50%;background:#fff;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:2}
+.lbx-nav{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:2}
+.lbx-nav.prev{right:-8px}
+.lbx-nav.next{left:-8px}
+@media (max-width:640px){
+  .lbx-close{top:-46px;left:0;background:rgba(255,255,255,.95)}
+  .lbx-nav.prev{right:4px}
+  .lbx-nav.next{left:4px}
+}
 
 /* ===== SIZE BUTTONS ===== */
 .sz-btn{
@@ -280,13 +309,55 @@ button,a{transition:var(--transition)}
 }
 .sm-check{stroke-dasharray:40;stroke-dashoffset:40;animation:check-draw .5s ease .6s forwards}
 
+/* ===== SIZE GUIDE MODAL ===== */
+#szg{display:none;position:fixed;inset:0;z-index:10000;align-items:center;justify-content:center;padding:20px}
+#szg.open{display:flex}
+.szg-bg{position:absolute;inset:0;background:rgba(5,5,5,.6);backdrop-filter:blur(8px)}
+.szg-card{
+  position:relative;z-index:1;
+  background:#fff;
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 32px 80px rgba(0,0,0,.35);
+  width:100%;max-width:400px;max-height:85vh;overflow-y:auto;
+  animation:fadeInUp .4s cubic-bezier(.22,.68,0,1.2) both
+}
+.szg-table{width:100%;border-collapse:collapse;font-size:13px}
+.szg-table th{background:var(--cream2);font-weight:800;color:var(--charcoal3);padding:10px 8px;border-bottom:2px solid rgba(196,164,132,.25)}
+.szg-table td{padding:10px 8px;text-align:center;border-bottom:1px solid rgba(0,0,0,.05);font-weight:700;color:var(--charcoal)}
+.szg-table tr:last-child td{border-bottom:none}
+
+/* ===== PAYMENT TRUST STRIP ===== */
+.pay-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  background:var(--cream2);border:1px solid rgba(196,164,132,.2);
+  border-radius:14px;padding:10px 14px;margin-bottom:18px
+}
+.pay-strip .pay-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--charcoal3);white-space:nowrap}
+.pay-strip .pay-item svg{flex-shrink:0}
+.pay-strip .pay-sep{width:1px;height:18px;background:rgba(196,164,132,.3);flex-shrink:0}
+
 /* ===== NAV HEADER ===== */
 .site-header{
-  background:linear-gradient(135deg,#2A2825,#1E1C1A);
+  position:relative;
+  background:linear-gradient(180deg,#141210 0%,#1e1b17 50%,#141210 100%);
   border-bottom:1px solid rgba(196,164,132,.12);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  box-shadow:0 4px 32px rgba(0,0,0,.3)
+  box-shadow:0 4px 32px rgba(0,0,0,.3);
+  overflow:hidden
 }
+.site-header::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:.25;
+  background:radial-gradient(ellipse at top,rgba(196,164,132,.18) 0%,transparent 60%)
+}
+.site-header::after{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:.04;
+  background-image:url('data:image/svg+xml,%3Csvg width=%2240%22 height=%2240%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%221.5%22 fill=%22%23fff%22/%3E%3C/svg%3E');
+  background-size:40px 40px
+}
+.site-header > *{position:relative;z-index:1}
 .cart-btn{
   background:rgba(255,255,255,.12);
   border:1.5px solid rgba(255,255,255,.2);
@@ -504,34 +575,35 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
 
  <div class="luxury-hero relative overflow-hidden">
    <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
-     <div class="absolute inset-0 bg-black/35 z-10"></div>
+     <div class="absolute inset-0 bg-black/45 z-10"></div>
      <div class="absolute inset-0 hero-slide active" style="background-image:url('./images/tolba-brown-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-suede-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-zara-1.png')"></div>
    </div>
    <div class="luxury-overlay absolute inset-0 z-10"></div>
-   <div class="absolute inset-0 z-10 pointer-events-none" style="background:radial-gradient(ellipse at 65% 55%,rgba(196,164,132,.15) 0%,transparent 60%)"></div>
+   <div class="absolute inset-0 z-10 pointer-events-none" style="background:radial-gradient(ellipse at 50% 40%,rgba(212,175,106,.10) 0%,transparent 65%)"></div>
 
-   <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-12" style="min-height:560px;padding-top:3.5rem;padding-bottom:3.5rem">
+   <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-12" style="min-height:600px;padding-top:4.5rem;padding-bottom:4.5rem">
 
-     <div class="premium-badge inline-flex items-center gap-2.5 text-white/95 text-[11px] md:text-xs font-bold py-2.5 px-5 rounded-full mb-7" style="animation:fadeInUp .5s ease .1s both">
-       <svg class="w-3.5 h-3.5 fill-sand flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+     <div class="premium-badge inline-flex items-center gap-3 text-[10px] md:text-[11px] font-bold py-2.5 px-6 mb-8" style="animation:fadeInUp .5s ease .1s both">
+       <span style="color:#D4AF6A">✦</span>
        تشكيلة صيف 2026
+       <span style="color:#D4AF6A">✦</span>
      </div>
 
-     <h1 class="luxury-title font-black leading-tight mb-2" style="font-size:clamp(2.1rem,5.8vw,4.2rem);animation:fadeInUp .55s ease .2s both">
+     <h1 class="luxury-title mb-4" style="font-size:clamp(2.3rem,6.2vw,4.6rem);animation:fadeInUp .55s ease .2s both">
        تألقي بخطوات كلها<br>ثقة وراحة
-       <span class="italic block mt-1" style="font-size:.55em;opacity:.9">Tolba Store</span>
      </h1>
+     <div class="accent-en text-white/75 mb-7" style="font-size:clamp(1.1rem,2.4vw,1.6rem);letter-spacing:.15em;animation:fadeInUp .58s ease .25s both">Tolba Store</div>
 
-     <p class="text-white/80 max-w-lg mx-auto leading-relaxed mb-9 font-medium mt-1" style="font-size:clamp(.9rem,2.2vw,1.05rem);text-shadow:0 2px 16px rgba(0,0,0,.5);letter-spacing:.3px;animation:fadeInUp .6s ease .3s both">
+     <p class="text-white/75 max-w-lg mx-auto leading-relaxed mb-10 font-medium" style="font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.3px;animation:fadeInUp .6s ease .3s both">
        صندلة مصممة خصيصاً باش تواتيك فكل لبساتك.. أناقة تخطف الأنظار، وراحة تنسيك تعب النهار فالمشي!
      </p>
 
-     <div class="flex flex-wrap items-center justify-center gap-3 mb-10" style="animation:fadeInUp .65s ease .4s both">
+     <div class="flex flex-wrap items-center justify-center gap-4 mb-12" style="animation:fadeInUp .65s ease .4s both">
        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
-         class="btn-primary font-black text-sm md:text-base text-charcoal rounded-full px-8 py-4 inline-flex items-center gap-2.5">
+         class="btn-primary font-black text-sm md:text-base text-charcoal rounded-full px-9 py-4 inline-flex items-center gap-2.5">
          <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
          <span class="relative z-10">طلبي صندلتك دابا</span>
        </button>
@@ -541,27 +613,25 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
        </div>
      </div>
 
-     <div class="flex flex-wrap items-center justify-center gap-2.5" style="animation:fadeInUp .7s ease .5s both">
-       <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="white" stroke-width="2"/></svg>
+     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3" style="animation:fadeInUp .7s ease .5s both">
+       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="#D4AF6A" stroke-width="2"/></svg>
          جودة بريميوم
        </div>
-       <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
+       <span class="hero-rule"></span>
+       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
          خلصي حتى تقلبي سلعتك
        </div>
-       <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+       <span class="hero-rule"></span>
+       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
          القياس مجاش؟ نبدلوه ليك
        </div>
      </div>
    </div>
 
-   <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:52px">
-     <svg viewBox="0 0 1440 52" preserveAspectRatio="none" class="w-full h-full hero-wave" xmlns="http://www.w3.org/2000/svg">
-       <path d="M0,52 L0,26 Q360,0 720,26 Q1080,52 1440,26 L1440,52 Z"/>
-     </svg>
-   </div>
+   <div class="absolute bottom-0 left-0 right-0 h-px pointer-events-none" style="background:linear-gradient(to right,transparent,rgba(212,175,106,.5),transparent)"></div>
  </div>
 
   <div class="py-14 px-4 md:py-18 md:px-8 bg-cream2 relative">
@@ -836,6 +906,15 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
         السلة
         <span id="cart-count-label" class="text-sm text-muted font-semibold"></span>
       </div>
+      <!-- بانر عرض الصندلتين -->
+      <div id="promo-banner" class="mb-4 rounded-2xl p-4 flex items-center gap-3" style="background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.05));border:1.5px solid rgba(22,163,74,.3)">
+        <span class="text-2xl flex-shrink-0">🎁</span>
+        <div>
+          <p class="text-sm font-black text-green-700">عرض حصري — خدي صندلتين وربحي 12%</p>
+          <p class="text-xs text-green-600 font-semibold mt-0.5">التخفيض يتطبق أوتوماتيكيا على كل موديل</p>
+        </div>
+      </div>
+
       <div id="cart-list"></div>
       <div id="cart-summary" class="hidden mt-6 rounded-[24px] overflow-hidden shadow-[0_6px_36px_rgba(0,0,0,.08)] bg-cream2 border border-stone-200/60">
         <div class="px-5 pt-5 pb-4 border-b border-stone-100">
@@ -1042,6 +1121,52 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
         <span class="relative z-10">حسناً، شكراً 👍</span>
       </button>
     </div>
+  </div>
+</div>
+
+<!-- ===== SIZE GUIDE MODAL ===== -->
+<div id="szg">
+  <div class="szg-bg" onclick="closeSizeGuide()"></div>
+  <div class="szg-card">
+    <div class="p-5">
+      <div class="flex items-center justify-between mb-1">
+        <div class="text-base font-black text-charcoal3">دليل القياسات</div>
+        <button onclick="closeSizeGuide()" class="w-8 h-8 rounded-full bg-cream2 border-0 flex items-center justify-center cursor-pointer">
+          <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p class="text-[12px] text-muted font-semibold mb-3">قيسي طول قدمك بالسنتيمتر وشوفي النمرة المناسبة ليك فالجدول تحت 👇</p>
+      <table class="szg-table">
+        <thead><tr><th>النمرة (EU)</th><th>طول القدم (سم)</th></tr></thead>
+        <tbody>
+          <tr><td>37</td><td>23.0 – 23.5</td></tr>
+          <tr><td>38</td><td>23.6 – 24.2</td></tr>
+          <tr><td>39</td><td>24.3 – 24.9</td></tr>
+          <tr><td>40</td><td>25.0 – 25.6</td></tr>
+          <tr><td>41</td><td>25.7 – 26.3</td></tr>
+        </tbody>
+      </table>
+      <div class="mt-3 rounded-xl p-3 text-center" style="background:#f5f5f4;border:1px solid rgba(0,0,0,.06)">
+        <p class="text-[11px] text-muted font-semibold">🔄 ماشي متأكدة من النمرة؟ ما تخافي — كاين تبديل مجاني فـ 7 أيام</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== IMAGE LIGHTBOX ===== -->
+<div id="lbx">
+  <div class="lbx-bg" onclick="closeLightbox()"></div>
+  <div class="lbx-img-wrap">
+    <button class="lbx-close" onclick="closeLightbox()">
+      <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lbx-nav prev" onclick="event.stopPropagation();lbxShift(-1)">
+      <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <img id="lbx-img" src="" alt="">
+    <button class="lbx-nav next" onclick="event.stopPropagation();lbxShift(1)">
+      <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
   </div>
 </div>
 
@@ -1261,12 +1386,12 @@ function renderProductPage(id) {
   document.getElementById('product-detail').innerHTML = `
   <div class="grid md:grid-cols-2 bg-cream2">
     <div class="relative bg-stone-100 overflow-hidden max-md:order-1" style="min-height:480px">
-      <div class="relative w-full" style="height:580px;max-height:65vw;min-height:380px" id="pd-g">
+      <div class="relative w-full" style="height:580px;max-height:65vw;min-height:380px" id="pd-g" onclick="openLightbox(event)">
         ${mainImgs}
-        <button onclick="pdShift(-1)" class="absolute top-1/2 -translate-y-1/2 right-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
+        <button onclick="event.stopPropagation();pdShift(-1)" class="absolute top-1/2 -translate-y-1/2 right-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-        <button onclick="pdShift(1)" class="absolute top-1/2 -translate-y-1/2 left-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
+        <button onclick="event.stopPropagation();pdShift(1)" class="absolute top-1/2 -translate-y-1/2 left-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="absolute top-4 right-4 text-white text-[11px] font-bold py-1.5 px-3.5 rounded-full z-10 shadow-md" style="background:rgba(26,26,26,.88)">${p.badge}</div>
@@ -1289,7 +1414,7 @@ function renderProductPage(id) {
       <h2 class="text-2xl md:text-[30px] font-black text-charcoal3 leading-tight mb-3">${p.name}</h2>
       <p class="text-sm text-muted leading-relaxed mb-5">${p.desc}</p>
 
-      <div class="flex items-center gap-3 mb-6">
+      <div class="flex items-center gap-3 mb-5">
         <span class="text-[34px] font-black text-charcoal leading-none">${p.price} درهم</span>
         <div class="flex flex-col gap-0.5">
           <span class="text-base text-muted line-through">${p.old} درهم</span>
@@ -1297,10 +1422,27 @@ function renderProductPage(id) {
         </div>
       </div>
 
+      <div class="pay-strip">
+        <div class="pay-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8956A" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          الدفع عند الاستلام
+        </div>
+        <div class="pay-sep"></div>
+        <div class="pay-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8956A" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          تبديل مجاني 7 أيام
+        </div>
+        <div class="pay-sep"></div>
+        <div class="pay-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8956A" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          توصيل مجاني
+        </div>
+      </div>
+
       <div class="mb-5">
         <div class="flex justify-between items-center mb-2.5">
           <span class="text-xs font-bold text-charcoal3">اختاري النمرة</span>
-          <span class="text-[11px] text-charcoal font-bold cursor-pointer underline">دليل القياسات</span>
+          <span class="text-[11px] text-charcoal font-bold cursor-pointer underline" onclick="openSizeGuide()">دليل القياسات</span>
         </div>
         <div class="flex flex-wrap gap-2" id="pd-sizes">${sizebtns}</div>
         ${p.stock <= 8 ? `<div class="stock-alert mt-2.5"><svg class="w-3 h-3 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>بقات غير ${p.stock} بياسات!</div>` : ''}
@@ -1432,8 +1574,33 @@ function renderCart() {
         </div>
       </div>
     </div>`).join('')}</div>`;
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const hasDiscount = totalQty >= 2;
+  const discountAmt = hasDiscount ? Math.round(total * 0.12) : 0;
+  const finalTotal  = total - discountAmt;
+
   document.getElementById('s-sub').textContent   = total + ' درهم';
-  document.getElementById('s-total').textContent = total + ' درهم';
+
+  // إظهار أو إخفاء سطر التخفيض
+  let discountRow = document.getElementById('s-discount-row');
+  if (!discountRow) {
+    discountRow = document.createElement('div');
+    discountRow.id = 's-discount-row';
+    discountRow.className = 'flex justify-between items-center';
+    document.getElementById('s-sub').closest('.flex.justify-between').insertAdjacentElement('afterend', discountRow);
+  }
+  if (hasDiscount) {
+    discountRow.innerHTML = `
+      <span class="text-green-600 font-bold flex items-center gap-1">
+        🎁 تخفيض 12% (صندلتين)
+      </span>
+      <span class="font-black text-green-600">−${discountAmt} درهم</span>`;
+    discountRow.style.display = 'flex';
+  } else {
+    discountRow.style.display = 'none';
+  }
+
+  document.getElementById('s-total').textContent = finalTotal + ' درهم';
   summary.classList.remove('hidden');
 }
 function removeItem(idx) { cart.splice(idx, 1); saveCart(); updateBadge(); renderCart(); }
@@ -1444,6 +1611,17 @@ function renderCheckoutSummary() {
   const el = document.getElementById('checkout-summary');
   if (!el) return;
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const hasDiscount = totalQty >= 2;
+  const discountAmt = hasDiscount ? Math.round(total * 0.12) : 0;
+  const finalTotal  = total - discountAmt;
+
+  const discountRow = hasDiscount ? `
+    <div class="flex justify-between items-center py-1 px-2 rounded-lg" style="background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.2)">
+      <span class="text-green-700 font-bold text-xs flex items-center gap-1">🎁 تخفيض 12% — صندلتين</span>
+      <span class="font-black text-green-700 text-sm">−${discountAmt} درهم</span>
+    </div>` : '';
+
   el.innerHTML = `
     <div class="space-y-3 mb-4">
       ${cart.map(item => `
@@ -1453,17 +1631,18 @@ function renderCheckoutSummary() {
         </div>
         <div class="flex-1 min-w-0">
           <div class="text-xs font-bold text-charcoal3 leading-tight">${item.name}</div>
-          <div class="text-[10px] text-muted mt-0.5">نمرة ${item.size} · ×${item.qty}</div>
+          <div class="text-[10px] text-muted mt-0.5">نمرة ${item.size} × ${item.qty}</div>
         </div>
         <span class="text-sm font-black text-charcoal flex-shrink-0">${item.price*item.qty} درهم</span>
       </div>`).join('')}
     </div>
-    <div class="border-t border-stone-200 pt-3 space-y-1.5 text-sm">
+    <div class="border-t border-stone-200 pt-3 space-y-2 text-sm">
       <div class="flex justify-between"><span class="text-muted">المجموع الفرعي</span><span class="font-bold">${total} درهم</span></div>
+      ${discountRow}
       <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-black text-green-600">مجاني ✓</span></div>
       <div class="flex justify-between pt-2 border-t border-stone-100 mt-1">
         <span class="font-black text-charcoal3">المجموع الكلي</span>
-        <span class="text-xl font-black text-charcoal">${total} درهم</span>
+        <span class="text-xl font-black text-charcoal">${finalTotal} درهم</span>
       </div>
     </div>
     <div class="mt-4 rounded-xl p-3 text-center" style="background:#f5f5f4;border:1px solid rgba(0,0,0,.06)">
@@ -1477,11 +1656,16 @@ function submitOrder(e) {
   e.preventDefault();
   if (!cart.length) return;
   const fd = new FormData(document.getElementById('orderForm'));
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const rawTotal  = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const totalQty  = cart.reduce((s, i) => s + i.qty, 0);
+  const discount  = totalQty >= 2 ? Math.round(rawTotal * 0.12) : 0;
+  const total     = rawTotal - discount;
   const order = {
     fullName: fd.get('fullName'), phone: fd.get('phone'),
     city: fd.get('city'), address: fd.get('address'),
     notes: fd.get('notes') || '—', total,
+    discount: discount > 0 ? `تخفيض 12% = −${discount} درهم` : 'لا يوجد',
+    model: cart.map(i => i.name).join(' / '),
     size: cart.map(i => i.size).join(' / '),
     color: cart.map(i => i.color).join(' / '),
     quantity: cart.reduce((s, i) => s + i.qty, 0),
@@ -1519,7 +1703,45 @@ function closeSM() {
   c.style.cssText = 'transform:translateY(20px) scale(.96);opacity:0;transition:all .28s ease';
   setTimeout(() => { m.classList.remove('open'); c.style.cssText = ''; document.body.style.overflow = ''; }, 280);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSM(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSM(); closeSizeGuide(); closeLightbox(); } });
+
+// ─── SIZE GUIDE MODAL ─────────────────────────
+function openSizeGuide() {
+  document.getElementById('szg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSizeGuide() {
+  const m = document.getElementById('szg');
+  const c = m.querySelector('.szg-card');
+  c.style.cssText = 'transform:translateY(20px) scale(.96);opacity:0;transition:all .25s ease';
+  setTimeout(() => { m.classList.remove('open'); c.style.cssText = ''; document.body.style.overflow = ''; }, 250);
+}
+
+// ─── IMAGE LIGHTBOX ───────────────────────────
+function openLightbox(e) {
+  if (e && e.target.closest('button')) return;
+  const p = PRODS.find(x => x.id === curProdId);
+  if (!p) return;
+  const img = document.getElementById('lbx-img');
+  img.src = p.colors[pdCurrent].img;
+  img.alt = p.name + ' - ' + p.colors[pdCurrent].name;
+  document.getElementById('lbx').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  const m = document.getElementById('lbx');
+  const c = m.querySelector('.lbx-img-wrap');
+  c.style.cssText = 'transform:scale(.96);opacity:0;transition:all .22s ease';
+  setTimeout(() => { m.classList.remove('open'); c.style.cssText = ''; document.body.style.overflow = ''; }, 220);
+}
+function lbxShift(d) {
+  pdShift(d);
+  const p = PRODS.find(x => x.id === curProdId);
+  if (!p) return;
+  const img = document.getElementById('lbx-img');
+  img.src = p.colors[pdCurrent].img;
+  img.alt = p.name + ' - ' + p.colors[pdCurrent].name;
+}
 
 // ─── BADGE & TOAST ───────────────────────────
 function updateBadge() {
@@ -1590,6 +1812,16 @@ function showToast(msg, bg) {
 // ─── INIT ────────────────────────────────────
 renderProducts();
 updateBadge();
+
+// ─── AUTO-SELECT MODEL FROM URL (?model=ID) ──
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const modelId = parseInt(params.get('model'), 10);
+  if (!modelId) return;
+  const exists = PRODS.find(p => p.id === modelId);
+  if (exists) nav('product', modelId);
+})();
+
 </script>
 </body>
 </html>
