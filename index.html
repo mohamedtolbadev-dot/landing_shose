@@ -504,10 +504,10 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
 
         <!-- Hero Product Slideshow -->
     <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
-      <div class="absolute inset-0 hero-slide active" style="background-image: url('./images/tolba-brown-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-suede-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-zara-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide active" style="background-image: url('./images/tolba-brown-1.png');"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-1.png');"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-suede-1.png');"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-zara-1.png');"></div>
     </div>
 
     <!-- Luxury overlay -->
@@ -1102,20 +1102,11 @@ function renderProducts() {
   const grid = document.getElementById('products-grid');
   if (!grid) return;
 
-  // Add cache buster
-  const cacheBuster = '?v=' + Date.now();
-
   grid.innerHTML = PRODS.map(p => {
     cardIdx[p.id] = 0;
-    
-    // Preload all images for this product
-    p.colors.forEach(c => {
-      const img = new Image();
-      img.src = c.img + cacheBuster;
-    });
-    
+
     const imgs = p.colors.map((c, i) =>
-      `<img src="${c.img}${cacheBuster}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
     ).join('');
     const dots = p.colors.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
@@ -1195,22 +1186,21 @@ function renderProductPage(id) {
   pdQty     = 1;
   pdSize    = p.sizes.length > 1 ? p.sizes[1] : p.sizes[0];
 
-  // Preload all color images
-  p.colors.forEach(c => {
+  // Preload only first image eagerly
+  if (p.colors[0]) {
     const img = new Image();
-    img.src = c.img;
-  });
+    img.src = p.colors[0].img;
+  }
 
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
 
-  const cacheBuster = '?v=' + Date.now();
   const mainImgs = p.colors.map((c, i) =>
-    `<img src="${c.img}${cacheBuster}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
   ).join('');
 
   const thumbs = p.colors.map((c, i) =>
     `<div class="thumb${i===0?' on':''}" style="width:68px;height:68px" onclick="pdGoto(${i})">
-       <img src="${c.img}${cacheBuster}" alt="${c.name}" class="w-full h-full object-cover block" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
+       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
      </div>`
   ).join('');
 
@@ -1594,14 +1584,6 @@ function showToast(msg, bg) {
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
-
-// Force PNG images (prevent browser auto-conversion)
-if (typeof window !== 'undefined') {
-  const meta = document.createElement('meta');
-  meta.httpEquiv = 'Accept';
-  meta.content = 'image/png,image/jpeg,image/webp,image/*,*/*;q=0.8';
-  document.head.appendChild(meta);
-}
 
 renderProducts();
 updateBadge();
