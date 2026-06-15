@@ -1,24 +1,29 @@
 {
   "version": 2,
+  "public": true,
   "headers": [
     {
-      "source": "/(.*)\\.(jpg|jpeg|png|webp|gif)",
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|gif|ico|svg)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "upgrade-insecure-requests"
         }
       ]
     }
   ],
   "routes": [
     {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/(.*\\.(jpg|jpeg|png|webp|gif))",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
   ]
 }
