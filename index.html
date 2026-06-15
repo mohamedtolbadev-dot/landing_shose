@@ -13,10 +13,16 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        cream: '#FAF9F6', cream2: '#FDFCFB',
-        charcoal: '#1A1A1A', charcoal2: '#222222', charcoal3: '#333333',
-        muted: '#6B7280',
-        sand: '#C4A484', sand2: '#BCA37F', sand3: '#B8956A',
+        cream:    '#FAF9F6',
+        cream2:   '#FDFCFB',
+        charcoal: '#1A1A1A',
+        charcoal2:'#222222',
+        charcoal3:'#333333',
+        muted:    '#6B7280',
+        sand:     '#C4A484',
+        sand2:    '#BCA37F',
+        sand3:    '#B8956A',
+        gold:     '#D4AF6A',
       },
       fontFamily: { cairo: ['Cairo','Segoe UI','sans-serif'] },
     }
@@ -30,469 +36,462 @@ tailwind.config = {
 fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
 </script>
 <style>
-/* ===== BASE ===== */
-*,*::before,*::after{box-sizing:border-box}
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:rgba(196,164,132,.28);color:#1A1A1A}
 
-/* ===== LUXURY ADDITIONS ===== */
-.luxury-hero { min-height:580px;background:linear-gradient(135deg,#1a1614 0%,#2d2520 50%,#1a1614 100%) }
-.luxury-overlay { background:linear-gradient(135deg,rgba(15,10,5,.92) 0%,rgba(30,20,10,.85) 40%,rgba(196,164,132,.15) 100%) }
-.premium-badge { background:linear-gradient(to right,rgba(196,164,132,0.2),rgba(196,164,132,0.15),rgba(196,164,132,0.2));backdrop-filter:blur(12px);border:1px solid rgba(196,164,132,0.3);box-shadow:0 8px 32px rgba(196,164,132,0.25);letter-spacing:0.5px }
-.luxury-title { background:linear-gradient(135deg,#ffffff 0%,#f5f5f5 50%,#C4A484 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em }
-.premium-cta { background:linear-gradient(135deg,#D4B494,#C4A484,#B8956A);box-shadow:0 8px 32px rgba(196,164,132,0.4),inset 0 1px 0 rgba(255,255,255,0.3);position:relative;overflow:hidden }
-.premium-cta::before { content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(255,255,255,0.2),transparent);transform:translateX(-100%);transition:transform 0.7s }
-.premium-cta:hover::before { transform:translateX(100%) }
+/* ===== CSS VARIABLES — Design Tokens ===== */
+:root{
+  --sand:      #C4A484;
+  --sand-dk:   #B8956A;
+  --sand-lt:   #D4B494;
+  --gold:      #D4AF6A;
+  --charcoal:  #1A1A1A;
+  --charcoal2: #2A2825;
+  --cream:     #FAF9F6;
+  --cream2:    #FDFCFB;
+  --muted:     #6B7280;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow-card: 0 4px 24px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.05);
+  --shadow-hover: 0 20px 48px rgba(0,0,0,.14), 0 8px 16px rgba(0,0,0,.08);
+  --shadow-sand: 0 8px 32px rgba(196,164,132,.4);
+  --transition: all .3s cubic-bezier(.4,0,.2,1);
+}
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn      { from{opacity:0}                                   to{opacity:1} }
-@keyframes fadeInUp    { from{opacity:0;transform:translateY(12px)}        to{opacity:1;transform:translateY(0)} }
-@keyframes slideInRight{ from{opacity:0;transform:translateX(12px)}        to{opacity:1;transform:translateX(0)} }
-@keyframes pulse-dot   { 0%,100%{opacity:1;transform:scale(1)}  50%{opacity:.5;transform:scale(1.4)} }
-@keyframes wa-ring     { 0%{transform:scale(1);opacity:.55} 70%,100%{transform:scale(1.65);opacity:0} }
-@keyframes check-draw  { to{stroke-dashoffset:0} }
-@keyframes success-pop { 0%{transform:scale(.5);opacity:0} 65%{transform:scale(1.08)} 100%{transform:scale(1);opacity:1} }
-@keyframes toast-in    { from{opacity:0;transform:translateX(-50%) translateY(8px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
-@keyframes cart-pop    { 0%{transform:scale(1)} 50%{transform:scale(1.5)} 100%{transform:scale(1)} }
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#f5f5f4;border-radius:3px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--sand),var(--sand-dk));border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--sand-dk)}
 
-/* ===== SPA ROUTER ===== */
-.page        { display:none }
-.page.active { display:block; animation:fadeIn .25s ease }
+/* ===== FOCUS ===== */
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px;border-radius:8px}
+button,a{transition:var(--transition)}
 
-/* ===== GALLERY IMAGES ===== */
-.g-img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none;transform:scale(1.15) }
-.g-img.on { opacity:1;pointer-events:auto }
+/* ===== TYPOGRAPHY ===== */
+.luxury-title{
+  background:linear-gradient(135deg,#ffffff 0%,#f0ede8 40%,#C4A484 75%,#D4AF6A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-0.025em;line-height:1.1
+}
+.section-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  background:linear-gradient(135deg,rgba(196,164,132,.18),rgba(196,164,132,.08));
+  border:1px solid rgba(196,164,132,.25);color:var(--sand-dk);
+  padding:6px 16px;border-radius:999px;
+  box-shadow:0 2px 8px rgba(196,164,132,.12)
+}
+
+/* ===== HERO ===== */
+.luxury-hero{min-height:600px;background:linear-gradient(135deg,#100d0a 0%,#1e1812 50%,#100d0a 100%)}
+.luxury-overlay{background:linear-gradient(135deg,rgba(10,7,4,.95) 0%,rgba(26,18,10,.82) 45%,rgba(196,164,132,.12) 100%)}
+
+/* ===== PREMIUM BADGE — HERO ===== */
+.premium-badge{
+  background:linear-gradient(135deg,rgba(196,164,132,.22),rgba(196,164,132,.12),rgba(196,164,132,.22));
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(196,164,132,.35);
+  box-shadow:0 8px 32px rgba(196,164,132,.2),inset 0 1px 0 rgba(255,255,255,.1);
+  letter-spacing:.6px
+}
+
+/* ===== PRIMARY CTA ===== */
+.btn-primary{
+  background:linear-gradient(135deg,#D4B494,#C4A484,#B8956A);
+  box-shadow:0 8px 28px rgba(196,164,132,.45),inset 0 1px 0 rgba(255,255,255,.25);
+  position:relative;overflow:hidden;
+  border:none;cursor:pointer
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to left,transparent,rgba(255,255,255,.22),transparent);
+  transform:translateX(100%);transition:transform .65s ease
+}
+.btn-primary:hover::before{transform:translateX(-100%)}
+.btn-primary:hover{
+  box-shadow:0 16px 48px rgba(196,164,132,.65),inset 0 1px 0 rgba(255,255,255,.3);
+  transform:translateY(-2px)
+}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+
+/* ===== SECONDARY CTA ===== */
+.btn-dark{
+  background:linear-gradient(135deg,#222,#1A1A1A);
+  box-shadow:0 4px 20px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);
+  border:none;cursor:pointer
+}
+.btn-dark:hover{
+  box-shadow:0 12px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.1);
+  transform:translateY(-2px)
+}
+.btn-dark:active{transform:translateY(0) scale(.98)}
+
+/* ===== GLASS PILL ===== */
+.glass-pill{
+  background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.18);
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card{
+  background:#fff;
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(0,0,0,.07);
+  overflow:hidden;
+  transition:transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;
+  box-shadow:var(--shadow-card)
+}
+.product-card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--shadow-hover)
+}
+.product-card:active{transform:translateY(-4px)}
+
+/* ===== FEATURE CARDS ===== */
+.feature-card{
+  background:linear-gradient(145deg,#fff 0%,var(--cream2) 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 8px 32px rgba(0,0,0,.18);
+  transition:var(--transition);
+  overflow:hidden;
+  position:relative
+}
+.feature-card::before{
+  content:'';position:absolute;inset:0;border-radius:var(--radius-lg);
+  background:radial-gradient(ellipse at top right,rgba(196,164,132,.15),transparent 60%);
+  opacity:0;transition:opacity .4s ease;pointer-events:none
+}
+.feature-card:hover::before{opacity:1}
+.feature-card:hover{transform:translateY(-10px);box-shadow:0 24px 56px rgba(196,164,132,.35)}
+
+/* ===== REVIEW CARDS ===== */
+.review-card{
+  background:#fff;border-radius:var(--radius-lg);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:var(--shadow-card);
+  transition:var(--transition);
+  position:relative;overflow:hidden
+}
+.review-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--sand-lt),var(--sand),var(--sand-dk));
+  transform:scaleX(0);transform-origin:right;transition:transform .35s ease
+}
+.review-card:hover::after{transform:scaleX(1)}
+.review-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.1)}
+
+/* ===== GALLERY ===== */
+.g-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1);
+  pointer-events:none
+}
+.g-img.on{opacity:1;pointer-events:auto}
 
 /* ===== SIZE BUTTONS ===== */
-.sz-btn { min-width:40px;padding:6px 12px;border:2px solid #E7E5E4;border-radius:999px;background:#FDFCFB;font-weight:700;font-size:13px;cursor:pointer;transition:all .18s ease;color:#6B7280 }
-.sz-btn:hover:not(.sz-oos) { border-color:#1A1A1A;color:#1A1A1A }
-.sz-btn.sz-sel { background:#1A1A1A;color:#fff;border-color:#1A1A1A }
-.sz-btn.sz-oos { opacity:.35;text-decoration:line-through;cursor:not-allowed }
+.sz-btn{
+  min-width:44px;padding:7px 14px;
+  border:2px solid #E7E5E4;border-radius:999px;
+  background:var(--cream2);font-weight:700;font-size:13px;
+  cursor:pointer;transition:var(--transition);color:var(--muted)
+}
+.sz-btn:hover:not(.sz-oos){border-color:var(--charcoal);color:var(--charcoal);background:#fff}
+.sz-btn.sz-sel{background:var(--charcoal);color:#fff;border-color:var(--charcoal);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.sz-btn.sz-oos{opacity:.3;text-decoration:line-through;cursor:not-allowed}
 
 /* ===== THUMBNAILS ===== */
-.thumb    { border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s ease;background:#e7e5e4;flex-shrink:0 }
-.thumb.on { border-color:#1A1A1A;box-shadow:0 0 0 2px #1A1A1A }
+.thumb{
+  border:2px solid transparent;border-radius:12px;
+  overflow:hidden;cursor:pointer;
+  transition:var(--transition);background:#e7e5e4;flex-shrink:0
+}
+.thumb.on{border-color:var(--charcoal);box-shadow:0 0 0 3px rgba(26,26,26,.15)}
+.thumb:hover:not(.on){border-color:rgba(196,164,132,.6);transform:scale(1.06)}
 
 /* ===== CARD DOTS ===== */
-.card-dot     { width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.7);cursor:pointer;transition:all .2s ease }
-.card-dot.on  { background:#fff }
+.card-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.8);cursor:pointer;transition:all .2s ease}
+.card-dot.on{background:#fff;transform:scale(1.3)}
 
 /* ===== CART BADGE ===== */
-#cart-badge {
-  position:absolute;top:-6px;right:-6px;background:#C4A484;color:#fff;font-size:9px;font-weight:700;
-  width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  border:2px solid white;transition:transform .2s ease
+#cart-badge{
+  position:absolute;top:-7px;right:-7px;
+  background:linear-gradient(135deg,var(--sand-lt),var(--sand-dk));
+  color:#fff;font-size:9px;font-weight:800;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid white;
+  transition:transform .2s ease;
+  box-shadow:0 2px 8px rgba(196,164,132,.4)
 }
-#cart-badge.pop { animation:cart-pop .3s ease }
+#cart-badge.pop{animation:cart-pop .35s cubic-bezier(.34,1.56,.64,1)}
 
 /* ===== WHATSAPP FLOAT ===== */
-#wa-float {
-  position:fixed;bottom:24px;right:20px;width:56px;height:56px;background:#25D366;
-  border-radius:50%;box-shadow:0 4px 20px rgba(37,211,102,.45),0 2px 8px rgba(0,0,0,.18);
-  display:flex;align-items:center;justify-content:center;z-index:9998;
-  opacity:0;pointer-events:none;transform:scale(.5) translateY(16px);
-  transition:opacity .3s,transform .35s cubic-bezier(.22,.68,0,1.25);
-  cursor:pointer;text-decoration:none
+#wa-float{
+  position:fixed;bottom:28px;right:22px;
+  width:58px;height:58px;
+  background:linear-gradient(135deg,#2ae06c,#25D366);
+  border-radius:50%;
+  box-shadow:0 6px 24px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9998;cursor:pointer;text-decoration:none;
+  opacity:0;pointer-events:none;transform:scale(.5) translateY(20px);
+  transition:opacity .3s,transform .4s cubic-bezier(.22,.68,0,1.3)
 }
-#wa-float.on { opacity:1;pointer-events:auto;transform:scale(1) translateY(0) }
-#wa-float:hover { transform:scale(1.08) translateY(-2px) !important }
-.wa-ring { position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,.35);animation:wa-ring 2.2s ease-out infinite }
-#wa-float svg { position:relative;z-index:1 }
+#wa-float.on{opacity:1;pointer-events:auto;transform:scale(1) translateY(0)}
+#wa-float:hover{transform:scale(1.1) translateY(-3px) !important;box-shadow:0 10px 36px rgba(37,211,102,.6)}
+.wa-ring{position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,.35);animation:wa-ring 2.2s ease-out infinite}
+#wa-float svg{position:relative;z-index:1}
 
 /* ===== SUCCESS MODAL ===== */
-#sm { display:none;position:fixed;inset:0;z-index:10000;align-items:center;justify-content:center;padding:20px }
-#sm.open { display:flex }
-.sm-bg   { position:absolute;inset:0;background:rgba(10,10,10,.65);backdrop-filter:blur(6px) }
-.sm-card {
-  position:relative;z-index:1;background:#1A1A1A;border-radius:24px;
-  box-shadow:0 24px 64px rgba(0,0,0,.35);width:100%;max-width:360px;
-  animation:fadeInUp .4s cubic-bezier(.22,.68,0,1.2) both
+#sm{display:none;position:fixed;inset:0;z-index:10000;align-items:center;justify-content:center;padding:20px}
+#sm.open{display:flex}
+.sm-bg{position:absolute;inset:0;background:rgba(5,5,5,.7);backdrop-filter:blur(8px)}
+.sm-card{
+  position:relative;z-index:1;
+  background:linear-gradient(145deg,#1e1c1a,#141210);
+  border-radius:var(--radius-xl);
+  border:1px solid rgba(196,164,132,.2);
+  box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04);
+  width:100%;max-width:380px;
+  animation:fadeInUp .45s cubic-bezier(.22,.68,0,1.2) both
 }
-.sm-inner { padding:36px 28px 32px;text-align:center }
-.sm-circle {
-  width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.08);
-  border:2px solid rgba(255,255,255,.15);margin:0 auto 20px;
+.sm-inner{padding:40px 32px 36px;text-align:center}
+.sm-circle{
+  width:84px;height:84px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));
+  border:2px solid rgba(196,164,132,.3);
+  margin:0 auto 24px;
   display:flex;align-items:center;justify-content:center;
-  animation:success-pop .5s cubic-bezier(.22,.68,0,1.4) .1s both
+  animation:success-pop .55s cubic-bezier(.22,.68,0,1.4) .1s both
 }
-.sm-check { stroke-dasharray:40;stroke-dashoffset:40;animation:check-draw .45s ease .55s forwards }
+.sm-check{stroke-dasharray:40;stroke-dashoffset:40;animation:check-draw .5s ease .6s forwards}
 
-/* ===== ANIMATE PULSE DOT ===== */
-.pulse-dot { animation:pulse-dot 1.5s infinite }
-
-/* ===== MOBILE ===== */
-@media (max-width:767px){
-  body { overflow-x:hidden }
-  #wa-float { bottom:78px;right:16px;width:50px;height:50px }
-  input,select,textarea { font-size:16px !important }
+/* ===== NAV HEADER ===== */
+.site-header{
+  background:linear-gradient(135deg,#2A2825,#1E1C1A);
+  border-bottom:1px solid rgba(196,164,132,.12);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 4px 32px rgba(0,0,0,.3)
 }
+.cart-btn{
+  background:rgba(255,255,255,.12);
+  border:1.5px solid rgba(255,255,255,.2);
+  border-radius:12px;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);cursor:pointer
+}
+.cart-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4)}
 
-/* ===== BREADCRUMB ===== */
-.back-btn { display:flex;align-items:center;gap:4px;font-size:12px;color:#6B7280;cursor:pointer;background:none;border:none;font-family:inherit;font-weight:600;padding:0;transition:color .15s }
-.back-btn:hover { color:#1A1A1A }
-
-/* ===== SCROLLBAR (thin) ===== */
-::-webkit-scrollbar { width:4px;height:4px }
-::-webkit-scrollbar-track { background:#f5f5f4 }
-::-webkit-scrollbar-thumb { background:#C4A484;border-radius:4px }
-
-/* ===== ENHANCED DESIGN SYSTEM ===== */
-
-/* Smooth scrolling */
-html { scroll-behavior: smooth; }
-
-/* Better text rendering */
-body { 
-  -webkit-font-smoothing: antialiased; 
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+/* ===== COUNTDOWN BOXES ===== */
+.countdown-box{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;padding:6px 10px;
+  font-variant-numeric:tabular-nums;
+  min-width:38px;text-align:center;
+  display:block
 }
 
-/* Selection color */
-::selection {
-  background: rgba(196, 164, 132, 0.3);
-  color: #1A1A1A;
+/* ===== TOP BAR ===== */
+.top-bar{
+  background:linear-gradient(135deg,#111 0%,#1a1614 50%,#111 100%);
+  border-bottom:1px solid rgba(196,164,132,.1)
 }
 
-/* Improved scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f5f5f4; border-radius: 3px; }
-::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #C4A484, #B8956A); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #B8956A, #A08050); }
+/* ===== BACK BTN ===== */
+.back-btn{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:inherit;font-weight:700;padding:0;transition:color .15s}
+.back-btn:hover{color:var(--charcoal)}
 
-/* Enhanced focus states */
-:focus-visible {
-  outline: 2px solid #C4A484;
-  outline-offset: 2px;
-  border-radius: 8px;
+/* ===== STICKY CTA ===== */
+.sticky-cta{
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(253,252,251,.96);
+  border-top:1px solid rgba(0,0,0,.07)
 }
 
-/* Better button transitions */
-button, a {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* ===== TRUST BAR ===== */
+.trust-bar{background:linear-gradient(180deg,#141210 0%,#1e1b17 50%,#141210 100%)}
+.trust-icon-wrap{
+  background:linear-gradient(135deg,var(--sand),var(--sand-dk));
+  border-radius:18px;
+  box-shadow:0 8px 24px rgba(196,164,132,.35);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease
 }
+.feature-card:hover .trust-icon-wrap{transform:scale(1.12) rotate(-4deg);box-shadow:0 12px 32px rgba(196,164,132,.5)}
 
-/* Enhanced card hover */
-.product-card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0,0,0,.15), 0 12px 24px rgba(0,0,0,.1);
-}
-
-/* Review card hover */
-.review-card {
-  transition: all 0.3s ease;
-}
-.review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0,0,0,.1);
-}
-
-/* Trust badge hover */
-.trust-badge {
-  position: relative;
-  transition: all 0.3s ease;
-}
-.trust-badge:hover {
-  transform: translateY(-2px);
-}
-
-/* Enhanced gallery images */
-.g-img { 
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.g-img.on { 
-  opacity: 1; 
-  transform: scale(1);
-}
-.g-img:not(.on) {
-  transform: scale(1.02);
-}
-
-/* Thumbnail hover */
-.thumb {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.thumb:hover:not(.on) {
-  border-color: rgba(196, 164, 132, 0.5);
-  transform: scale(1.05);
-}
-
-/* Size button effects */
-.sz-btn {
-  position: relative;
-  overflow: hidden;
-}
-.sz-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.1);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-.sz-btn:hover::after {
-  opacity: 1;
-}
-
-/* Form input enhancements */
-input, select, textarea {
-  transition: all 0.2s ease;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-}
-input:focus, select:focus, textarea:focus {
-  box-shadow: 0 0 0 3px rgba(196, 164, 132, 0.15), inset 0 1px 2px rgba(0,0,0,0.05);
-}
-
-/* Sticky CTA blur */
-.sticky-cta {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(253, 252, 251, 0.95);
-}
-
-/* Countdown box */
-.countdown-box {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* WhatsApp button enhancement */
-#wa-float {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-#wa-float:hover {
-  transform: scale(1.1) translateY(-4px);
-  box-shadow: 0 8px 32px rgba(37,211,102,.5), 0 4px 12px rgba(0,0,0,.2);
-}
-
-/* Success modal blur */
-.sm-card {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* Hero overlay */
-.hero-overlay {
-  background: linear-gradient(135deg, rgba(26,26,26,.9) 0%, rgba(26,26,26,.7) 40%, rgba(196,164,132,.25) 100%);
-}
-
-/* Floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.float-animation {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Badge pulse */
-@keyframes badge-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196, 164, 132, 0.4); }
-  50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(196, 164, 132, 0); }
-}
-.badge-pulse {
-  animation: badge-pulse 2s infinite;
-}
-
-/* Shimmer effect */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-/* Skeleton loading */
-@keyframes skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-.skeleton-loader {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: skeleton-pulse 1.5s ease-in-out infinite;
-}
-
-/* Mobile tap highlight */
-@media (max-width: 767px) {
-  * { -webkit-tap-highlight-color: rgba(196, 164, 132, 0.2); }
-  .page.active { animation: fadeIn 0.3s ease; }
-}
-
-/* Footer link hover effect */
-footer a {
-  position: relative;
-}
-footer a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #C4A484;
-  transition: width 0.3s ease;
-}
-footer a:hover::after {
-  width: 100%;
-}
-
-/* Glass morphism */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Text gradient */
-.text-gradient {
-  background: linear-gradient(135deg, #1A1A1A 0%, #C4A484 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Hover lift effect */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-
-/* ===== SVG GLOBAL POLISH ===== */
-svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-/* Trust badge icon glow */
-.trust-badge .trust-icon {
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 0 0px rgba(196,164,132,0));
-}
-.trust-badge:hover .trust-icon {
-  filter: drop-shadow(0 0 8px rgba(196,164,132,0.55));
-  transform: scale(1.1) rotate(-3deg);
-}
-
-/* Icon container upgrade */
-.icon-box {
-  background: linear-gradient(135deg, rgba(196,164,132,0.22), rgba(196,164,132,0.07));
-  border: 1px solid rgba(196,164,132,0.28);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-  transition: all 0.3s ease;
-}
-.trust-badge:hover .icon-box {
-  background: linear-gradient(135deg, rgba(196,164,132,0.35), rgba(196,164,132,0.15));
-  border-color: rgba(196,164,132,0.5);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 16px rgba(196,164,132,0.2);
-}
-
-/* SVG star ratings */
-.svg-stars {
-  display: inline-flex;
-  align-items: center;
-  gap: 1px;
-}
-.svg-stars svg {
-  fill: #F59E0B;
-  stroke: #F59E0B;
-  stroke-width: 0;
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
-/* Verified buyer badge */
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 10px;
-  font-weight: 700;
-  color: #16a34a;
-  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-  border: 1px solid #bbf7d0;
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-/* Icon pulse on CTA */
-@keyframes icon-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-.icon-bounce-hover:hover svg {
-  animation: icon-bounce 0.6s ease infinite;
-}
-
-/* Delivery icon fix */
-.delivery-icon { display: inline-block; vertical-align: text-bottom; }
+/* ===== HERO WAVES ===== */
+.hero-wave path{fill:var(--cream2)}
 
 /* ===== HERO SLIDESHOW ===== */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1.05);
-  background-size: cover;
-  background-position: center 40%;
-  background-repeat: no-repeat;
+.hero-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.3s cubic-bezier(.4,0,.2,1);
+  background-size:cover;background-position:center 40%;background-repeat:no-repeat
 }
-.hero-slide.active {
-  opacity: 1;
-  transform: scale(1);
+.hero-slide.active{opacity:1}
+
+/* ===== PAGE SPA ROUTER ===== */
+.page{display:none}
+.page.active{display:block;animation:fadeIn .28s ease}
+
+/* ===== SVG STARS ===== */
+.svg-stars{display:inline-flex;align-items:center;gap:2px}
+.svg-stars svg{fill:#F59E0B;stroke:none;width:14px;height:14px;flex-shrink:0}
+
+/* ===== VERIFIED BADGE ===== */
+.verified-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;color:#16a34a;
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  border:1px solid #bbf7d0;padding:3px 10px;border-radius:999px
 }
 
+/* ===== PULSE DOT ===== */
+.pulse-dot{animation:pulse-dot 1.6s infinite}
+
+/* ===== FOOTER ===== */
+footer{background:linear-gradient(180deg,#1E1C1A,#141210)}
+footer a{position:relative}
+footer a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--sand);transition:width .3s ease}
+footer a:hover::after{width:100%}
+
+/* ===== FORM INPUTS ===== */
+input,select,textarea{transition:var(--transition);box-shadow:inset 0 1px 3px rgba(0,0,0,.05)}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.18),inset 0 1px 3px rgba(0,0,0,.05)}
+
+/* ===== GRADIENT DIVIDER ===== */
+.grad-divider{height:1px;background:linear-gradient(to right,transparent,rgba(196,164,132,.35),transparent)}
+
+/* ===== SHIMMER ===== */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);background-size:200% 100%;animation:shimmer 2.5s infinite}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.45)}}
+@keyframes wa-ring{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.7);opacity:0}}
+@keyframes check-draw{to{stroke-dashoffset:0}}
+@keyframes success-pop{0%{transform:scale(.5);opacity:0}65%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes toast-in{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes cart-pop{0%{transform:scale(1)}50%{transform:scale(1.6)}100%{transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes badge-pulse{0%,100%{box-shadow:0 0 0 0 rgba(196,164,132,.45)}50%{box-shadow:0 0 0 8px rgba(196,164,132,0)}}
+
+.float-anim{animation:float 3.5s ease-in-out infinite}
+
+/* ===== MOBILE ===== */
+@media(max-width:767px){
+  *{-webkit-tap-highlight-color:rgba(196,164,132,.2)}
+  #wa-float{bottom:80px;right:16px;width:52px;height:52px}
+  input,select,textarea{font-size:16px !important}
+}
+
+/* ===== STOCK ALERT ===== */
+.stock-alert{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:700;color:#b45309;
+  background:linear-gradient(135deg,#fffbeb,#fef3c7);
+  border:1px solid #fde68a;padding:4px 12px;border-radius:999px
+}
+
+/* ===== CHECKOUT FORM ===== */
+.form-card{
+  background:var(--cream2);
+  border-radius:var(--radius-lg);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:var(--shadow-card)
+}
+
+/* ===== CART ITEMS ===== */
+.cart-item{
+  background:var(--cream);border-radius:var(--radius-md);
+  border:1px solid rgba(0,0,0,.07);
+  transition:var(--transition)
+}
+.cart-item:hover{border-color:rgba(196,164,132,.3);box-shadow:0 4px 16px rgba(196,164,132,.12)}
+
+/* ===== NAV ACCENT LINE ===== */
+.nav-accent{
+  height:3px;
+  background:linear-gradient(to right,var(--sand-lt),var(--sand),var(--sand-dk));
+  border-radius:2px
+}
+
+/* ===== SECTION DECORATIVE STARS ===== */
+.deco-star{display:inline-block}
+
 </style>
-<base target="_blank">
-<base target="_blank">
 <base target="_blank">
 </head>
 <body class="font-cairo bg-cream text-charcoal overflow-x-hidden">
 
 <!-- ===== TOP BAR ===== -->
-<div class="bg-charcoal text-white text-center py-2.5 px-4 text-[10px] md:text-xs font-semibold tracking-wide relative z-50 overflow-hidden">
-  <div class="absolute inset-0 opacity-10 shimmer"></div>
-  <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 pulse-dot"></span>
-  <span class="max-md:hidden">التوصيل فابور لجميع مدن المغرب <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> | خلصي حتى تقيسي وتشوفي سلعتك | توصيل سريع فـ 24-48 ساعة</span>
-  <span class="md:hidden">توصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> · دفع عند الاستلام · 24-48 ساعة</span>
+<div class="top-bar text-white text-center py-2.5 px-4 relative z-50 overflow-hidden">
+  <div class="absolute inset-0 opacity-15 shimmer pointer-events-none"></div>
+  <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full ml-2 pulse-dot"></span>
+  <span class="max-md:hidden text-[11px] font-semibold tracking-wide">
+    التوصيل مجاني لجميع مدن المغرب
+    <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom mx-1" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    · دفع عند الاستلام · توصيل خلال 24-48 ساعة
+  </span>
+  <span class="md:hidden text-[10px] font-semibold">توصيل مجاني · دفع عند الاستلام · 24-48 ساعة</span>
 </div>
 
 <!-- ===== HEADER ===== -->
-<header class="border-b border-white/20 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_4px_24px_rgba(0,0,0,.2)] backdrop-blur-sm" style="background: #2A2825;">
+<header class="site-header py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50">
   <!-- Logo -->
-  <button onclick="nav('home')" class="flex items-center gap-2 flex-shrink-0 bg-transparent border-0 cursor-pointer p-0">
-    <img src="./logo.png" alt="Tolba Store" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'">
-    <span class="text-white font-black text-lg leading-none hidden md:block drop-shadow-sm">Tolba<span class="text-white/50 font-semibold"> Store</span></span>
+  <button onclick="nav('home')" class="flex items-center gap-2.5 flex-shrink-0 bg-transparent border-0 cursor-pointer p-0">
+    <img src="./logo.png" alt="Tolba Store" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/25 shadow-lg" onerror="this.style.display='none'">
+    <span class="text-white font-black text-lg leading-none hidden md:block">
+      Tolba<span class="text-white/45 font-medium"> Store</span>
+    </span>
   </button>
 
   <!-- Countdown -->
   <div class="flex flex-col items-center gap-1">
-    <span class="text-white text-[9px] md:text-[10px] font-black text-center">الكمية محدودة جداً! العرض ينتهي خلال:</span>
-    <div class="flex items-center gap-0.5 md:gap-1">
-      <div class="text-center"><span id="cd-d" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">10</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">أيام</small></div>
-      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
-      <div class="text-center"><span id="cd-h" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">ساعة</small></div>
-      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
-      <div class="text-center"><span id="cd-m" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">دقيقة</small></div>
-      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
-      <div class="text-center"><span id="cd-s" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">ثانية</small></div>
+    <span class="text-white/70 text-[9px] md:text-[10px] font-bold text-center tracking-wide">⏱ العرض ينتهي خلال:</span>
+    <div class="flex items-center gap-1 md:gap-1.5">
+      <div class="text-center">
+        <span id="cd-d" class="countdown-box text-[11px] md:text-sm font-black text-white">10</span>
+        <small class="text-[8px] text-white/50 block mt-0.5 font-semibold">أيام</small>
+      </div>
+      <span class="text-white/30 font-bold pb-3 text-xs">:</span>
+      <div class="text-center">
+        <span id="cd-h" class="countdown-box text-[11px] md:text-sm font-black text-white">00</span>
+        <small class="text-[8px] text-white/50 block mt-0.5 font-semibold">ساعة</small>
+      </div>
+      <span class="text-white/30 font-bold pb-3 text-xs">:</span>
+      <div class="text-center">
+        <span id="cd-m" class="countdown-box text-[11px] md:text-sm font-black text-white">00</span>
+        <small class="text-[8px] text-white/50 block mt-0.5 font-semibold">دقيقة</small>
+      </div>
+      <span class="text-white/30 font-bold pb-3 text-xs">:</span>
+      <div class="text-center">
+        <span id="cd-s" class="countdown-box text-[11px] md:text-sm font-black text-white">00</span>
+        <small class="text-[8px] text-white/50 block mt-0.5 font-semibold">ثانية</small>
+      </div>
     </div>
   </div>
 
-  <!-- Cart icon -->
-  <button onclick="nav('cart')" class="relative w-[38px] h-[38px] rounded-[10px] border-[1.5px] border-white/30 bg-white/20 flex items-center justify-center cursor-pointer hover:border-white/60 hover:bg-white/30 transition-colors">
+  <!-- Cart -->
+  <button onclick="nav('cart')" class="cart-btn relative">
     <svg class="w-[18px] h-[18px] stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
     <span id="cart-badge" class="hidden">0</span>
   </button>
@@ -503,211 +502,193 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
 ══════════════════════════════════════════ -->
 <div id="pg-home" class="page active">
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <div class="luxury-hero relative overflow-hidden">
-
-        <!-- Hero Product Slideshow with Dark Overlay -->
+    <!-- Slideshow -->
     <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
-      <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-black/40 z-10"></div>
-      <div class="absolute inset-0 hero-slide active" style="background-image: url('./images/tolba-brown-1.png');"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-1.png');"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-suede-1.png');"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-zara-1.png');"></div>
+      <div class="absolute inset-0 bg-black/35 z-10"></div>
+      <div class="absolute inset-0 hero-slide active" style="background-image:url('./images/tolba-brown-1.png')"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-1.png')"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-suede-1.png')"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-zara-1.png')"></div>
     </div>
-
-    <!-- Luxury overlay -->
-    <div class="luxury-overlay absolute inset-0"></div>
-    <!-- Animated grain overlay -->
-    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E');"></div>
-
-    <!-- Decorative radial glow -->
-    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 70% 60%,rgba(196,164,132,.18) 0%,transparent 65%)"></div>
+    <!-- Overlays -->
+    <div class="luxury-overlay absolute inset-0 z-10"></div>
+    <div class="absolute inset-0 z-10 pointer-events-none" style="background:radial-gradient(ellipse at 65% 55%,rgba(196,164,132,.15) 0%,transparent 60%)"></div>
 
     <!-- Content -->
-    <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-10" style="min-height:520px;padding-top:3rem;padding-bottom:3rem">
+    <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-12" style="min-height:560px;padding-top:3.5rem;padding-bottom:3.5rem">
 
       <!-- Premium Badge -->
-      <div class="premium-badge inline-flex items-center gap-2.5 text-white/95 text-[11px] md:text-xs font-bold py-2.5 px-5 rounded-full mb-6 shadow-lg">
-        <svg class="w-4 h-4 fill-sand flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <span style="text-shadow:0 2px 8px rgba(0,0,0,.3)">COLLECTION PREMIUM 2026</span>
+      <div class="premium-badge inline-flex items-center gap-2.5 text-white/95 text-[11px] md:text-xs font-bold py-2.5 px-5 rounded-full mb-7" style="animation:fadeInUp .5s ease .1s both">
+        <svg class="w-3.5 h-3.5 fill-sand flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        COLLECTION PREMIUM 2026
       </div>
 
-      <!-- Luxury Title -->
-      <h1 class="luxury-title font-black leading-tight mb-4" style="font-size:clamp(2rem,5.5vw,4rem)">
+      <!-- Title -->
+      <h1 class="luxury-title font-black leading-tight mb-5" style="font-size:clamp(2.1rem,5.8vw,4.2rem);animation:fadeInUp .55s ease .2s both">
         أناقة تليق بك<br>
-        <span class="italic" style="font-size:0.85em">Tolba Premium</span>
+        <span class="italic" style="font-size:.82em;opacity:.9">Tolba Premium</span>
       </h1>
 
-      <!-- Elegant Subtitle -->
-      <p class="text-white/80 max-w-xl mx-auto leading-relaxed mb-8 font-medium" style="font-size:clamp(.95rem,2.3vw,1.1rem);text-shadow:0 2px 12px rgba(0,0,0,.4);letter-spacing:0.3px">
+      <!-- Subtitle -->
+      <p class="text-white/75 max-w-lg mx-auto leading-relaxed mb-9 font-medium" style="font-size:clamp(.9rem,2.2vw,1.05rem);text-shadow:0 2px 16px rgba(0,0,0,.5);letter-spacing:.3px;animation:fadeInUp .6s ease .3s both">
         صنادل فاخرة مصنوعة بعناية · راحة استثنائية · تصميم عصري
       </p>
 
-      <!-- Premium CTA -->
-      <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
-        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})" class="premium-cta group inline-flex items-center gap-2.5 font-black text-sm md:text-base text-charcoal rounded-full px-8 py-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(196,164,132,.6)]">
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-10" style="animation:fadeInUp .65s ease .4s both">
+        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
+          class="btn-primary font-black text-sm md:text-base text-charcoal rounded-full px-8 py-4 inline-flex items-center gap-2.5">
           <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span class="relative z-10">استكشفي المجموعة</span>
         </button>
-        <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold rounded-full px-6 py-3.5 shadow-lg">
+        <div class="glass-pill inline-flex items-center gap-2.5 text-white text-xs font-bold rounded-full px-6 py-3.5">
           <svg class="w-4 h-4 fill-none stroke-green-400 flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span style="letter-spacing:0.3px">توصيل سريع 24-48 ساعة</span>
+          توصيل سريع 24-48 ساعة
         </div>
       </div>
 
-      <!-- Trust pills row -->
-      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+      <!-- Trust Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5" style="animation:fadeInUp .7s ease .5s both">
+        <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
           <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="white" stroke-width="2"/></svg>
           جودة مضمونة
         </div>
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+        <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
           <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
           دفع عند الاستلام
         </div>
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+        <div class="glass-pill inline-flex items-center gap-2 text-white text-[11px] font-bold rounded-full px-4 py-2">
           <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
           تبديل مجاني 7 أيام
         </div>
       </div>
-
     </div>
 
-    <!-- Bottom wave -->
-    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:48px">
-      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,48 L0,24 Q360,0 720,24 Q1080,48 1440,24 L1440,48 Z" fill="#FDFCFB"/>
+    <!-- Bottom Wave -->
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:52px">
+      <svg viewBox="0 0 1440 52" preserveAspectRatio="none" class="w-full h-full hero-wave" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,52 L0,26 Q360,0 720,26 Q1080,52 1440,26 L1440,52 Z"/>
       </svg>
     </div>
   </div>
 
-  <!-- Products grid -->
-  <div class="py-12 px-4 md:py-16 md:px-8 bg-white relative">
+  <!-- Products Grid -->
+  <div class="py-14 px-4 md:py-18 md:px-8 bg-cream2 relative">
+    <!-- Background Decoration -->
+    <div class="absolute inset-0 pointer-events-none opacity-30" style="background:radial-gradient(ellipse at 50% 0%,rgba(196,164,132,.08) 0%,transparent 60%)"></div>
     <div class="max-w-5xl mx-auto relative z-10">
-      <!-- Section header -->
-      <div class="text-center mb-12">
-        <div class="inline-block text-[10px] font-black tracking-widest text-sand3 uppercase mb-3 bg-gradient-to-r from-sand/15 via-sand/10 to-sand/15 px-5 py-2 rounded-full border border-sand/20 shadow-md" style="letter-spacing:1.5px">COLLECTION EXCLUSIVE</div>
-        <h2 class="text-3xl md:text-4xl font-black text-charcoal mb-3" style="letter-spacing:-0.02em">مجموعتنا الفاخرة</h2>
-        <p class="text-muted text-sm max-w-xl mx-auto" style="letter-spacing:0.2px">صنادل مصممة بعناية · جودة استثنائية · راحة طوال اليوم</p>
-        <div class="flex items-center justify-center gap-3 mt-5">
-          <div class="h-px w-16 bg-gradient-to-r from-transparent via-sand/40 to-transparent"></div>
-          <svg class="w-4 h-4 fill-sand" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          <div class="h-px w-16 bg-gradient-to-l from-transparent via-sand/40 to-transparent"></div>
+      <!-- Section Header -->
+      <div class="text-center mb-14">
+        <div class="section-label mb-4">
+          <svg class="w-3 h-3 fill-sand3 flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          COLLECTION EXCLUSIVE
+        </div>
+        <h2 class="text-3xl md:text-[42px] font-black text-charcoal mb-3" style="letter-spacing:-0.025em">مجموعتنا الفاخرة</h2>
+        <p class="text-muted text-sm max-w-lg mx-auto leading-relaxed">صنادل مصممة بعناية · جودة استثنائية · راحة طوال اليوم</p>
+        <div class="flex items-center justify-center gap-3 mt-6">
+          <div class="h-px w-20 bg-gradient-to-r from-transparent via-sand/40 to-transparent"></div>
+          <svg class="w-4 h-4 fill-sand/60" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <div class="h-px w-20 bg-gradient-to-l from-transparent via-sand/40 to-transparent"></div>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="products-grid"><!-- JS --></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 md:grid-cols-4" id="products-grid"><!-- JS --></div>
+
+      <!-- Bottom Note -->
+      <div class="mt-10 text-center">
+        <p class="text-xs text-muted font-semibold flex items-center justify-center gap-1.5">
+          <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          جميع المنتجات مع ضمان الجودة وإمكانية التبديل خلال 7 أيام
+        </p>
+      </div>
     </div>
   </div>
 
-  <!-- Trust bar -->
-  <div class="relative py-10 md:py-16 px-4 md:px-8 overflow-hidden" style="background:linear-gradient(180deg,#1A1A1A 0%,#2A2825 50%,#1A1A1A 100%)">
-    <!-- Decorative animated gradient overlay -->
-    <div class="absolute inset-0 opacity-30" style="background:radial-gradient(ellipse at top,rgba(196,164,132,0.15) 0%,transparent 60%)"></div>
-    
-    <!-- Subtle pattern overlay -->
-    <div class="absolute inset-0 opacity-5" style="background-image:url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M0 0h60v60H0z%22 fill=%22none%22/%3E%3Cpath d=%22M30 30m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0%22 fill=%22%23fff%22/%3E%3C/svg%3E');background-size:40px 40px"></div>
-    
+  <!-- Trust Bar -->
+  <div class="trust-bar relative py-12 md:py-18 px-4 md:px-8 overflow-hidden">
+    <div class="absolute inset-0 opacity-25 pointer-events-none" style="background:radial-gradient(ellipse at top,rgba(196,164,132,.18) 0%,transparent 60%)"></div>
+    <div class="absolute inset-0 opacity-4 pointer-events-none" style="background-image:url('data:image/svg+xml,%3Csvg width=%2240%22 height=%2240%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%221.5%22 fill=%22%23fff%22/%3E%3C/svg%3E');background-size:40px 40px"></div>
+
     <div class="relative max-w-5xl mx-auto">
-      <!-- Section header -->
-      <div class="text-center mb-8 md:mb-12">
-        <div class="inline-flex items-center gap-1.5 md:gap-2 bg-sand/20 backdrop-blur-md border border-sand/30 text-sand text-[10px] md:text-xs font-bold py-1.5 md:py-2 px-3 md:px-4 rounded-full mb-3 md:mb-4 shadow-lg">
-          <svg class="w-3 md:w-4 h-3 md:h-4 fill-sand flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          <span style="letter-spacing:0.5px" class="whitespace-nowrap">مميزاتنا الحصرية</span>
+      <div class="text-center mb-10 md:mb-14">
+        <div class="inline-flex items-center gap-2 bg-sand/18 backdrop-blur-md border border-sand/28 text-sand text-[10px] md:text-xs font-bold py-2 px-4 rounded-full mb-4">
+          <svg class="w-3.5 h-3.5 fill-sand flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          مميزاتنا الحصرية
         </div>
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 md:mb-3 drop-shadow-2xl px-4" style="letter-spacing:-0.02em">لماذا Tolba Store؟</h2>
-        <p class="text-white/80 text-sm md:text-base max-w-2xl mx-auto font-semibold leading-relaxed px-6" style="letter-spacing:0.2px">نقدم لك أفضل تجربة تسوق مع ضمانات حقيقية وخدمة متميزة</p>
-        
-        <!-- Decorative line -->
-        <div class="flex items-center justify-center gap-2 md:gap-3 mt-4 md:mt-6">
-          <div class="h-px w-12 md:w-20 bg-gradient-to-r from-transparent via-sand/50 to-transparent"></div>
-          <svg class="w-4 md:w-5 h-4 md:h-5 fill-sand/70 flex-shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          <div class="h-px w-12 md:w-20 bg-gradient-to-l from-transparent via-sand/50 to-transparent"></div>
+        <h2 class="text-2xl md:text-4xl font-black text-white mb-3 drop-shadow-2xl" style="letter-spacing:-0.02em">لماذا Tolba Store؟</h2>
+        <p class="text-white/70 text-sm md:text-base max-w-xl mx-auto font-semibold leading-relaxed">أفضل تجربة تسوق مع ضمانات حقيقية وخدمة متميزة</p>
+        <div class="flex items-center justify-center gap-3 mt-5">
+          <div class="h-px w-16 bg-gradient-to-r from-transparent via-sand/45 to-transparent"></div>
+          <svg class="w-4 h-4 fill-sand/60" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <div class="h-px w-16 bg-gradient-to-l from-transparent via-sand/45 to-transparent"></div>
         </div>
       </div>
 
-      <!-- Features grid - responsive: 1 col mobile, 2 cols tablet, 4 cols desktop -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        
         <!-- Feature 1 -->
-        <div class="group relative bg-gradient-to-br from-white to-cream2 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,.2)] hover:shadow-[0_20px_60px_rgba(196,164,132,.4)] transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-3 overflow-hidden border border-white/50">
-          <div class="absolute -top-10 -right-10 w-28 md:w-32 h-28 md:h-32 bg-sand/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-14 md:w-16 h-14 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg md:shadow-xl group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,#C4A484 0%,#B8956A 100%)">
-              <svg class="w-7 md:w-8 h-7 md:h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-            <h3 class="text-sm md:text-base font-black text-charcoal mb-1.5 md:mb-2 text-center">توصيل فابور</h3>
-            <p class="text-[11px] md:text-xs text-charcoal3/80 text-center font-semibold leading-relaxed">لجميع مدن المغرب في 24-48 ساعة</p>
+        <div class="feature-card p-6 text-center group">
+          <div class="trust-icon-wrap w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-8 h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
+          <h3 class="text-base font-black text-charcoal mb-2">توصيل مجاني</h3>
+          <p class="text-xs text-charcoal3/75 font-semibold leading-relaxed">لجميع مدن المغرب<br>في 24-48 ساعة</p>
         </div>
-
         <!-- Feature 2 -->
-        <div class="group relative bg-gradient-to-br from-white to-cream2 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,.2)] hover:shadow-[0_20px_60px_rgba(196,164,132,.4)] transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-3 overflow-hidden border border-white/50">
-          <div class="absolute -top-10 -right-10 w-28 md:w-32 h-28 md:h-32 bg-sand/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-14 md:w-16 h-14 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg md:shadow-xl group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,#C4A484 0%,#B8956A 100%)">
-              <svg class="w-7 md:w-8 h-7 md:h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
-            </div>
-            <h3 class="text-sm md:text-base font-black text-charcoal mb-1.5 md:mb-2 text-center">دفع عند الاستلام</h3>
-            <p class="text-[11px] md:text-xs text-charcoal3/80 text-center font-semibold leading-relaxed">ما تخلصيش حتى تشوفي المنتج</p>
+        <div class="feature-card p-6 text-center group">
+          <div class="trust-icon-wrap w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-8 h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
           </div>
+          <h3 class="text-base font-black text-charcoal mb-2">دفع عند الاستلام</h3>
+          <p class="text-xs text-charcoal3/75 font-semibold leading-relaxed">ما تخلصيش حتى<br>تشوفي المنتج</p>
         </div>
-
         <!-- Feature 3 -->
-        <div class="group relative bg-gradient-to-br from-white to-cream2 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,.2)] hover:shadow-[0_20px_60px_rgba(196,164,132,.4)] transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-3 overflow-hidden border border-white/50">
-          <div class="absolute -top-10 -right-10 w-28 md:w-32 h-28 md:h-32 bg-sand/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-14 md:w-16 h-14 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg md:shadow-xl group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,#C4A484 0%,#B8956A 100%)">
-              <svg class="w-7 md:w-8 h-7 md:h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
-            </div>
-            <h3 class="text-sm md:text-base font-black text-charcoal mb-1.5 md:mb-2 text-center">التبدال فابور</h3>
-            <p class="text-[11px] md:text-xs text-charcoal3/80 text-center font-semibold leading-relaxed">خلال 7 أيام بدون أي أسئلة</p>
+        <div class="feature-card p-6 text-center group">
+          <div class="trust-icon-wrap w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-8 h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
           </div>
+          <h3 class="text-base font-black text-charcoal mb-2">تبديل مجاني</h3>
+          <p class="text-xs text-charcoal3/75 font-semibold leading-relaxed">خلال 7 أيام<br>بدون أي أسئلة</p>
         </div>
-
         <!-- Feature 4 -->
-        <div class="group relative bg-gradient-to-br from-white to-cream2 rounded-xl md:rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,.2)] hover:shadow-[0_20px_60px_rgba(196,164,132,.4)] transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-3 overflow-hidden border border-white/50">
-          <div class="absolute -top-10 -right-10 w-28 md:w-32 h-28 md:h-32 bg-sand/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative z-10">
-            <div class="w-14 md:w-16 h-14 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg md:shadow-xl group-hover:scale-110 transition-transform duration-500" style="background:linear-gradient(135deg,#C4A484 0%,#B8956A 100%)">
-              <svg class="w-7 md:w-8 h-7 md:h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            </div>
-            <h3 class="text-sm md:text-base font-black text-charcoal mb-1.5 md:mb-2 text-center">جودة مضمونة</h3>
-            <p class="text-[11px] md:text-xs text-charcoal3/80 text-center font-semibold leading-relaxed">Premier Choix خامة عالية</p>
+        <div class="feature-card p-6 text-center group">
+          <div class="trust-icon-wrap w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+            <svg class="w-8 h-8 fill-none stroke-white" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           </div>
+          <h3 class="text-base font-black text-charcoal mb-2">جودة مضمونة</h3>
+          <p class="text-xs text-charcoal3/75 font-semibold leading-relaxed">Premier Choix<br>خامة عالية الجودة</p>
         </div>
-
       </div>
-
     </div>
   </div>
 
   <!-- Reviews -->
-  <div class="py-14 px-4 md:py-20 md:px-8 bg-[#F5F3EF] relative">
+  <div class="py-14 px-4 md:py-20 md:px-8 relative overflow-hidden" style="background:#F5F3EF">
+    <div class="absolute inset-0 pointer-events-none opacity-40" style="background:radial-gradient(ellipse at center,rgba(196,164,132,.06) 0%,transparent 70%)"></div>
     <div class="max-w-5xl mx-auto relative z-10">
       <!-- Header -->
       <div class="text-center mb-12">
-        <div class="inline-block text-[10px] font-black tracking-widest text-sand3 uppercase mb-3 bg-gradient-to-r from-sand/15 via-sand/10 to-sand/15 px-5 py-2 rounded-full border border-sand/20 shadow-md" style="letter-spacing:1.5px">TESTIMONIALS</div>
-        <h2 class="text-3xl md:text-4xl font-black text-charcoal mb-3" style="letter-spacing:-0.02em">تجارب عميلاتنا</h2>
-        <p class="text-muted text-sm max-w-xl mx-auto" style="letter-spacing:0.2px">آلاف العميلات السعيدات بجودة منتجاتنا وخدماتنا</p>
+        <div class="section-label mb-4">TESTIMONIALS</div>
+        <h2 class="text-3xl md:text-[40px] font-black text-charcoal mb-3" style="letter-spacing:-0.02em">تجارب عميلاتنا</h2>
+        <p class="text-muted text-sm max-w-lg mx-auto">آلاف العميلات السعيدات بجودة منتجاتنا وخدماتنا</p>
         <div class="flex items-center justify-center gap-2 mt-5">
-          <div class="flex gap-0.5">
+          <div class="flex gap-1">
             <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           </div>
-          <span class="text-xs font-black text-charcoal3">5.0</span>
-          <span class="text-xs text-muted">من +150 تقييم</span>
+          <span class="text-xs font-black text-charcoal3 mr-1">5.0</span>
+          <span class="text-xs text-muted">· +150 تقييم موثّق</span>
         </div>
       </div>
 
-      <!-- Cards -->
+      <!-- Review Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
-        <div class="relative bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,.08)] border border-stone-200/60 review-card">
-          <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
+        <!-- Review 1 -->
+        <div class="review-card p-6">
+          <div class="absolute top-5 left-5 text-sand/15 text-6xl font-black leading-none select-none" aria-hidden="true">"</div>
           <div class="flex gap-0.5 mb-3 relative z-10">
             <span class="svg-stars">
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
@@ -717,25 +698,26 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
             </span>
           </div>
-          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">وليت كنلبسها ديما للخدمة، مريحة بزاف وماكضرش فالرجلين نهائيا واخا كنبقى بيها نهار كامل. التوصيل كان فالموعد، شكرا ليكم.</p>
-          <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">خ</div>
+          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10 mb-5">وليت كنلبسها ديما للخدمة، مريحة بزاف وماكضرش فالرجلين نهائيا واخا كنبقى بيها نهار كامل. التوصيل كان فالموعد، شكرا ليكم.</p>
+          <div class="border-t border-stone-100 pt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0 shadow-md" style="background:linear-gradient(135deg,#C4A484,#B8956A)">خ</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">خديجة م.</span>
               <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg class="w-3 h-3 stroke-current fill-none inline-block flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 أكادير
               </small>
             </div>
             <div class="mr-auto verified-badge">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-              مشترية موثّقة
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              موثّقة
             </div>
           </div>
         </div>
 
-        <div class="relative bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,.08)] border border-stone-200/60 review-card">
-          <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
+        <!-- Review 2 -->
+        <div class="review-card p-6">
+          <div class="absolute top-5 left-5 text-sand/15 text-6xl font-black leading-none select-none" aria-hidden="true">"</div>
           <div class="flex gap-0.5 mb-3 relative z-10">
             <span class="svg-stars">
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
@@ -745,25 +727,26 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
             </span>
           </div>
-          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">بحال التصاور بحال الواقع، الصراحة كتحمق! الديزاين ديالها كيبان غالي وعاطي للعين. تستاهل الثمن ديالها وزيادة.</p>
-          <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">س</div>
+          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10 mb-5">بحال التصاور بحال الواقع، الصراحة كتحمق! الديزاين ديالها كيبان غالي وعاطي للعين. تستاهل الثمن ديالها وزيادة.</p>
+          <div class="border-t border-stone-100 pt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0 shadow-md" style="background:linear-gradient(135deg,#C4A484,#B8956A)">س</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">سناء ب.</span>
               <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg class="w-3 h-3 stroke-current fill-none inline-block flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 فاس
               </small>
             </div>
             <div class="mr-auto verified-badge">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-              مشترية موثّقة
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              موثّقة
             </div>
           </div>
         </div>
 
-        <div class="relative bg-white rounded-2xl p-6 shadow-[0_4px_24px_rgba(0,0,0,.08)] border border-stone-200/60 review-card">
-          <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
+        <!-- Review 3 -->
+        <div class="review-card p-6">
+          <div class="absolute top-5 left-5 text-sand/15 text-6xl font-black leading-none select-none" aria-hidden="true">"</div>
           <div class="flex gap-0.5 mb-3 relative z-10">
             <span class="svg-stars">
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
@@ -773,58 +756,54 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
               <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
             </span>
           </div>
-          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">أول مرة نزعم نشري صندالة من الانترنيت وكنت خايفة من القياس، مي جاتني هي هاديك عبار. التعامل ديالكم زوين والسيد لي وصلها درويش.</p>
-          <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">إ</div>
+          <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10 mb-5">أول مرة نزعم نشري صندالة من الانترنيت وكنت خايفة من القياس، مي جاتني هي هاديك عبار. التعامل ديالكم زوين والسيد لي وصلها درويش.</p>
+          <div class="border-t border-stone-100 pt-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0 shadow-md" style="background:linear-gradient(135deg,#C4A484,#B8956A)">إ</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">إلهام ع.</span>
               <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg class="w-3 h-3 stroke-current fill-none inline-block flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 الرباط
               </small>
             </div>
             <div class="mr-auto verified-badge">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-              مشترية موثّقة
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              موثّقة
             </div>
           </div>
         </div>
-
       </div>
 
-      <!-- Bottom CTA strip -->
-      <div class="mt-10 bg-gradient-to-br from-charcoal via-charcoal2 to-charcoal rounded-3xl py-10 px-5 md:py-14 md:px-8 text-center relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,.3)]">
-        <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse,rgba(188,155,116,.25)_0%,transparent_70%)] pointer-events-none"></div>
-        
-        <div class="text-[26px] md:text-[32px] font-black text-white mb-3 relative z-10 flex items-center justify-center gap-2">
-          <svg class="w-7 h-7 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M16 16l-4 4-4-4"/><path d="M8 8l4-4 4 4"/></svg>
-          لا تفوّتي الفرصة
-        </div>
-        
-        <p class="text-base text-white/75 mb-8 relative z-10 font-semibold">الكمية محدودة — اطلبي دابا والدفع عند الاستلام</p>
-        
-        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})" class="bg-cream2 text-charcoal2 border-none rounded-[14px] py-4 px-10 text-base font-black cursor-pointer inline-flex items-center gap-2.5 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(0,0,0,.3)] hover:bg-stone-100 transition-all relative z-10">
-          <svg class="w-5 h-5 stroke-charcoal fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          ختري صندلة لي توتيك — وتجي مع اطلالة ديالك
-        </button>
-        
-        <div class="flex justify-center gap-5 mt-6 flex-wrap relative z-10">
-          <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
-            <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            ضمان الجودة
-          </span>
-          <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
-            <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            التبدال فابور
-          </span>
-          <span class="flex items-center gap-1.5 text-white/65 text-xs font-semibold">
-            <svg class="w-3.5 h-3.5 stroke-white/70 fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            دفع آمن عند الاستلام
-          </span>
+      <!-- CTA Strip -->
+      <div class="mt-12 rounded-[28px] overflow-hidden relative" style="background:linear-gradient(135deg,#1A1A1A,#2A2520,#1A1A1A);box-shadow:0 24px 64px rgba(0,0,0,.4)">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none" style="background:radial-gradient(ellipse,rgba(196,164,132,.22) 0%,transparent 65%)"></div>
+        <div class="relative z-10 py-12 px-6 md:py-16 md:px-10 text-center">
+          <div class="text-2xl md:text-3xl font-black text-white mb-3">لا تفوّتي الفرصة ✨</div>
+          <p class="text-base text-white/65 mb-8 font-semibold">الكمية محدودة — اطلبي دابا والدفع عند الاستلام</p>
+          <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
+            class="btn-primary inline-flex items-center gap-2.5 font-black text-base text-charcoal rounded-2xl py-4 px-10">
+            <svg class="w-5 h-5 stroke-charcoal fill-none relative z-10" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="relative z-10">ختري صندلة لي تتيك</span>
+          </button>
+          <div class="flex justify-center gap-6 mt-7 flex-wrap">
+            <span class="flex items-center gap-1.5 text-white/55 text-xs font-semibold">
+              <svg class="w-3.5 h-3.5 stroke-white/50 fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              ضمان الجودة
+            </span>
+            <span class="flex items-center gap-1.5 text-white/55 text-xs font-semibold">
+              <svg class="w-3.5 h-3.5 stroke-white/50 fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              التبدال مجاني
+            </span>
+            <span class="flex items-center gap-1.5 text-white/55 text-xs font-semibold">
+              <svg class="w-3.5 h-3.5 stroke-white/50 fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              دفع آمن عند الاستلام
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -832,7 +811,7 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
 ══════════════════════════════════════════ -->
 <div id="pg-product" class="page">
   <!-- Breadcrumb -->
-  <div class="py-3 px-4 md:px-8 bg-cream border-b border-stone-200">
+  <div class="py-3.5 px-4 md:px-8 bg-cream border-b border-stone-200/70">
     <button onclick="nav('home')" class="back-btn">
       <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       رجعي للمتجر
@@ -841,12 +820,12 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
   <!-- Dynamic content -->
   <div id="product-detail"></div>
   <!-- Mobile sticky CTA -->
-  <div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-40 sticky-cta border-t border-stone-200 py-3 px-4 items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,.1)]">
+  <div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-40 sticky-cta py-3 px-4 items-center justify-between gap-3 shadow-[0_-6px_24px_rgba(0,0,0,.1)]">
     <div>
       <div class="text-xl font-black text-charcoal">199 درهم</div>
       <small class="text-xs text-muted line-through">219 درهم</small>
     </div>
-    <button onclick="addToCart()" class="flex-1 bg-charcoal text-white rounded-xl py-3.5 text-sm font-bold cursor-pointer max-w-[200px] flex items-center justify-center gap-2">
+    <button onclick="addToCart()" class="flex-1 btn-dark text-white rounded-xl py-3.5 text-sm font-bold max-w-[200px] flex items-center justify-center gap-2">
       <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       اضيفي للسلة
     </button>
@@ -857,32 +836,40 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
      PAGE 3 — CART
 ══════════════════════════════════════════ -->
 <div id="pg-cart" class="page">
-  <!-- Cart header bar -->
-  <div class="px-4 md:px-8 py-4 flex items-center justify-between" style="background:linear-gradient(135deg,#2A2825,#1E1C1A);border-bottom:1px solid rgba(196,164,132,.15)">
-    <button onclick="nav('home')" class="flex items-center gap-2 text-white/60 hover:text-white text-xs font-bold transition-colors bg-transparent border-0 cursor-pointer font-cairo">
+  <div class="px-4 md:px-8 py-4 flex items-center justify-between" style="background:linear-gradient(135deg,#2A2825,#1A1614);border-bottom:1px solid rgba(196,164,132,.12)">
+    <button onclick="nav('home')" class="flex items-center gap-2 text-white/55 hover:text-white text-xs font-bold transition-colors bg-transparent border-0 cursor-pointer font-cairo">
       <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       متابعة التسوق
     </button>
-    <span class="text-white font-black text-sm">سلة الشراء <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+    <span class="text-white font-black text-sm flex items-center gap-2">
+      <svg class="w-4 h-4 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      سلة الشراء
+    </span>
     <div class="w-16"></div>
   </div>
 
-  <div class="py-8 px-4 md:py-10 md:px-8 min-h-[60vh] bg-white">
+  <div class="py-8 px-4 md:py-10 md:px-8 min-h-[60vh] bg-cream">
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center gap-2 text-xl font-black text-charcoal3 mb-6">
         <svg class="w-5 h-5 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         السلة
         <span id="cart-count-label" class="text-sm text-muted font-semibold"></span>
       </div>
-      <div id="cart-list"><!-- JS --></div>
-      <div id="cart-summary" class="hidden mt-6 rounded-3xl overflow-hidden shadow-[0_4px_32px_rgba(0,0,0,.08)]" style="background:#fff;border:1px solid rgba(0,0,0,.07)">
+      <div id="cart-list"></div>
+      <div id="cart-summary" class="hidden mt-6 rounded-[24px] overflow-hidden shadow-[0_6px_36px_rgba(0,0,0,.08)] bg-cream2 border border-stone-200/60">
         <div class="px-5 pt-5 pb-4 border-b border-stone-100">
           <div class="text-sm font-black text-charcoal3 mb-4">ملخص الطلب</div>
           <div class="space-y-3 text-sm">
-            <div class="flex justify-between items-center"><span class="text-muted font-semibold">المجموع الفرعي</span><span class="font-bold text-charcoal" id="s-sub">0 درهم</span></div>
+            <div class="flex justify-between items-center">
+              <span class="text-muted font-semibold">المجموع الفرعي</span>
+              <span class="font-bold text-charcoal" id="s-sub">0 درهم</span>
+            </div>
             <div class="flex justify-between items-center">
               <span class="text-muted font-semibold">التوصيل</span>
-              <span class="font-black text-green-600 flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني <svg class="w-3.5 h-3.5 stroke-green-600 fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+              <span class="font-black text-green-600 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                مجاني
+              </span>
             </div>
           </div>
         </div>
@@ -890,10 +877,10 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
           <span class="font-black text-charcoal3 text-sm">المجموع الكلي</span>
           <span class="text-2xl font-black text-charcoal" id="s-total">0 درهم</span>
         </div>
-        <div class="px-5 pb-5">
-          <button onclick="nav('checkout')" class="w-full text-[#1A1A1A] rounded-2xl py-4 text-sm font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(196,164,132,.6)] active:scale-95 transition-all mt-1" style="background:linear-gradient(135deg,#C4A484,#B8956A)">
-            <svg class="w-4 h-4 stroke-[#1A1A1A] fill-none" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
-            إتمام الطلب
+        <div class="px-5 pb-5 pt-2">
+          <button onclick="nav('checkout')" class="w-full btn-primary text-charcoal rounded-2xl py-4 text-sm font-black flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            <span class="relative z-10">إتمام الطلب</span>
           </button>
           <p class="text-center text-[11px] text-muted mt-3 flex items-center justify-center gap-1.5 font-semibold">
             <svg class="w-3 h-3 stroke-muted fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -909,132 +896,151 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
      PAGE 4 — CHECKOUT
 ══════════════════════════════════════════ -->
 <div id="pg-checkout" class="page">
-  <div class="py-3 px-4 md:px-8 bg-cream border-b border-stone-200">
+  <div class="py-3.5 px-4 md:px-8 bg-cream border-b border-stone-200/70">
     <button onclick="nav('cart')" class="back-btn">
       <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       رجعي للسلة
     </button>
   </div>
-  <div class="py-6 px-4 md:py-8 md:px-8 bg-[#F5F3EF]">
+  <div class="py-6 px-4 md:py-8 md:px-8" style="background:#F5F3EF">
     <div class="max-w-3xl mx-auto grid md:grid-cols-[1fr_340px] gap-6 items-start">
 
       <!-- Form -->
       <div>
-        <div class="flex items-center gap-2 text-lg font-black text-charcoal3 mb-5">
-          <div class="w-1.5 h-5 bg-gradient-to-b from-sand to-sand3 rounded-full"></div>
+        <div class="flex items-center gap-2.5 text-lg font-black text-charcoal3 mb-5">
+          <div class="w-1.5 h-6 bg-gradient-to-b from-sand-lt to-sand3 rounded-full nav-accent" style="width:4px;height:24px;background:linear-gradient(to bottom,#D4B494,#B8956A);border-radius:2px"></div>
           معلومات التوصيل
         </div>
-        <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-3.5 bg-cream rounded-2xl border border-stone-200 p-5">
+        <form id="orderForm" onsubmit="submitOrder(event)" class="form-card p-5 space-y-3.5">
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">الاسم الكامل *</label>
-            <input type="text" name="fullName" required placeholder="مثال: فاطمة بنعلي" class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
+            <input type="text" name="fullName" required placeholder="مثال: فاطمة بنعلي"
+              class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">رقم الهاتف *</label>
-            <input type="tel" name="phone" required placeholder="06/07 XXXXXXXX" class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
+            <input type="tel" name="phone" required placeholder="06/07 XXXXXXXX"
+              class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">المدينة *</label>
-            <input type="text" name="city" required placeholder="اكتب اسم المدينة..." class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
+            <input type="text" name="city" required placeholder="اكتب اسم المدينة..."
+              class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">العنوان الكامل *</label>
-            <textarea name="address" required placeholder="الشارع، الحي، رقم البناية..." rows="2" class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all resize-none"></textarea>
+            <textarea name="address" required placeholder="الشارع، الحي، رقم البناية..." rows="2"
+              class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all resize-none"></textarea>
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">ملاحظات (اختياري)</label>
-            <input type="text" name="notes" placeholder="أي معلومة إضافية..." class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
+            <input type="text" name="notes" placeholder="أي معلومة إضافية..."
+              class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
-          <button type="submit" class="w-full bg-charcoal text-white rounded-xl py-4 text-[13px] font-black cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,.35)] active:scale-95 transition-all">
+          <button type="submit" class="w-full btn-dark text-white rounded-xl py-4 text-[13px] font-black flex items-center justify-center gap-2">
             <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
             تأكيدي الطلب — دفع عند الاستلام
           </button>
-          <p class="text-center text-[10px] text-muted flex items-center justify-center gap-1">
+          <p class="text-center text-[10px] text-muted flex items-center justify-center gap-1 font-semibold">
             <svg class="w-3 h-3 stroke-muted fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             ماتخلصيش والو الدابا — كاش عند الاستلام فقط
           </p>
         </form>
       </div>
 
-      <!-- Order summary -->
+      <!-- Order Summary -->
       <div class="md:sticky md:top-[80px]">
-        <div class="flex items-center gap-2 text-lg font-black text-charcoal3 mb-5">
-          <div class="w-1.5 h-5 bg-gradient-to-b from-sand to-sand3 rounded-full"></div>
+        <div class="flex items-center gap-2.5 text-lg font-black text-charcoal3 mb-5">
+          <div style="width:4px;height:24px;background:linear-gradient(to bottom,#D4B494,#B8956A);border-radius:2px;flex-shrink:0"></div>
           ملخص الطلب
         </div>
-        <div id="checkout-summary" class="bg-cream rounded-2xl border border-stone-200 p-4"><!-- JS --></div>
+        <div id="checkout-summary" class="form-card p-4"></div>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- ===== FOOTER ===== -->
-<footer style="background:#2A2825;border-top:1px solid rgba(196,164,132,.15)">
-  <div class="max-w-5xl mx-auto px-4 md:px-8 py-10 md:py-12">
-
-    <!-- Top row -->
+<footer class="border-t border-sand/10">
+  <div class="max-w-5xl mx-auto px-4 md:px-8 py-10 md:py-14">
     <div class="flex flex-col md:flex-row md:items-start gap-8 md:gap-12 mb-8">
 
       <!-- Brand -->
       <div class="flex-1">
-        <div class="flex items-center gap-2.5 mb-3">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3)">
-            <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25)">
+            <svg class="w-5 h-5 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <span class="text-xl font-black text-white">Tolba <span class="text-white/90">Store</span></span>
+          <span class="text-xl font-black text-white">Tolba <span class="text-white/40 font-medium">Store</span></span>
         </div>
-        <p class="text-white/80 text-xs leading-relaxed max-w-xs font-semibold">متجرك المفضّل للصندلة الكلاص بالمغرب. كاليتي ممتازة، توصيل سريع، ودفع عند الاستلام.</p>
-        <div class="flex items-center gap-1 mt-3">
-          <span class="svg-stars" style="transform:scale(0.85);transform-origin:right center"><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></span>
-          <span class="text-white/80 text-[11px] font-semibold mr-1">+150 تقييم</span>
+        <p class="text-white/65 text-xs leading-relaxed max-w-xs font-semibold mb-4">متجرك المفضّل للصندلة الكلاص بالمغرب. كاليتي ممتازة، توصيل سريع، ودفع عند الاستلام.</p>
+        <div class="flex items-center gap-2">
+          <span class="svg-stars" style="transform:scale(.85);transform-origin:right center">
+            <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+          </span>
+          <span class="text-white/65 text-[11px] font-semibold">+150 تقييم</span>
         </div>
       </div>
 
-      <!-- Quick links -->
+      <!-- Quick Links -->
       <div>
-        <p class="text-white/60 text-[10px] font-black tracking-widest uppercase mb-3">روابط سريعة</p>
-        <div class="flex flex-col gap-2">
-          <a href="#" onclick="nav('home')" class="text-white/80 text-xs font-semibold hover:text-white transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> الصفحة الرئيسية</a>
-          <a href="#" onclick="nav('cart')" class="text-white/80 text-xs font-semibold hover:text-white transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> السلة</a>
-          <a href="https://wa.me/212612455372" target="_blank" class="text-white/80 text-xs font-semibold hover:text-white transition-colors"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> تواصل معنا</a>
+        <p class="text-white/40 text-[10px] font-black tracking-widest uppercase mb-3">روابط سريعة</p>
+        <div class="flex flex-col gap-2.5">
+          <a href="#" onclick="nav('home')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            الصفحة الرئيسية
+          </a>
+          <a href="#" onclick="nav('cart')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            السلة
+          </a>
+          <a href="https://wa.me/212612455372" target="_blank" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            تواصل معنا
+          </a>
         </div>
       </div>
 
       <!-- Policies -->
       <div>
-        <p class="text-white/60 text-[10px] font-black tracking-widest uppercase mb-3">السياسات</p>
-        <div class="flex flex-col gap-2">
-          <a href="#" class="text-white/80 text-xs font-semibold hover:text-white transition-colors">الشروط والأحكام</a>
-          <a href="#" class="text-white/80 text-xs font-semibold hover:text-white transition-colors">سياسة الإرجاع</a>
-          <a href="#" class="text-white/80 text-xs font-semibold hover:text-white transition-colors">سياسة الخصوصية</a>
+        <p class="text-white/40 text-[10px] font-black tracking-widest uppercase mb-3">السياسات</p>
+        <div class="flex flex-col gap-2.5">
+          <a href="#" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors">الشروط والأحكام</a>
+          <a href="#" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors">سياسة الإرجاع</a>
+          <a href="#" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors">سياسة الخصوصية</a>
         </div>
       </div>
 
       <!-- Contact -->
       <div>
-        <p class="text-white/60 text-[10px] font-black tracking-widest uppercase mb-3">تواصل</p>
-        <a href="https://wa.me/212612455372" target="_blank" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white text-xs font-bold rounded-xl px-4 py-2.5 transition-all">
+        <p class="text-white/40 text-[10px] font-black tracking-widest uppercase mb-3">تواصل</p>
+        <a href="https://wa.me/212612455372" target="_blank"
+          class="inline-flex items-center gap-2 border border-white/25 text-white text-xs font-bold rounded-xl px-4 py-2.5 transition-all hover:border-green-400/60 hover:bg-green-500/10"
+          style="background:rgba(255,255,255,.1)">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           واتساب
         </a>
       </div>
     </div>
 
-    <!-- Divider -->
-    <div class="border-t flex flex-col md:flex-row items-center justify-between gap-3 pt-6" style="border-color:rgba(255,255,255,.2)">
-      <p class="text-white/80 text-[11px] font-semibold">© 2026 Tolba Store — جميع الحقوق محفوظة 🇲🇦</p>
+    <!-- Bottom -->
+    <div class="grad-divider mb-6"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-white/55 text-[11px] font-semibold">© 2026 Tolba Store — جميع الحقوق محفوظة 🇲🇦</p>
       <div class="flex items-center gap-2">
         <div class="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot"></div>
-        <span class="text-white/80 text-[11px] font-semibold">المتجر شغّال — طلبي الآن</span>
+        <span class="text-white/55 text-[11px] font-semibold">المتجر شغّال — اطلبي الآن</span>
       </div>
     </div>
-
   </div>
 </footer>
 
 <!-- ===== WHATSAPP FLOAT ===== -->
-<a id="wa-float" href="https://wa.me/212612455372?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%BA%D9%8A%D8%AA%20%D9%86%D8%B7%D9%84%D8%A8%20%D8%B5%D9%86%D8%AF%D9%84%D8%A9%20%D8%B2%D8%A7%D8%B1%D8%A7%20%D9%85%D9%86%20Tolba%20Store..." target="_blank" rel="noopener">
+<a id="wa-float" href="https://wa.me/212612455372?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%BA%D9%8A%D8%AA%20%D9%86%D8%B7%D9%84%D8%A8%20%D8%B5%D9%86%D8%AF%D9%84%D8%A9%20%D9%85%D9%86%20Tolba%20Store..." target="_blank" rel="noopener">
   <span class="wa-ring"></span>
   <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
@@ -1045,24 +1051,24 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
   <div class="sm-card">
     <div class="sm-inner">
       <div class="sm-circle">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#C4A484" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline class="sm-check" points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <div class="text-white text-xl font-black mb-3">تم استلام طلبك! <svg class="w-5 h-5 inline-block align-text-bottom" viewBox="0 0 24 24" fill="#C4A484"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
-      <div class="text-stone-300 text-sm font-semibold leading-relaxed">غادي نتوصلو معاك في أقرب وقت باش نأكدو معاك الطلب</div>
-      <button onclick="closeSM()" class="mt-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl py-3 px-8 text-sm font-black cursor-pointer transition-all w-full active:scale-95">
-        حسناً، شكراً <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+      <div class="text-white text-xl font-black mb-3">تم استلام طلبك! ✨</div>
+      <div class="text-stone-400 text-sm font-semibold leading-relaxed mb-6">غادي نتوصلو معاك في أقرب وقت باش نأكدو معاك الطلب</div>
+      <button onclick="closeSM()" class="w-full btn-primary text-charcoal rounded-xl py-3 px-8 text-sm font-black">
+        <span class="relative z-10">حسناً، شكراً 👍</span>
       </button>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      JAVASCRIPT
-════════════════════════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <script>
-// ─── PRODUCTS DATA ─────────────────────────────────────────
+// ─── PRODUCTS DATA ──────────────────────────
 const PRODS = [
   {
     id: 1,
@@ -1072,9 +1078,9 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.214-4.166-1.213-7 0 0-4 3.5-4 8 0 3.5 2.5 6 6 6 3.5 0 6-2.5 6-6 0-4.5-4-8-4-8 1.001 2.834-.141 4.857-1.213 7-.5 1-1 1.62-1 3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> الأكثر طلباً',
     desc: 'موديل كلاسيكي مخدوم بسويدي ناعم عالي الجودة، بإبزيمين قابلين للتعديل ونعل فلين مريح. خفيفة على رجلك نهار كامل، وتواتي أي لبيسة.',
     colors: [
-      { name: 'بني زيتوني', hex: '#6F5742', img: './images/tolba-black-1.png' },
-      { name: 'بيج',        hex: '#D9C7AE', img: './images/tolba-black-2.png' },
-      { name: 'أسود',       hex: '#1A1A1A', img: './images/tolba-black-3.png' }
+      { name:'بني زيتوني', hex:'#6F5742', img:'./images/tolba-black-1.png' },
+      { name:'بيج',        hex:'#D9C7AE', img:'./images/tolba-black-2.png' },
+      { name:'أسود',       hex:'#1A1A1A', img:'./images/tolba-black-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 12
   },
@@ -1086,9 +1092,9 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> جديد',
     desc: 'ديزاين عصري بثلاث أحزمة قابلة للتعديل على نعل ضخم ومريح. ستايل قوي يواتي الاستعمال اليومي مع راحة فابور.',
     colors: [
-      { name: 'أسود',     hex: '#1A1A1A', img: './images/tolba-black-suede-1.png' },
-      { name: 'بيج',      hex: '#E3D5BC', img: './images/tolba-black-suede-2.png' },
-      { name: 'بني غامق', hex: '#4A3324', img: './images/tolba-black-suede-3.png' }
+      { name:'أسود',     hex:'#1A1A1A', img:'./images/tolba-black-suede-1.png' },
+      { name:'بيج',      hex:'#E3D5BC', img:'./images/tolba-black-suede-2.png' },
+      { name:'بني غامق', hex:'#4A3324', img:'./images/tolba-black-suede-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 8
   },
@@ -1100,52 +1106,44 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
     desc: 'سويدي فاخر بتفاصيل ذهبية أنيقة تعطي لمسة راقية. إبزيم عريض قابل للتعديل ونعل مريح يواتي اللبيسة العصرية والكلاصيكية.',
     colors: [
-      { name: 'كاميل',    hex: '#BF9264', img: './images/tolba-brown-1.png' },
-      { name: 'بيج فاتح', hex: '#D8C3A5', img: './images/tolba-brown-2.png' },
-      { name: 'أسود',     hex: '#1A1A1A', img: './images/tolba-brown-3.png' }
+      { name:'كاميل',    hex:'#BF9264', img:'./images/tolba-brown-1.png' },
+      { name:'بيج فاتح', hex:'#D8C3A5', img:'./images/tolba-brown-2.png' },
+      { name:'أسود',     hex:'#1A1A1A', img:'./images/tolba-brown-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 5
   },
   {
-  id: 4,
-  name: 'صندلة - ستيل زارا',
-  sub: 'جلد أنيق — تصميم عصري',
-  price: 199,
-  old: 219,
-  badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
-
-  desc: 'صندلة أنيقة بخامة جلدية ناعمة وتصميم عصري مريح مستوحى من أحدث الصيحات. خفيفة وعملية وتناسب مختلف الإطلالات.',
-
-  colors: [
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-1.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-2.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-3.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-4.png' }
-  ],
-
-  sizes: ['37', '38', '39', '40'],
-  oos: [],
-  stock: 8
-}
+    id: 4,
+    name: 'صندلة ستيل زارا',
+    sub:  'جلد أنيق — تصميم عصري',
+    price: 199, old: 219,
+    badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
+    desc: 'صندلة أنيقة بخامة جلدية ناعمة وتصميم عصري مريح مستوحى من أحدث الصيحات. خفيفة وعملية وتناسب مختلف الإطلالات.',
+    colors: [
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-1.png' },
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-2.png' },
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-3.png' },
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' }
+    ],
+    sizes: ['37','38','39','40'], oos: [], stock: 8
+  }
 ];
 
-// ─── CART STATE ─────────────────────────────────────────────
+// ─── CART STATE ──────────────────────────────
 let cart = JSON.parse(localStorage.getItem('tlb_cart') || '[]');
 const saveCart = () => localStorage.setItem('tlb_cart', JSON.stringify(cart));
 
-// ─── PRODUCT PAGE STATE ─────────────────────────────────────
-let curProdId   = null;
-let pdCurrent   = 0;   // gallery index
-let pdTotal     = 3;
-let pdSize      = null;
-let pdQty       = 1;
+// ─── PRODUCT PAGE STATE ──────────────────────
+let curProdId = null;
+let pdCurrent = 0;
+let pdTotal   = 3;
+let pdSize    = null;
+let pdQty     = 1;
 
-// ─── CARD GALLERY STATE ─────────────────────────────────────
-const cardIdx = {};   // { [productId]: currentIndex }
+// ─── CARD GALLERY STATE ──────────────────────
+const cardIdx = {};
 
-// ═══════════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════════
+// ─── SPA NAVIGATION ──────────────────────────
 function nav(page, prodId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const pg = document.getElementById('pg-' + page);
@@ -1164,62 +1162,52 @@ function nav(page, prodId) {
   updateBadge();
 }
 
-// ═══════════════════════════════════════════════════════════
-// HOME — PRODUCT CARDS
-// ═══════════════════════════════════════════════════════════
+// ─── PRODUCT CARDS ───────────────────────────
 function renderProducts() {
   const grid = document.getElementById('products-grid');
   if (!grid) return;
-
   grid.innerHTML = PRODS.map(p => {
     cardIdx[p.id] = 0;
-
     const imgs = p.colors.map((c, i) =>
-      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3C/svg%3E'">`
     ).join('');
     const dots = p.colors.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
     ).join('');
-
+    const discount = Math.round((1-p.price/p.old)*100);
     return `
-    <div class="rounded-[20px] overflow-hidden border border-stone-200 bg-white cursor-pointer product-card group" onclick="nav('product',${p.id})">
-      <!-- image gallery -->
-      <div class="relative overflow-hidden bg-[#F8F6F3] max-md:h-[340px] md:h-[280px]" id="cg-${p.id}">
+    <div class="product-card group" onclick="nav('product',${p.id})">
+      <div class="relative overflow-hidden bg-stone-50" style="height:300px" id="cg-${p.id}">
         ${imgs}
-        <!-- badge -->
-        <span class="absolute top-3 right-3 bg-charcoal/90 text-white text-[10px] font-bold py-1 px-2.5 rounded-full z-10">${p.badge}</span>
-        ${p.stock <= 5 ? `<span class="absolute top-3 left-3 bg-red-500/90 text-white text-[10px] font-bold py-1 px-2.5 rounded-full z-10">بقات ${p.stock}!</span>` : ''}
-        <!-- arrows -->
-        <button class="absolute top-1/2 -translate-y-1/2 right-2 w-7 h-7 rounded-full bg-cream2/90 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm" onclick="event.stopPropagation();cShift(${p.id},-1)">
+        <span class="absolute top-3 right-3 text-white text-[10px] font-bold py-1.5 px-3 rounded-full z-10 shadow-md" style="background:rgba(26,26,26,.88)">${p.badge}</span>
+        ${p.stock <= 5 ? `<span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold py-1.5 px-3 rounded-full z-10 shadow-md">بقات ${p.stock}!</span>` : ''}
+        <button class="absolute top-1/2 -translate-y-1/2 right-2.5 w-8 h-8 rounded-full bg-white/92 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-all shadow-md hover:scale-110" onclick="event.stopPropagation();cShift(${p.id},-1)">
           <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-        <button class="absolute top-1/2 -translate-y-1/2 left-2 w-7 h-7 rounded-full bg-cream2/90 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm" onclick="event.stopPropagation();cShift(${p.id},1)">
+        <button class="absolute top-1/2 -translate-y-1/2 left-2.5 w-8 h-8 rounded-full bg-white/92 border-0 cursor-pointer flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-all shadow-md hover:scale-110" onclick="event.stopPropagation();cShift(${p.id},1)">
           <svg class="w-3.5 h-3.5 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <!-- dots -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">${dots}</div>
       </div>
-      <!-- info -->
-      <div class="p-4 border-t border-stone-100">
-        <div class="flex items-center gap-1.5 mb-1">
-          <div class="w-3 h-3 rounded-full border border-stone-300 flex-shrink-0" id="cc-dot-${p.id}" style="background:${p.colors[0].hex}"></div>
+      <div class="p-4 border-t border-stone-100/80">
+        <div class="flex items-center gap-1.5 mb-1.5">
+          <div class="w-3 h-3 rounded-full border border-stone-200/80 flex-shrink-0" id="cc-dot-${p.id}" style="background:${p.colors[0].hex}"></div>
           <span class="text-[11px] text-muted font-semibold" id="cc-name-${p.id}">${p.colors[0].name}</span>
         </div>
         <h3 class="text-sm font-black text-charcoal3 mb-0.5 leading-snug">${p.name}</h3>
-        <p class="text-[11px] text-muted mb-3">${p.sub}</p>
+        <p class="text-[11px] text-muted mb-3 leading-snug">${p.sub}</p>
         <div class="flex items-center justify-between">
           <div class="flex items-end gap-2">
             <span class="text-lg font-black text-charcoal">${p.price} درهم</span>
-            <span class="text-xs text-muted line-through mb-0.5">${p.old} درهم</span>
+            <span class="text-xs text-muted line-through mb-0.5">${p.old}</span>
           </div>
-          <span class="text-[10px] bg-sand/15 text-sand3 font-bold py-1 px-2.5 rounded-full">شوفي ←</span>
+          <span class="text-[10px] font-bold py-1 px-2.5 rounded-full" style="background:rgba(196,164,132,.14);color:#B8956A">−${discount}% ←</span>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
-// card gallery helpers
 function cGoto(id, to) {
   const wrap = document.getElementById('cg-' + id);
   if (!wrap) return;
@@ -1231,7 +1219,6 @@ function cGoto(id, to) {
   cardIdx[id] = (to + imgs.length) % imgs.length;
   imgs[cardIdx[id]].classList.add('on');
   if (dots[cardIdx[id]]) dots[cardIdx[id]].classList.add('on');
-
   const p = PRODS.find(x => x.id === id);
   if (p) {
     const c = p.colors[cardIdx[id]];
@@ -1243,119 +1230,102 @@ function cGoto(id, to) {
 }
 function cShift(id, dir) { cGoto(id, cardIdx[id] + dir); }
 
-// ═══════════════════════════════════════════════════════════
-// PRODUCT DETAIL PAGE
-// ═══════════════════════════════════════════════════════════
+// ─── PRODUCT DETAIL PAGE ─────────────────────
 function renderProductPage(id) {
   const p = PRODS.find(x => x.id === id);
   if (!p) return;
+  pdCurrent = 0; pdTotal = p.colors.length; pdQty = 1;
+  pdSize = p.sizes.length > 1 ? p.sizes[1] : p.sizes[0];
 
-  pdCurrent = 0;
-  pdTotal   = p.colors.length;
-  pdQty     = 1;
-  pdSize    = p.sizes.length > 1 ? p.sizes[1] : p.sizes[0];
-
-  // Preload only first image eagerly
-  if (p.colors[0]) {
-    const img = new Image();
-    img.src = p.colors[0].img;
-  }
+  if (p.colors[0]) { const img = new Image(); img.src = p.colors[0].img; }
 
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
-
   const mainImgs = p.colors.map((c, i) =>
-    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3C/svg%3E'">`
   ).join('');
-
   const thumbs = p.colors.map((c, i) =>
-    `<div class="thumb${i===0?' on':''}" style="width:68px;height:68px" onclick="pdGoto(${i})">
-       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
+    `<div class="thumb${i===0?' on':''}" style="width:70px;height:70px" onclick="pdGoto(${i})">
+       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" loading="lazy">
      </div>`
   ).join('');
-
   const sizebtns = allSizes.map(sz => {
     const oos = p.oos.includes(sz);
     const sel = sz === pdSize;
     return `<button onclick="pdPickSz('${sz}')" class="sz-btn${oos?' sz-oos':sel?' sz-sel':''}" data-sz="${sz}" ${oos?'disabled':''}>${sz}</button>`;
   }).join('');
+  const discount = Math.round((1-p.price/p.old)*100);
 
   document.getElementById('product-detail').innerHTML = `
   <div class="grid md:grid-cols-2 bg-cream2">
-    <!-- gallery -->
     <div class="relative bg-stone-100 overflow-hidden max-md:order-1" style="min-height:480px">
       <div class="relative w-full" style="height:580px;max-height:65vw;min-height:380px" id="pd-g">
         ${mainImgs}
-        <!-- arrows -->
-        <button onclick="pdShift(-1)" class="absolute top-1/2 -translate-y-1/2 right-3 w-9 h-9 rounded-full bg-cream2/90 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-md hover:bg-cream2 transition-all">
+        <button onclick="pdShift(-1)" class="absolute top-1/2 -translate-y-1/2 right-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-        <button onclick="pdShift(1)" class="absolute top-1/2 -translate-y-1/2 left-3 w-9 h-9 rounded-full bg-cream2/90 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-md hover:bg-cream2 transition-all">
+        <button onclick="pdShift(1)" class="absolute top-1/2 -translate-y-1/2 left-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border-0 cursor-pointer flex items-center justify-center z-10 shadow-lg hover:scale-110 transition-transform">
           <svg class="w-4 h-4 stroke-charcoal fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <!-- badge -->
-        <div class="absolute top-4 right-4 bg-charcoal/90 text-white text-[11px] font-bold py-1.5 px-3.5 rounded-full z-10">${p.badge}</div>
-        <!-- quality card -->
-        <div class="absolute bottom-4 left-4 bg-cream2/95 backdrop-blur rounded-xl p-2.5 border border-white/80 flex items-center gap-2 shadow-lg z-10">
+        <div class="absolute top-4 right-4 text-white text-[11px] font-bold py-1.5 px-3.5 rounded-full z-10 shadow-md" style="background:rgba(26,26,26,.88)">${p.badge}</div>
+        <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl p-2.5 border border-white/80 flex items-center gap-2 shadow-lg z-10">
           <svg class="w-4 h-4 stroke-sand fill-none flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          <div><span class="text-[11px] font-bold text-charcoal3">ضمان الجودة</span><small class="text-[10px] text-muted block">تبدال فابور 7 أيام</small></div>
+          <div>
+            <span class="text-[11px] font-bold text-charcoal3 block">ضمان الجودة</span>
+            <small class="text-[10px] text-muted">تبديل مجاني 7 أيام</small>
+          </div>
         </div>
       </div>
-      <!-- thumbnails -->
-      <div class="flex gap-2 p-3 bg-cream border-t border-stone-200" id="pd-thumbs" style="overflow-x:auto">${thumbs}</div>
+      <div class="flex gap-2 p-3 bg-cream border-t border-stone-200/60" id="pd-thumbs" style="overflow-x:auto">${thumbs}</div>
     </div>
 
-    <!-- info -->
     <div class="py-8 px-5 md:py-10 md:px-9 flex flex-col justify-center max-md:order-2 max-md:pb-28">
-      <div class="inline-flex items-center gap-1.5 bg-stone-100 text-charcoal3 text-[11px] font-bold py-1.5 px-3.5 rounded-full mb-4 w-fit border border-stone-200">
+      <div class="inline-flex items-center gap-2 text-[11px] font-bold py-1.5 px-3.5 rounded-full mb-4 w-fit border" style="background:#f5f5f4;border-color:rgba(0,0,0,.08);color:#444">
         <div class="w-3 h-3 rounded-full flex-shrink-0" id="pd-color-dot" style="background:${p.colors[0].hex}"></div>
         <span id="pd-color-name">${p.colors[0].name}</span> — ${p.sub}
       </div>
-      <h2 class="text-2xl md:text-[28px] font-black text-charcoal3 leading-tight mb-2">${p.name}</h2>
+      <h2 class="text-2xl md:text-[30px] font-black text-charcoal3 leading-tight mb-3">${p.name}</h2>
       <p class="text-sm text-muted leading-relaxed mb-5">${p.desc}</p>
 
-      <!-- price -->
-      <div class="flex items-center gap-3 mb-5">
-        <span class="text-[32px] font-black text-charcoal leading-none">${p.price} درهم</span>
-        <span class="text-base text-muted line-through">${p.old} درهم</span>
-        <span class="bg-sand text-white text-[11px] font-bold py-1 px-2.5 rounded-full">−${Math.round((1-p.price/p.old)*100)}%</span>
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-[34px] font-black text-charcoal leading-none">${p.price} درهم</span>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-base text-muted line-through">${p.old} درهم</span>
+          <span class="text-xs font-bold py-0.5 px-2.5 rounded-full inline-block" style="background:rgba(196,164,132,.18);color:#B8956A">وفري −${discount}%</span>
+        </div>
       </div>
 
-      <!-- sizes -->
       <div class="mb-5">
         <div class="flex justify-between items-center mb-2.5">
-          <span class="text-xs font-bold text-charcoal3"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 22l20-20"/><path d="M6 18L2 22l4-4"/><path d="M18 2l4 4-4-4"/></svg> اختاري النمرة</span>
+          <span class="text-xs font-bold text-charcoal3">اختاري النمرة</span>
           <span class="text-[11px] text-charcoal font-bold cursor-pointer underline">دليل القياسات</span>
         </div>
         <div class="flex flex-wrap gap-2" id="pd-sizes">${sizebtns}</div>
-        ${p.stock <= 8 ? `<div class="flex items-center gap-1 mt-2 text-[11px] text-sand font-bold"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>بقات غير ${p.stock} بياسات!</div>` : ''}
+        ${p.stock <= 8 ? `<div class="stock-alert mt-2.5"><svg class="w-3 h-3 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>بقات غير ${p.stock} بياسات!</div>` : ''}
       </div>
 
-      <!-- quantity -->
-      <div class="mb-5">
+      <div class="mb-6">
         <span class="text-xs font-bold text-charcoal3 block mb-2.5">الكمية</span>
         <div class="flex items-center gap-3">
-          <button onclick="pdQtyChange(-1)" class="w-9 h-9 rounded-full border-2 border-stone-200 bg-cream2 flex items-center justify-center font-bold text-charcoal hover:border-charcoal transition-all cursor-pointer text-lg leading-none">−</button>
+          <button onclick="pdQtyChange(-1)" class="w-9 h-9 rounded-full border-2 border-stone-200 bg-cream2 flex items-center justify-center font-bold text-charcoal hover:border-charcoal transition-all cursor-pointer text-lg">−</button>
           <span id="pd-qty" class="text-lg font-black text-charcoal w-7 text-center">1</span>
-          <button onclick="pdQtyChange(1)" class="w-9 h-9 rounded-full border-2 border-stone-200 bg-cream2 flex items-center justify-center font-bold text-charcoal hover:border-charcoal transition-all cursor-pointer text-lg leading-none">+</button>
+          <button onclick="pdQtyChange(1)" class="w-9 h-9 rounded-full border-2 border-stone-200 bg-cream2 flex items-center justify-center font-bold text-charcoal hover:border-charcoal transition-all cursor-pointer text-lg">+</button>
         </div>
       </div>
 
-      <!-- trust -->
-      <div class="flex flex-wrap gap-3 mb-6 text-[11px] text-muted font-semibold">
-        <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>توصيل فابور</span>
-        <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>تبدال 7 أيام</span>
-        <span class="flex items-center gap-1"><svg class="w-3 h-3 stroke-sand fill-none" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>دفع عند الاستلام</span>
-      </div>
-
-      <!-- desktop CTAs -->
-      <div class="flex gap-2.5 max-md:hidden">
-        <button onclick="addToCart()" class="flex-1 bg-charcoal text-white rounded-xl py-3.5 px-4 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,.3)] active:scale-95 transition-all">
+      <div class="flex gap-3 max-md:hidden">
+        <button onclick="addToCart()" class="flex-1 btn-dark text-white rounded-xl py-4 text-sm font-black flex items-center justify-center gap-2">
           <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           اضيفي للسلة
         </button>
-        <button onclick="addToCart(true)" class="bg-sand text-white rounded-xl py-3.5 px-5 text-sm font-bold cursor-pointer flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(196,164,132,.6)] active:scale-95 transition-all whitespace-nowrap">
-          اطلبي دابا ←
+        <button onclick="addToCart(true)" class="btn-primary text-charcoal rounded-xl py-4 px-6 text-sm font-bold flex items-center justify-center gap-2 whitespace-nowrap">
+          <span class="relative z-10">اطلبي دابا ←</span>
         </button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-[11px] text-muted font-semibold flex items-center gap-1"><svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>توصيل مجاني</span>
+        <span class="text-[11px] text-muted font-semibold flex items-center gap-1"><svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>تبديل 7 أيام</span>
+        <span class="text-[11px] text-muted font-semibold flex items-center gap-1"><svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>ضمان الجودة</span>
       </div>
     </div>
   </div>`;
@@ -1364,14 +1334,13 @@ function renderProductPage(id) {
 function pdGoto(to) {
   const g = document.getElementById('pd-g');
   if (!g) return;
-  const imgs  = g.querySelectorAll('.g-img');
+  const imgs   = g.querySelectorAll('.g-img');
   const thumbs = document.querySelectorAll('#pd-thumbs .thumb');
   imgs[pdCurrent].classList.remove('on');
   if (thumbs[pdCurrent]) thumbs[pdCurrent].classList.remove('on');
   pdCurrent = (to + pdTotal) % pdTotal;
   imgs[pdCurrent].classList.add('on');
   if (thumbs[pdCurrent]) thumbs[pdCurrent].classList.add('on');
-
   const p = PRODS.find(x => x.id === curProdId);
   if (p) {
     const c = p.colors[pdCurrent];
@@ -1387,72 +1356,52 @@ function pdPickSz(sz) {
   pdSize = sz;
   document.querySelectorAll('#pd-sizes .sz-btn').forEach(b => {
     if (b.classList.contains('sz-oos')) return;
-    const on = b.dataset.sz === sz;
-    b.classList.toggle('sz-sel', on);
+    b.classList.toggle('sz-sel', b.dataset.sz === sz);
   });
 }
-
 function pdQtyChange(d) {
   pdQty = Math.max(1, Math.min(10, pdQty + d));
   const el = document.getElementById('pd-qty');
   if (el) el.textContent = pdQty;
 }
 
-// ═══════════════════════════════════════════════════════════
-// ADD TO CART
-// ═══════════════════════════════════════════════════════════
+// ─── ADD TO CART ─────────────────────────────
 function addToCart(goCheckout = false) {
   if (!curProdId) return;
-  if (!pdSize) { showToast('<svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> اختاري النمرة أولاً', '#C4A484'); return; }
-
+  if (!pdSize) { showToast('⚠️ اختاري النمرة أولاً', '#C4A484'); return; }
   const p = PRODS.find(x => x.id === curProdId);
   if (!p) return;
-
   const existing = cart.find(i => i.pid === curProdId && i.size === pdSize && i.color === p.colors[pdCurrent].name);
-  if (existing) {
-    existing.qty += pdQty;
-  } else {
-    cart.push({ pid: curProdId, name: p.name, color: p.colors[pdCurrent].name, size: pdSize, price: p.price, qty: pdQty, img: p.colors[pdCurrent].img });
-  }
-  saveCart();
-  updateBadge();
-  popBadge();
-
-  if (goCheckout) {
-    nav('checkout');
-  } else {
-    showToast('<svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> تمت الإضافة للسلة!', '#1A1A1A');
-  }
+  if (existing) { existing.qty += pdQty; } 
+  else { cart.push({ pid: curProdId, name: p.name, color: p.colors[pdCurrent].name, size: pdSize, price: p.price, qty: pdQty, img: p.colors[pdCurrent].img }); }
+  saveCart(); updateBadge(); popBadge();
+  if (goCheckout) { nav('checkout'); }
+  else { showToast('✓ تمت الإضافة للسلة!', '#1A1A1A'); }
 }
 
-// ═══════════════════════════════════════════════════════════
-// CART PAGE
-// ═══════════════════════════════════════════════════════════
+// ─── CART PAGE ───────────────────────────────
 function renderCart() {
   const list    = document.getElementById('cart-list');
   const summary = document.getElementById('cart-summary');
   const lbl     = document.getElementById('cart-count-label');
   if (!list) return;
-
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const count = cart.reduce((s, i) => s + i.qty, 0);
   if (lbl) lbl.textContent = count ? `(${count} منتج)` : '';
-
   if (!cart.length) {
     list.innerHTML = `
       <div class="text-center py-16">
-        <div class="text-5xl mb-4"><svg class="w-12 h-12 stroke-current fill-none inline-block" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <svg class="w-14 h-14 stroke-stone-300 fill-none mx-auto mb-4" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <div class="text-lg font-black text-charcoal3 mb-2">السلة فارغة</div>
         <p class="text-sm text-muted mb-6">اختاري موديلك من الكتالوج</p>
-        <button onclick="nav('home')" class="bg-charcoal text-white rounded-xl py-3 px-7 text-sm font-bold cursor-pointer hover:-translate-y-0.5 hover:shadow-lg transition-all"><svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 18c2-1 4-2 8-2s6 1 8 2"/><path d="M2 18v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4"/><path d="M18 14c0-2 2-4 4-4v8"/></svg> شوفي المنتجات</button>
+        <button onclick="nav('home')" class="btn-dark text-white rounded-xl py-3 px-7 text-sm font-bold">شوفي المنتجات</button>
       </div>`;
     summary.classList.add('hidden');
     return;
   }
-
   list.innerHTML = `<div class="space-y-3">${cart.map((item, idx) => `
-    <div class="bg-cream rounded-2xl border border-stone-200 p-4 flex gap-3 items-center" style="animation:slideInRight .25s ease both;animation-delay:${idx*.06}s">
-      <div class="w-[68px] h-[68px] rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
+    <div class="cart-item p-4 flex gap-3 items-center" style="animation:slideInRight .25s ease both;animation-delay:${idx*.06}s">
+      <div class="w-[72px] h-[72px] rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
         <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" loading="lazy">
       </div>
       <div class="flex-1 min-w-0">
@@ -1466,29 +1415,19 @@ function renderCart() {
         </button>
         <div class="flex items-center gap-1.5">
           <button onclick="changeQty(${idx},-1)" class="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center text-xs font-bold hover:border-charcoal transition-all cursor-pointer bg-transparent">−</button>
-          <span class="text-sm font-black text-charcoal w-4 text-center">${item.qty}</span>
-          <button onclick="changeQty(${idx},1)"  class="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center text-xs font-bold hover:border-charcoal transition-all cursor-pointer bg-transparent">+</button>
+          <span class="text-sm font-black text-charcoal w-5 text-center">${item.qty}</span>
+          <button onclick="changeQty(${idx},1)" class="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center text-xs font-bold hover:border-charcoal transition-all cursor-pointer bg-transparent">+</button>
         </div>
       </div>
     </div>`).join('')}</div>`;
-
   document.getElementById('s-sub').textContent   = total + ' درهم';
   document.getElementById('s-total').textContent = total + ' درهم';
   summary.classList.remove('hidden');
 }
+function removeItem(idx) { cart.splice(idx, 1); saveCart(); updateBadge(); renderCart(); }
+function changeQty(idx, d) { cart[idx].qty = Math.max(1, cart[idx].qty + d); saveCart(); updateBadge(); renderCart(); }
 
-function removeItem(idx) {
-  cart.splice(idx, 1);
-  saveCart(); updateBadge(); renderCart();
-}
-function changeQty(idx, d) {
-  cart[idx].qty = Math.max(1, cart[idx].qty + d);
-  saveCart(); updateBadge(); renderCart();
-}
-
-// ═══════════════════════════════════════════════════════════
-// CHECKOUT
-// ═══════════════════════════════════════════════════════════
+// ─── CHECKOUT ────────────────────────────────
 function renderCheckoutSummary() {
   const el = document.getElementById('checkout-summary');
   if (!el) return;
@@ -1497,7 +1436,7 @@ function renderCheckoutSummary() {
     <div class="space-y-3 mb-4">
       ${cart.map(item => `
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-lg overflow-hidden bg-stone-100 flex-shrink-0">
+        <div class="w-12 h-12 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
           <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.style.display='none'" loading="lazy">
         </div>
         <div class="flex-1 min-w-0">
@@ -1509,14 +1448,14 @@ function renderCheckoutSummary() {
     </div>
     <div class="border-t border-stone-200 pt-3 space-y-1.5 text-sm">
       <div class="flex justify-between"><span class="text-muted">المجموع الفرعي</span><span class="font-bold">${total} درهم</span></div>
-      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-bold text-green-600">مجاني <svg class="w-3.5 h-3.5 stroke-green-600 fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span></div>
+      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-black text-green-600">مجاني ✓</span></div>
       <div class="flex justify-between pt-2 border-t border-stone-100 mt-1">
         <span class="font-black text-charcoal3">المجموع الكلي</span>
         <span class="text-xl font-black text-charcoal">${total} درهم</span>
       </div>
     </div>
-    <div class="mt-4 bg-stone-50 rounded-xl p-3 border border-stone-100">
-      <p class="text-[11px] text-muted text-center font-semibold"><svg class="w-3.5 h-3.5 fill-none stroke-muted inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg> الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
+    <div class="mt-4 rounded-xl p-3 text-center" style="background:#f5f5f4;border:1px solid rgba(0,0,0,.06)">
+      <p class="text-[11px] text-muted font-semibold">💳 الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
     </div>`;
 }
 
@@ -1528,27 +1467,22 @@ function submitOrder(e) {
   const fd = new FormData(document.getElementById('orderForm'));
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const order = {
-    fullName: fd.get('fullName'),
-    phone:    fd.get('phone'),
-    city:     fd.get('city'),
-    address:  fd.get('address'),
-    notes:    fd.get('notes') || '—',
-    total,
-    size:     cart.map(i => i.size).join(' / '),
-    color:    cart.map(i => i.color).join(' / '),
+    fullName: fd.get('fullName'), phone: fd.get('phone'),
+    city: fd.get('city'), address: fd.get('address'),
+    notes: fd.get('notes') || '—', total,
+    size: cart.map(i => i.size).join(' / '),
+    color: cart.map(i => i.color).join(' / '),
     quantity: cart.reduce((s, i) => s + i.qty, 0),
     items: cart.map(i => `${i.name} (نمرة ${i.size}) ×${i.qty}`).join(' | ')
   };
   fetch(GSHEET, { method:'POST', mode:'no-cors', body: JSON.stringify(order) }).catch(()=>{});
-  if (typeof fbq !== 'undefined') fbq('track','Purchase',{ value:total, currency:'MAD', num_items: cart.reduce((s,i)=>s+i.qty,0) });
+  if (typeof fbq !== 'undefined') fbq('track','Purchase',{ value:total, currency:'MAD' });
   cart = []; saveCart(); updateBadge();
   openSM();
   setTimeout(() => { document.getElementById('orderForm').reset(); nav('home'); }, 5500);
 }
 
-// ═══════════════════════════════════════════════════════════
-// SUCCESS MODAL
-// ═══════════════════════════════════════════════════════════
+// ─── SUCCESS MODAL ───────────────────────────
 let _smT = null;
 function openSM() {
   document.getElementById('sm').classList.add('open');
@@ -1560,18 +1494,12 @@ function closeSM() {
   if (_smT) { clearTimeout(_smT); _smT = null; }
   const m = document.getElementById('sm');
   const c = m.querySelector('.sm-card');
-  c.style.cssText = 'transform:translateY(16px) scale(.97);opacity:0;transition:all .25s ease';
-  setTimeout(() => {
-    m.classList.remove('open');
-    c.style.cssText = '';
-    document.body.style.overflow = '';
-  }, 260);
+  c.style.cssText = 'transform:translateY(20px) scale(.96);opacity:0;transition:all .28s ease';
+  setTimeout(() => { m.classList.remove('open'); c.style.cssText = ''; document.body.style.overflow = ''; }, 280);
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSM(); });
 
-// ═══════════════════════════════════════════════════════════
-// BADGE & TOAST
-// ═══════════════════════════════════════════════════════════
+// ─── BADGE & TOAST ───────────────────────────
 function updateBadge() {
   const n = cart.reduce((s, i) => s + i.qty, 0);
   const b = document.getElementById('cart-badge');
@@ -1582,24 +1510,20 @@ function updateBadge() {
 function popBadge() {
   const b = document.getElementById('cart-badge');
   if (!b) return;
-  b.classList.remove('pop');
-  void b.offsetWidth;
-  b.classList.add('pop');
+  b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
 }
 function showToast(msg, bg) {
   const t = document.createElement('div');
-  t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(8px);
-    background:${bg};color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;
-    z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  t.style.cssText = `position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(10px);
+    background:${bg};color:#fff;padding:12px 22px;border-radius:14px;font-size:13px;font-weight:700;
+    z-index:9999;white-space:nowrap;box-shadow:0 10px 28px rgba(0,0,0,.28);
     animation:toast-in .3s ease forwards;font-family:Cairo,sans-serif`;
   t.innerHTML = msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2500);
+  setTimeout(() => t.remove(), 2600);
 }
 
-// ═══════════════════════════════════════════════════════════
-// COUNTDOWN
-// ═══════════════════════════════════════════════════════════
+// ─── COUNTDOWN ───────────────────────────────
 (function() {
   const DUR = 10*24*60*60*1000, KEY = 'tlb_cd';
   let end = +localStorage.getItem(KEY) || 0;
@@ -1616,48 +1540,34 @@ function showToast(msg, bg) {
   tick(); setInterval(tick, 1000);
 })();
 
-// ═══════════════════════════════════════════════════════════
-// WHATSAPP
-// ═══════════════════════════════════════════════════════════
+// ─── WHATSAPP FLOAT ──────────────────────────
 (function() {
   const b = document.getElementById('wa-float');
   if (!b) return;
   let shown = false;
   const onScroll = () => {
     const show = (window.scrollY || document.documentElement.scrollTop) > 200;
-    if (show === shown) return;
-    shown = show;
-    b.classList.toggle('on', show);
+    if (show === shown) return; shown = show; b.classList.toggle('on', show);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
 
-
-// ─── HERO SLIDESHOW ────────────────────────────────────────
+// ─── HERO SLIDESHOW ──────────────────────────
 (function() {
   const slides = document.querySelectorAll('.hero-slide');
   if (!slides.length) return;
   let current = 0;
-  const interval = 5000; // 5 seconds per slide
-
-  function nextSlide() {
+  setInterval(() => {
     slides[current].classList.remove('active');
     current = (current + 1) % slides.length;
     slides[current].classList.add('active');
-  }
-
-  setInterval(nextSlide, interval);
+  }, 5000);
 })();
 
-// ═══════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════
-
+// ─── INIT ────────────────────────────────────
 renderProducts();
 updateBadge();
-
-
 </script>
 </body>
 </html>
