@@ -359,6 +359,76 @@ footer a:hover::after {
 }
 
 
+/* ===== SVG GLOBAL POLISH ===== */
+svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Trust badge icon glow */
+.trust-badge .trust-icon {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 0px rgba(196,164,132,0));
+}
+.trust-badge:hover .trust-icon {
+  filter: drop-shadow(0 0 8px rgba(196,164,132,0.55));
+  transform: scale(1.1) rotate(-3deg);
+}
+
+/* Icon container upgrade */
+.icon-box {
+  background: linear-gradient(135deg, rgba(196,164,132,0.22), rgba(196,164,132,0.07));
+  border: 1px solid rgba(196,164,132,0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+}
+.trust-badge:hover .icon-box {
+  background: linear-gradient(135deg, rgba(196,164,132,0.35), rgba(196,164,132,0.15));
+  border-color: rgba(196,164,132,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 16px rgba(196,164,132,0.2);
+}
+
+/* SVG star ratings */
+.svg-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+}
+.svg-stars svg {
+  fill: #F59E0B;
+  stroke: #F59E0B;
+  stroke-width: 0;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Verified buyer badge */
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #16a34a;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1px solid #bbf7d0;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* Icon pulse on CTA */
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.icon-bounce-hover:hover svg {
+  animation: icon-bounce 0.6s ease infinite;
+}
+
+/* Delivery icon fix */
+.delivery-icon { display: inline-block; vertical-align: text-bottom; }
+
 /* ===== HERO SLIDESHOW ===== */
 .hero-slide {
   position: absolute;
@@ -382,29 +452,29 @@ footer a:hover::after {
 <div class="bg-charcoal text-white text-center py-2.5 px-4 text-[10px] md:text-xs font-semibold tracking-wide relative z-50 overflow-hidden">
   <div class="absolute inset-0 opacity-10 shimmer"></div>
   <span class="inline-block w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 pulse-dot"></span>
-  <span class="max-md:hidden">التوصيل فابور لجميع مدن المغرب <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg> | خلصي حتى تقيسي وتشوفي سلعتك | توصيل سريع فـ 24-48 ساعة</span>
-  <span class="md:hidden">توصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg> · دفع عند الاستلام · 24-48 ساعة</span>
+  <span class="max-md:hidden">التوصيل فابور لجميع مدن المغرب <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> | خلصي حتى تقيسي وتشوفي سلعتك | توصيل سريع فـ 24-48 ساعة</span>
+  <span class="md:hidden">توصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> · دفع عند الاستلام · 24-48 ساعة</span>
 </div>
 
 <!-- ===== HEADER ===== -->
-<header class="border-b border-white/20 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_4px_24px_rgba(0,0,0,.2)] backdrop-blur-sm" style="background: linear-gradient(135deg, #C2A483 0%, #B8956A 100%);">
+<header class="border-b border-white/20 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_4px_24px_rgba(0,0,0,.2)] backdrop-blur-sm" style="background: #302F2F;">
   <!-- Logo -->
   <button onclick="nav('home')" class="flex items-center gap-2 flex-shrink-0 bg-transparent border-0 cursor-pointer p-0">
     <img src="logo.png" alt="Tolba Store" loading="eager" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'" loading="lazy">
-    <span class="text-white font-black text-lg leading-none hidden md:block drop-shadow-sm">Tolba<span class="text-white/70 font-semibold"> Store</span></span>
+    <span class="text-white font-black text-lg leading-none hidden md:block drop-shadow-sm">Tolba<span class="text-white/50 font-semibold"> Store</span></span>
   </button>
 
-  <!-- Countdown (desktop) -->
-  <div class="hidden md:flex items-center gap-2">
-    <span class="text-white text-[11px] font-semibold whitespace-nowrap"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> العرض باقي:</span>
-    <div class="flex items-center gap-1">
-      <div class="text-center"><span id="cd-d" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">10</span><small class="text-[9px] text-white/70 block mt-0.5">أيام</small></div>
-      <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-h" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ساعة</small></div>
-      <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-m" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">دقيقة</small></div>
-      <span class="text-white/50 font-bold pb-3">:</span>
-      <div class="text-center"><span id="cd-s" class="countdown-box rounded-lg py-1.5 px-3 text-sm font-black text-white block tabular-nums">00</span><small class="text-[9px] text-white/70 block mt-0.5">ثانية</small></div>
+  <!-- Countdown -->
+  <div class="flex items-center gap-1.5">
+    <span class="text-white text-[10px] md:text-[11px] font-semibold whitespace-nowrap hidden md:inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> العرض باقي:</span>
+    <div class="flex items-center gap-0.5 md:gap-1">
+      <div class="text-center"><span id="cd-d" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">10</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">أيام</small></div>
+      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
+      <div class="text-center"><span id="cd-h" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">ساعة</small></div>
+      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
+      <div class="text-center"><span id="cd-m" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">دقيقة</small></div>
+      <span class="text-white/50 font-bold pb-3 text-xs">:</span>
+      <div class="text-center"><span id="cd-s" class="countdown-box rounded-md md:rounded-lg py-1 px-1.5 md:py-1.5 md:px-3 text-xs md:text-sm font-black text-white block tabular-nums">00</span><small class="text-[8px] md:text-[9px] text-white/70 block mt-0.5">ثانية</small></div>
     </div>
   </div>
 
@@ -455,9 +525,7 @@ footer a:hover::after {
 
       <!-- Sub -->
       <p class="text-white/70 max-w-md mx-auto leading-relaxed mb-7" style="font-size:clamp(.9rem,2.2vw,1.05rem)">
-        اختاري الموديل اللي يعجبك — كل بياسة
-        <strong class="text-white font-black">199 درهم</strong>
-        مع التوصيل فابور <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg>
+        اختاري الموديل اللي يعجبك — وتجي مع إطلالتك ديالك
       </p>
 
       <!-- CTA row -->
@@ -474,21 +542,19 @@ footer a:hover::after {
         </div>
       </div>
 
-      <!-- Stats row -->
-      <div class="mt-9 flex flex-wrap items-center justify-center gap-5 md:gap-8">
-        <div class="text-center">
-          <div class="text-white font-black text-xl md:text-2xl">+2000</div>
-          <div class="text-white/55 text-[10px] md:text-xs font-semibold mt-0.5">زبونة راضية</div>
+      <!-- Trust pills row -->
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+          <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="white" stroke-width="2"/></svg>
+          جودة مضمونة
         </div>
-        <div class="w-px h-8 bg-white/20"></div>
-        <div class="text-center">
-          <div class="text-white font-black text-xl md:text-2xl">4.9 ★</div>
-          <div class="text-white/55 text-[10px] md:text-xs font-semibold mt-0.5">تقييم العملاء</div>
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+          <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
+          دفع عند الاستلام
         </div>
-        <div class="w-px h-8 bg-white/20"></div>
-        <div class="text-center">
-          <div class="text-white font-black text-xl md:text-2xl">199 درهم</div>
-          <div class="text-white/55 text-[10px] md:text-xs font-semibold mt-0.5">بدل 219 — توفير فوري</div>
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-[11px] font-bold rounded-full px-4 py-2">
+          <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          تبديل مجاني 7 أيام
         </div>
       </div>
 
@@ -530,26 +596,26 @@ footer a:hover::after {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
-            <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 trust-icon icon-box">
+            <svg class="w-6 h-6 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">توصيل فابور</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">لجميع مدن المغرب</small></div>
         </div>
         <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
-            <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 trust-icon icon-box">
+            <svg class="w-6 h-6 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">دفع عند الاستلام</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">ما تخلصيش حتى تشوفي</small></div>
         </div>
         <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
-            <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 trust-icon icon-box">
+            <svg class="w-6 h-6 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">التبدال فابور</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">خلال 7 أيام بدون سؤال</small></div>
         </div>
         <div class="group flex flex-col items-center text-center gap-3 p-4 md:p-5 rounded-2xl border transition-all duration-300 cursor-default trust-badge" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)" onmouseenter="this.style.background='rgba(196,164,132,.1)';this.style.borderColor='rgba(196,164,132,.25)'" onmouseleave="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.09)'">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(196,164,132,.2),rgba(196,164,132,.08));border:1px solid rgba(196,164,132,.25)">
-            <svg class="w-5 h-5 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 trust-icon icon-box">
+            <svg class="w-6 h-6 fill-none" stroke="#C4A484" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           </div>
           <div><p class="text-[13px] text-white font-black leading-tight">كاليتي واعرة</p><small class="text-[11px] text-white/45 font-semibold mt-1 block">Premier Choix مضمون</small></div>
         </div>
@@ -564,58 +630,101 @@ footer a:hover::after {
       <div class="text-center mb-10">
         <span class="inline-block text-[11px] font-black tracking-widest text-sand3 uppercase mb-3 bg-sand/10 px-4 py-1.5 rounded-full border border-sand/20">آراء العملاء</span>
         <h2 class="text-2xl md:text-3xl font-black text-charcoal mb-2">شنو قالو الزبائن <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></h2>
-        <div class="flex items-center justify-center gap-1.5 mt-3">
-          <span class="text-[#F59E0B] text-xl tracking-tight">★★★★★</span>
-          <span class="text-sm font-black text-charcoal3 mr-1">4.9</span>
-          <span class="text-muted text-xs font-semibold">من +150 تقييم</span>
+        <div class="flex items-center justify-center gap-2 mt-3">
+          <div class="inline-flex items-center gap-2 bg-sand/10 border border-sand/20 text-charcoal3 text-[11px] font-bold rounded-full px-4 py-1.5">
+            <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#C4A484" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            جودة مضمونة · دفع عند الاستلام · تبديل 7 أيام
+          </div>
         </div>
       </div>
 
       <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
+        <!-- Card 1 — فاطمة -->
         <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 review-card">
-          <!-- Quote icon -->
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
           <div class="flex gap-0.5 mb-3 relative z-10">
-            <span class="text-[#F59E0B] text-base">★★★★★</span>
+            <span class="svg-stars">
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            </span>
           </div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">واش مشات عليا مزيانة وخفيفة، وصلات بسرعة كذلك. منصح بيها بزاف!</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">ف</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">فاطمة ز.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> الدار البيضاء</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                الدار البيضاء
+              </small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto verified-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              مشترية موثّقة
+            </div>
           </div>
         </div>
 
+        <!-- Card 2 — مريم (elevated) -->
         <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,.11)] transition-all duration-300 md:mt-4">
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
-          <div class="flex gap-0.5 mb-3 relative z-10"><span class="text-[#F59E0B] text-base">★★★★★</span></div>
+          <div class="flex gap-0.5 mb-3 relative z-10">
+            <span class="svg-stars">
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            </span>
+          </div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">شريت الكاميل والبني داكن — الجوج مزيانين بزاف! كاليتي فوق التوقع.</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">م</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">مريم ب.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> مراكش</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                مراكش
+              </small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto verified-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              مشترية موثّقة
+            </div>
           </div>
         </div>
 
+        <!-- Card 3 — نسرين -->
         <div class="relative bg-white rounded-3xl p-6 shadow-[0_2px_24px_rgba(0,0,0,.07)] border border-stone-100 review-card">
           <div class="absolute top-5 left-5 text-sand/20 text-5xl font-black leading-none select-none">"</div>
-          <div class="flex gap-0.5 mb-3 relative z-10"><span class="text-[#F59E0B] text-base">★★★★★</span></div>
+          <div class="flex gap-0.5 mb-3 relative z-10">
+            <span class="svg-stars">
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+              <svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg>
+            </span>
+          </div>
           <p class="text-[13px] text-charcoal3 font-semibold leading-relaxed relative z-10">الكحل السويدي نار! واقفة مليح ومريحة. وصلت فـ 24 ساعة بالضبط.</p>
           <div class="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-black flex-shrink-0" style="background:linear-gradient(135deg,#C4A484,#B8956A)">ن</div>
             <div>
               <span class="text-xs font-black text-charcoal3 block">نسرين أ.</span>
-              <small class="text-[10px] text-muted font-semibold flex items-center gap-1"><span><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> فاس</small>
+              <small class="text-[10px] text-muted font-semibold flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                فاس
+              </small>
             </div>
-            <div class="mr-auto text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100"><svg class="w-3 h-3 stroke-current fill-none inline-block align-text-bottom" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> مشترية موثّقة</div>
+            <div class="mr-auto verified-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16a34a" style="display:inline-block;vertical-align:text-bottom;margin-left:2px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              مشترية موثّقة
+            </div>
           </div>
         </div>
 
@@ -623,7 +732,7 @@ footer a:hover::after {
 
       <!-- Bottom CTA strip -->
       <div class="mt-10 rounded-3xl p-6 md:p-8 text-center" style="background:linear-gradient(135deg,#1A1A1A,#252525);border:1px solid rgba(196,164,132,.15)">
-        <p class="text-white font-black text-lg mb-1">انضمي لـ +2000 زبونة سعيدة <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></p>
+        <p class="text-white font-black text-lg mb-1">تسوّقي بأمان وثقة <svg class="w-5 h-5 inline-block align-text-bottom" viewBox="0 0 24 24" fill="#C4A484"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></p>
         <p class="text-white/50 text-sm mb-5">توصيل فابور · دفع عند الاستلام · تبدال خلال 7 أيام</p>
         <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
           class="inline-flex items-center gap-2 font-black text-sm text-[#1A1A1A] rounded-full px-8 py-3.5 hover:-translate-y-0.5 transition-all shadow-[0_6px_24px_rgba(196,164,132,.4)]"
@@ -691,7 +800,7 @@ footer a:hover::after {
             <div class="flex justify-between items-center"><span class="text-muted font-semibold">المجموع الفرعي</span><span class="font-bold text-charcoal" id="s-sub">0 درهم</span></div>
             <div class="flex justify-between items-center">
               <span class="text-muted font-semibold">التوصيل</span>
-              <span class="font-black text-green-600 flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 2.5 2.5v5"/><path d="M16.5 8v-2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1-2.5 2.5h-5"/></svg></span>
+              <span class="font-black text-green-600 flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-green-500" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg> مجاني <svg class="w-3.5 h-3.5 stroke-green-600 fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
             </div>
           </div>
         </div>
@@ -744,15 +853,7 @@ footer a:hover::after {
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">المدينة *</label>
-            <select name="city" required class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
-              <option value="">اختاري مدينتك</option>
-              <option>الدار البيضاء</option><option>الرباط</option><option>فاس</option>
-              <option>مراكش</option><option>أكادير</option><option>طنجة</option>
-              <option>مكناس</option><option>وجدة</option><option>سلا</option>
-              <option>تطوان</option><option>قنيطرة</option><option>تمارة</option>
-              <option>الجديدة</option><option>بني ملال</option><option>خريبكة</option>
-              <option>سطات</option><option>أخرى</option>
-            </select>
+            <input type="text" name="city" required placeholder="اكتب اسم المدينة..." class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-charcoal bg-cream2 transition-all">
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">العنوان الكامل *</label>
@@ -803,7 +904,7 @@ footer a:hover::after {
         </div>
         <p class="text-stone-500 text-xs leading-relaxed max-w-xs">متجرك المفضّل للصندلة الكلاص بالمغرب. كاليتي ممتازة، توصيل سريع، ودفع عند الاستلام.</p>
         <div class="flex items-center gap-1 mt-3">
-          <span class="text-[#F59E0B] text-sm">★★★★★</span>
+          <span class="svg-stars" style="transform:scale(0.85);transform-origin:right center"><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></span>
           <span class="text-stone-500 text-[11px] font-semibold mr-1">+150 تقييم</span>
         </div>
       </div>
@@ -840,7 +941,7 @@ footer a:hover::after {
 
     <!-- Divider -->
     <div class="border-t flex flex-col md:flex-row items-center justify-between gap-3 pt-6" style="border-color:rgba(255,255,255,.06)">
-      <p class="text-stone-600 text-[11px] font-semibold">© 2025 Tolba Store — جميع الحقوق محفوظة <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 8l2 6-2-2-2 2 2-6z"/><path d="M12 14v4"/></svg></p>
+      <p class="text-stone-600 text-[11px] font-semibold">© 2025 Tolba Store — جميع الحقوق محفوظة 🇲🇦</p>
       <div class="flex items-center gap-2">
         <div class="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot"></div>
         <span class="text-stone-600 text-[11px] font-semibold">المتجر شغّال — طلبي الآن</span>
@@ -851,7 +952,7 @@ footer a:hover::after {
 </footer>
 
 <!-- ===== WHATSAPP FLOAT ===== -->
-<a id="wa-float" href="https://wa.me/212612455372?text=السلام عليكم، بغيت نطلب صندلة من Tolba Store <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M2 18c2-1 4-2 8-2s6 1 8 2"/><path d="M2 18v-4c0-2 2-4 4-4h8c2 0 4 2 4 4v4"/><path d="M18 14c0-2 2-4 4-4v8"/></svg>" target="_blank" rel="noopener">
+<a id="wa-float" href="https://wa.me/212612455372?text=السلام عليكم، بغيت نطلب صندلة من Tolba Store" target="_blank" rel="noopener">
   <span class="wa-ring"></span>
   <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
@@ -866,7 +967,7 @@ footer a:hover::after {
           <polyline class="sm-check" points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <div class="text-white text-xl font-black mb-3">تم استلام طلبك! <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></div>
+      <div class="text-white text-xl font-black mb-3">تم استلام طلبك! <svg class="w-5 h-5 inline-block align-text-bottom" viewBox="0 0 24 24" fill="#C4A484"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
       <div class="text-stone-300 text-sm font-semibold leading-relaxed">غادي نتوصلو معاك في أقرب وقت باش نأكدو معاك الطلب</div>
       <button onclick="closeSM()" class="mt-6 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl py-3 px-8 text-sm font-black cursor-pointer transition-all w-full active:scale-95">
         حسناً، شكراً <svg class="w-4 h-4 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
@@ -883,36 +984,45 @@ footer a:hover::after {
 const PRODS = [
   {
     id: 1,
-    name: 'صندلة زارا كاميل',
-    sub:  'سويدي كلاص — موديل إيطالي',
+    name: 'صندلة تولبا كلاسيك',
+    sub:  'سويدي كلاص — تصميم كلاسيكي بإبزيمين',
     price: 199, old: 219,
-    color: 'كاميل', hex: '#B46435',
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.214-4.166-1.213-7 0 0-4 3.5-4 8 0 3.5 2.5 6 6 6 3.5 0 6-2.5 6-6 0-4.5-4-8-4-8 1.001 2.834-.141 4.857-1.213 7-.5 1-1 1.62-1 3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> الأكثر طلباً',
-    desc: 'موديل إيطالي غزال مخدوم بكاليتي ممتازة وتفاصيل ذهبية أنيقة. خفيفة ومريحة لرجليك نهار كامل، وتواتي أي لبيسة.',
-    imgs: ['tolba-brown-1.png','tolba-brown-2.png','tolba-brown-3.png'],
-    sizes: ['37','38','39','40'], oos: ['41'], stock: 12
+    desc: 'موديل كلاسيكي مخدوم بسويدي ناعم عالي الجودة، بإبزيمين قابلين للتعديل ونعل فلين مريح. خفيفة على رجلك نهار كامل، وتواتي أي لبيسة.',
+    colors: [
+      { name: 'بني زيتوني', hex: '#6F5742', img: 'tolba-black-1.png' },
+      { name: 'بيج',        hex: '#D9C7AE', img: 'tolba-black-2.png' },
+      { name: 'أسود',       hex: '#1A1A1A', img: 'tolba-black-3.png' }
+    ],
+    sizes: ['37','38','39','40','41'], oos: [], stock: 12
   },
   {
     id: 2,
-    name: 'صندلة زارا بني داكن',
-    sub:  'جلد طبيعي — إطار ذهبي',
-    price: 199, old: 219,
-    color: 'بني داكن', hex: '#3D2B1F',
+    name: 'صندلة تولبا أطلس',
+    sub:  'ديزاين عصري — ثلاث أحزمة على نعل ضخم',
+    price: 179, old: 219,
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> جديد',
-    desc: 'جلد طبيعي ناعم بلون البني الداكن الكلاصيكي. إطار ذهبي أنيق يعطيها لمسة فاخرة. مناسبة للخروج والمناسبات.',
-    imgs: ['tolba-black-1.png','tolba-black-2.png','tolba-black-3.png'],
+    desc: 'ديزاين عصري بثلاث أحزمة قابلة للتعديل على نعل ضخم ومريح. ستايل قوي يواتي الاستعمال اليومي مع راحة فابور.',
+    colors: [
+      { name: 'أسود',     hex: '#1A1A1A', img: 'tolba-black-suede-1.png' },
+      { name: 'بيج',      hex: '#E3D5BC', img: 'tolba-black-suede-2.png' },
+      { name: 'بني غامق', hex: '#4A3324', img: 'tolba-black-suede-3.png' }
+    ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 8
   },
   {
     id: 3,
-    name: 'صندلة زارا كحل سويدي',
-    sub:  'سويدي بريميوم — إيطالي',
+    name: 'صندلة تولبا برستيج',
+    sub:  'سويدي فاخر — إبزيم ذهبي',
     price: 199, old: 219,
-    color: 'كحل سويدي', hex: '#2D2D3D',
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
-    desc: 'سويدي فاخر بلون الكحل العميق. قماش ناعم وخفيف على الرجل. ديزاين عصري يواتي اللبيسة العصرية والكلاصيكية.',
-    imgs: ['tolba-black-suede-1.png','tolba-black-suede-2.png','tolba-black-suede-3.png'],
-    sizes: ['37','38','39','40'], oos: ['41'], stock: 5
+    desc: 'سويدي فاخر بتفاصيل ذهبية أنيقة تعطي لمسة راقية. إبزيم عريض قابل للتعديل ونعل مريح يواتي اللبيسة العصرية والكلاصيكية.',
+    colors: [
+      { name: 'كاميل',    hex: '#BF9264', img: 'tolba-brown-1.png' },
+      { name: 'بيج فاتح', hex: '#D8C3A5', img: 'tolba-brown-2.png' },
+      { name: 'أسود',     hex: '#1A1A1A', img: 'tolba-brown-3.png' }
+    ],
+    sizes: ['37','38','39','40','41'], oos: [], stock: 5
   }
 ];
 
@@ -960,10 +1070,10 @@ function renderProducts() {
 
   grid.innerHTML = PRODS.map(p => {
     cardIdx[p.id] = 0;
-    const imgs = p.imgs.map((src, i) =>
-      `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
+    const imgs = p.colors.map((c, i) =>
+      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
     ).join('');
-    const dots = p.imgs.map((_, i) =>
+    const dots = p.colors.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
     ).join('');
 
@@ -988,8 +1098,8 @@ function renderProducts() {
       <!-- info -->
       <div class="p-4 border-t border-stone-100">
         <div class="flex items-center gap-1.5 mb-1">
-          <div class="w-3 h-3 rounded-full border border-stone-300 flex-shrink-0" style="background:${p.hex}"></div>
-          <span class="text-[11px] text-muted font-semibold">${p.color}</span>
+          <div class="w-3 h-3 rounded-full border border-stone-300 flex-shrink-0" id="cc-dot-${p.id}" style="background:${p.colors[0].hex}"></div>
+          <span class="text-[11px] text-muted font-semibold" id="cc-name-${p.id}">${p.colors[0].name}</span>
         </div>
         <h3 class="text-sm font-black text-charcoal3 mb-0.5 leading-snug">${p.name}</h3>
         <p class="text-[11px] text-muted mb-3">${p.sub}</p>
@@ -1017,6 +1127,15 @@ function cGoto(id, to) {
   cardIdx[id] = (to + imgs.length) % imgs.length;
   imgs[cardIdx[id]].classList.add('on');
   if (dots[cardIdx[id]]) dots[cardIdx[id]].classList.add('on');
+
+  const p = PRODS.find(x => x.id === id);
+  if (p) {
+    const c = p.colors[cardIdx[id]];
+    const dotEl  = document.getElementById('cc-dot-' + id);
+    const nameEl = document.getElementById('cc-name-' + id);
+    if (dotEl)  dotEl.style.background = c.hex;
+    if (nameEl) nameEl.textContent = c.name;
+  }
 }
 function cShift(id, dir) { cGoto(id, cardIdx[id] + dir); }
 
@@ -1028,19 +1147,19 @@ function renderProductPage(id) {
   if (!p) return;
 
   pdCurrent = 0;
-  pdTotal   = p.imgs.length;
+  pdTotal   = p.colors.length;
   pdQty     = 1;
   pdSize    = p.sizes.length > 1 ? p.sizes[1] : p.sizes[0];
 
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
 
-  const mainImgs = p.imgs.map((src, i) =>
-    `<img src="${src}" alt="${p.name} ${i+1}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
+  const mainImgs = p.colors.map((c, i) =>
+    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
   ).join('');
 
-  const thumbs = p.imgs.map((src, i) =>
+  const thumbs = p.colors.map((c, i) =>
     `<div class="thumb${i===0?' on':''}" style="width:68px;height:68px" onclick="pdGoto(${i})">
-       <img src="${src}" alt="" class="w-full h-full object-cover block" onerror="this.parentElement.style.background='#e7e5e4'">
+       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" onerror="this.parentElement.style.background='#e7e5e4'">
      </div>`
   ).join('');
 
@@ -1078,8 +1197,8 @@ function renderProductPage(id) {
     <!-- info -->
     <div class="py-8 px-5 md:py-10 md:px-9 flex flex-col justify-center max-md:order-2 max-md:pb-28">
       <div class="inline-flex items-center gap-1.5 bg-stone-100 text-charcoal3 text-[11px] font-bold py-1.5 px-3.5 rounded-full mb-4 w-fit border border-stone-200">
-        <div class="w-3 h-3 rounded-full flex-shrink-0" style="background:${p.hex}"></div>
-        ${p.color} — ${p.sub}
+        <div class="w-3 h-3 rounded-full flex-shrink-0" id="pd-color-dot" style="background:${p.colors[0].hex}"></div>
+        <span id="pd-color-name">${p.colors[0].name}</span> — ${p.sub}
       </div>
       <h2 class="text-2xl md:text-[28px] font-black text-charcoal3 leading-tight mb-2">${p.name}</h2>
       <p class="text-sm text-muted leading-relaxed mb-5">${p.desc}</p>
@@ -1142,6 +1261,15 @@ function pdGoto(to) {
   pdCurrent = (to + pdTotal) % pdTotal;
   imgs[pdCurrent].classList.add('on');
   if (thumbs[pdCurrent]) thumbs[pdCurrent].classList.add('on');
+
+  const p = PRODS.find(x => x.id === curProdId);
+  if (p) {
+    const c = p.colors[pdCurrent];
+    const dotEl  = document.getElementById('pd-color-dot');
+    const nameEl = document.getElementById('pd-color-name');
+    if (dotEl)  dotEl.style.background = c.hex;
+    if (nameEl) nameEl.textContent = c.name;
+  }
 }
 function pdShift(d) { pdGoto(pdCurrent + d); }
 
@@ -1170,11 +1298,11 @@ function addToCart(goCheckout = false) {
   const p = PRODS.find(x => x.id === curProdId);
   if (!p) return;
 
-  const existing = cart.find(i => i.pid === curProdId && i.size === pdSize);
+  const existing = cart.find(i => i.pid === curProdId && i.size === pdSize && i.color === p.colors[pdCurrent].name);
   if (existing) {
     existing.qty += pdQty;
   } else {
-    cart.push({ pid: curProdId, name: p.name, color: p.color, size: pdSize, price: p.price, qty: pdQty, img: p.imgs[0] });
+    cart.push({ pid: curProdId, name: p.name, color: p.colors[pdCurrent].name, size: pdSize, price: p.price, qty: pdQty, img: p.colors[pdCurrent].img });
   }
   saveCart();
   updateBadge();
@@ -1271,14 +1399,14 @@ function renderCheckoutSummary() {
     </div>
     <div class="border-t border-stone-200 pt-3 space-y-1.5 text-sm">
       <div class="flex justify-between"><span class="text-muted">المجموع الفرعي</span><span class="font-bold">${total} درهم</span></div>
-      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-bold text-green-600">مجاني <svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 2.5 2.5v5"/><path d="M16.5 8v-2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1-2.5 2.5h-5"/></svg></span></div>
+      <div class="flex justify-between"><span class="text-muted">التوصيل</span><span class="font-bold text-green-600">مجاني <svg class="w-3.5 h-3.5 stroke-green-600 fill-none inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span></div>
       <div class="flex justify-between pt-2 border-t border-stone-100 mt-1">
         <span class="font-black text-charcoal3">المجموع الكلي</span>
         <span class="text-xl font-black text-charcoal">${total} درهم</span>
       </div>
     </div>
     <div class="mt-4 bg-stone-50 rounded-xl p-3 border border-stone-100">
-      <p class="text-[11px] text-muted text-center font-semibold"><svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
+      <p class="text-[11px] text-muted text-center font-semibold"><svg class="w-3.5 h-3.5 fill-none stroke-muted inline-block align-text-bottom" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg> الدفع كاش عند الاستلام — لا بطاقة لا حساب</p>
     </div>`;
 }
 
@@ -1296,6 +1424,9 @@ function submitOrder(e) {
     address:  fd.get('address'),
     notes:    fd.get('notes') || '—',
     total,
+    size:     cart.map(i => i.size).join(' / '),
+    color:    cart.map(i => i.color).join(' / '),
+    quantity: cart.reduce((s, i) => s + i.qty, 0),
     items: cart.map(i => `${i.name} (نمرة ${i.size}) ×${i.qty}`).join(' | ')
   };
   fetch(GSHEET, { method:'POST', mode:'no-cors', body: JSON.stringify(order) }).catch(()=>{});
@@ -1351,7 +1482,7 @@ function showToast(msg, bg) {
     background:${bg};color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;
     z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);
     animation:toast-in .3s ease forwards;font-family:Cairo,sans-serif`;
-  t.textContent = msg;
+  t.innerHTML = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 2500);
 }
