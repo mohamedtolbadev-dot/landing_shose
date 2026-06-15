@@ -9,13 +9,20 @@
 ### 2. معالجة الأخطاء
 ✅ إضافة fallback SVG عند فشل تحميل الصورة
 ✅ عرض placeholder بدلاً من إخفاء الصورة
+✅ إضافة preload لجميع الصور قبل العرض
 
 ### 3. إعدادات Vercel
 ✅ تحديث vercel.json بإعدادات Cache أفضل
 ✅ إضافة CORS headers للصور
 ✅ إضافة route مخصص لـ logo.png
 
-### 4. ملفات إضافية
+### 4. تحسينات التحميل
+✅ إزالة lazy loading من معرض الصور
+✅ إضافة pointer-events للصور النشطة
+✅ إضافة cache buster لتجنب مشاكل الكاش
+✅ منع التحويل التلقائي للصور من المتصفح
+
+### 5. ملفات إضافية
 ✅ .htaccess - لتحسين Apache servers
 ✅ _headers - لتحسين Vercel CDN
 
@@ -25,7 +32,7 @@
 # 1. تأكد من رفع جميع الصور
 git add images/
 git add logo.png
-git commit -m "fix: image paths for vercel"
+git commit -m "fix: image paths and loading for vercel"
 git push
 
 # 2. أو استخدم Vercel CLI
@@ -37,6 +44,7 @@ vercel --prod
 افتح Developer Tools (F12) → Network → Images
 - تأكد أن الصور تُحمّل بكود 200 (OK)
 - تأكد من المسارات الصحيحة
+- امسح الكاش: Ctrl+Shift+Delete
 
 ## المسارات المحدثة:
 
@@ -46,8 +54,9 @@ vercel --prod
 
 ## ملاحظات:
 
-- جميع الصور الآن بصيغة .png (تم تصحيح .jpg إلى .png)
-- تم إزالة `loading="lazy"` من الشعار
+- جميع الصور الآن بصيغة .png فقط
+- تم إزالة `loading="lazy"` من المعرض
+- تم إضافة preload لتحميل الصور مسبقاً
 - تم إضافة onerror handlers لجميع الصور
 
 ---
