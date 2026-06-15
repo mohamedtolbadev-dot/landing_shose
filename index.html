@@ -509,7 +509,6 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
 .deco-star{display:inline-block}
 
 </style>
-<base target="_blank">
 </head>
 <body class="font-cairo bg-cream text-charcoal overflow-x-hidden">
 
@@ -585,7 +584,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
 
    <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-12" style="min-height:600px;padding-top:4.5rem;padding-bottom:4.5rem">
 
-     <div class="premium-badge inline-flex items-center gap-3 text-[10px] md:text-[11px] font-bold py-2.5 px-6 mb-8" style="animation:fadeInUp .5s ease .1s both">
+     <div class="premium-badge inline-flex items-center gap-3 text-[10px] md:text-[11px] font-bold py-2.5 px-6 mb-8 rounded-full" style="animation:fadeInUp .5s ease .1s both">
        <span style="color:#D4AF6A">✦</span>
        تشكيلة صيف 2026
        <span style="color:#D4AF6A">✦</span>
@@ -868,12 +867,12 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
   <!-- Mobile sticky CTA -->
   <div class="hidden max-md:flex fixed bottom-0 left-0 right-0 z-40 sticky-cta py-3 px-4 items-center justify-between gap-3 shadow-[0_-6px_24px_rgba(0,0,0,.1)]">
     <div>
-      <div class="text-xl font-black text-charcoal">199 درهم</div>
-      <small class="text-xs text-muted line-through">219 درهم</small>
+      <div class="text-xl font-black text-charcoal" id="sticky-price">199 درهم</div>
+      <small class="text-xs text-muted line-through" id="sticky-old">219 درهم</small>
     </div>
-    <button onclick="addToCart()" class="flex-1 btn-dark text-white rounded-xl py-3.5 text-sm font-bold max-w-[200px] flex items-center justify-center gap-2">
-      <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      اضيفي للسلة
+    <button onclick="addToCart(true)" class="flex-1 btn-primary text-charcoal rounded-xl py-3.5 text-sm font-black max-w-[200px] flex items-center justify-center gap-2">
+      <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="relative z-10">اطلبي دابا ←</span>
     </button>
   </div>
 </div>
@@ -919,6 +918,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
               <span class="text-muted font-semibold">المجموع الفرعي</span>
               <span class="font-bold text-charcoal" id="s-sub">0 درهم</span>
             </div>
+            <div id="s-discount-row" class="flex justify-between items-center" style="display:none"></div>
             <div class="flex justify-between items-center">
               <span class="text-muted font-semibold">التوصيل</span>
               <span class="font-black text-green-600 flex items-center gap-1">
@@ -974,7 +974,10 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">رقم الهاتف *</label>
-            <input type="tel" name="phone" required placeholder="06/07 XXXXXXXX"
+            <input type="tel" name="phone" required
+              pattern="^(0[67]\d{8}|(\+212|00212)[67]\d{8})$"
+              title="رقم هاتف مغربي صحيح: 06/07 XXXXXXXX"
+              placeholder="06/07 XXXXXXXX"
               class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
           <div>
@@ -1045,15 +1048,15 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
       <div>
         <p class="text-white/40 text-[10px] font-black tracking-widest uppercase mb-3">روابط سريعة</p>
         <div class="flex flex-col gap-2.5">
-          <a href="#" onclick="nav('home')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+          <a href="javascript:void(0)" onclick="nav('home')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             الصفحة الرئيسية
           </a>
-          <a href="#" onclick="nav('cart')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+          <a href="javascript:void(0)" onclick="nav('cart')" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             السلة
           </a>
-          <a href="https://wa.me/212612455372" target="_blank" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
+          <a href="https://wa.me/212612455372" target="_blank" rel="noopener" class="text-white/65 text-xs font-semibold hover:text-sand transition-colors flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             تواصل معنا
           </a>
@@ -1221,12 +1224,12 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
     desc: 'صندلة أنيقة بخامة جلدية ناعمة وتصميم عصري مريح مستوحى من أحدث الصيحات. خفيفة وعملية وتناسب مختلف الإطلالات.',
     colors: [
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-1.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-2.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-3.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-5.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-6.png' }
+      { name:'منظر أمامي',   hex:'#8B5E4A', img:'./images/tolba-black-zara-1.png' },
+      { name:'منظر جانبي',   hex:'#8B5E4A', img:'./images/tolba-black-zara-2.png' },
+      { name:'منظر خلفي',    hex:'#8B5E4A', img:'./images/tolba-black-zara-3.png' },
+      { name:'تفاصيل النعل', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' },
+      { name:'لقطة علوية',   hex:'#8B5E4A', img:'./images/tolba-black-zara-5.png' },
+      { name:'لقطة قريبة',   hex:'#8B5E4A', img:'./images/tolba-black-zara-6.png' }
     ],
     sizes: ['37','38','39','40'], oos: [], stock: 8
   }
@@ -1362,7 +1365,13 @@ function renderProductPage(id) {
 
   if (p.colors[0]) { const img = new Image(); img.src = p.colors[0].img; }
 
-  const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
+  // تحديث سعر الـ sticky CTA بالموبايل
+  const stickyPrice = document.getElementById('sticky-price');
+  const stickyOld   = document.getElementById('sticky-old');
+  if (stickyPrice) stickyPrice.textContent = p.price + ' درهم';
+  if (stickyOld)   stickyOld.textContent   = p.old   + ' درهم';
+
+  const allSizes = [...new Set([...p.sizes, ...p.oos])].sort((a, b) => Number(a) - Number(b));
   const mainImgs = p.colors.map((c, i) =>
     `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="${i===0?'eager':'lazy'}" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3C/svg%3E'">`
   ).join('');
@@ -1577,22 +1586,18 @@ function renderCart() {
   document.getElementById('s-sub').textContent   = total + ' درهم';
 
   // إظهار أو إخفاء سطر التخفيض
-  let discountRow = document.getElementById('s-discount-row');
-  if (!discountRow) {
-    discountRow = document.createElement('div');
-    discountRow.id = 's-discount-row';
-    discountRow.className = 'flex justify-between items-center';
-    document.getElementById('s-sub').closest('.flex.justify-between').insertAdjacentElement('afterend', discountRow);
-  }
-  if (hasDiscount) {
-    discountRow.innerHTML = `
-      <span class="text-green-600 font-bold flex items-center gap-1">
-        🎁 تخفيض 12% (صندلتين)
-      </span>
-      <span class="font-black text-green-600">−${discountAmt} درهم</span>`;
-    discountRow.style.display = 'flex';
-  } else {
-    discountRow.style.display = 'none';
+  const discountRow = document.getElementById('s-discount-row');
+  if (discountRow) {
+    if (hasDiscount) {
+      discountRow.innerHTML = `
+        <span class="text-green-600 font-bold flex items-center gap-1">
+          🎁 تخفيض 12% (صندلتين)
+        </span>
+        <span class="font-black text-green-600">−${discountAmt} درهم</span>`;
+      discountRow.style.display = 'flex';
+    } else {
+      discountRow.style.display = 'none';
+    }
   }
 
   document.getElementById('s-total').textContent = finalTotal + ' درهم';
@@ -1650,6 +1655,8 @@ const GSHEET = 'https://script.google.com/macros/s/AKfycbyaEfE2SWlm_SC48Vn_EGCvz
 function submitOrder(e) {
   e.preventDefault();
   if (!cart.length) return;
+  const btn = e.submitter || document.querySelector('#orderForm [type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري الإرسال...'; }
   const fd = new FormData(document.getElementById('orderForm'));
   const rawTotal  = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const totalQty  = cart.reduce((s, i) => s + i.qty, 0);
