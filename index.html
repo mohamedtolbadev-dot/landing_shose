@@ -1115,7 +1115,7 @@ function renderProducts() {
     });
     
     const imgs = p.colors.map((c, i) =>
-      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+      `<img src="${c.img}${cacheBuster}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
     ).join('');
     const dots = p.colors.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
@@ -1203,13 +1203,14 @@ function renderProductPage(id) {
 
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
 
+  const cacheBuster = '?v=' + Date.now();
   const mainImgs = p.colors.map((c, i) =>
-    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
+    `<img src="${c.img}${cacheBuster}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'">`
   ).join('');
 
   const thumbs = p.colors.map((c, i) =>
     `<div class="thumb${i===0?' on':''}" style="width:68px;height:68px" onclick="pdGoto(${i})">
-       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
+       <img src="${c.img}${cacheBuster}" alt="${c.name}" class="w-full h-full object-cover block" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
      </div>`
   ).join('');
 

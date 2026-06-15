@@ -1,7 +1,8 @@
 # Enable CORS for images
 <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
   Header set Access-Control-Allow-Origin "*"
-  Header set Cache-Control "public, max-age=31536000, immutable"
+  Header set Cache-Control "public, max-age=0, must-revalidate"
+  Header set Content-Type "image/png"
 </FilesMatch>
 
 # Correct MIME types
@@ -9,6 +10,11 @@ AddType image/png .png
 AddType image/jpeg .jpg .jpeg
 AddType image/webp .webp
 AddType image/svg+xml .svg
+
+# Disable image optimization
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
 
 # Enable compression
 <IfModule mod_deflate.c>
