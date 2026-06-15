@@ -574,15 +574,14 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
 <div id="pg-home" class="page active">
 
  <div class="luxury-hero relative overflow-hidden">
-   <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
-     <div class="absolute inset-0 bg-black/45 z-10"></div>
+   <div class="absolute inset-0 overflow-hidden">
+     <div class="absolute inset-0 bg-black/55 z-10"></div>
      <div class="absolute inset-0 hero-slide active" style="background-image:url('./images/tolba-brown-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-suede-1.png')"></div>
      <div class="absolute inset-0 hero-slide" style="background-image:url('./images/tolba-black-zara-1.png')"></div>
    </div>
    <div class="luxury-overlay absolute inset-0 z-10"></div>
-   <div class="absolute inset-0 z-10 pointer-events-none" style="background:radial-gradient(ellipse at 50% 40%,rgba(212,175,106,.10) 0%,transparent 65%)"></div>
 
    <div class="relative z-20 flex flex-col items-center justify-center text-center px-5 md:px-12" style="min-height:600px;padding-top:4.5rem;padding-bottom:4.5rem">
 
@@ -592,43 +591,39 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
        <span style="color:#D4AF6A">✦</span>
      </div>
 
-     <h1 class="luxury-title mb-4" style="font-size:clamp(2.3rem,6.2vw,4.6rem);animation:fadeInUp .55s ease .2s both">
+     <h1 class="luxury-title mb-5" style="font-size:clamp(2.3rem,6.2vw,4.6rem);animation:fadeInUp .55s ease .2s both">
        تألقي بخطوات كلها<br>ثقة وراحة
      </h1>
-     <div class="accent-en text-white/75 mb-7" style="font-size:clamp(1.1rem,2.4vw,1.6rem);letter-spacing:.15em;animation:fadeInUp .58s ease .25s both">Tolba Store</div>
 
      <p class="text-white/75 max-w-lg mx-auto leading-relaxed mb-10 font-medium" style="font-size:clamp(.9rem,2.2vw,1.05rem);letter-spacing:.3px;animation:fadeInUp .6s ease .3s both">
        صندلة مصممة خصيصاً باش تواتيك فكل لبساتك.. أناقة تخطف الأنظار، وراحة تنسيك تعب النهار فالمشي!
      </p>
 
-     <div class="flex flex-wrap items-center justify-center gap-4 mb-12" style="animation:fadeInUp .65s ease .4s both">
+     <!-- CTA -->
+     <div class="flex flex-wrap items-center justify-center gap-4 mb-10" style="animation:fadeInUp .65s ease .4s both">
        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})"
          class="btn-primary font-black text-sm md:text-base text-charcoal rounded-full px-9 py-4 inline-flex items-center gap-2.5">
-         <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+         <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
          <span class="relative z-10">طلبي صندلتك دابا</span>
        </button>
-       <div class="glass-pill inline-flex items-center gap-2.5 text-white text-xs font-bold rounded-full px-6 py-3.5">
-         <svg class="w-4 h-4 fill-none stroke-green-400 flex-shrink-0" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-         توصيل سريع تال باب الدار
+     </div>
+
+     <!-- Trust pillars — no fake numbers, real promises -->
+     <div class="flex flex-wrap items-center justify-center gap-3" style="animation:fadeInUp .7s ease .5s both">
+       <div class="glass-pill inline-flex items-center gap-2 text-white/80 text-[11px] font-bold rounded-full px-5 py-2.5">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
+         الدفع عند الاستلام
+       </div>
+       <div class="glass-pill inline-flex items-center gap-2 text-white/80 text-[11px] font-bold rounded-full px-5 py-2.5">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 3v5h5"/></svg>
+         تبديل مجاني 7 أيام
+       </div>
+       <div class="glass-pill inline-flex items-center gap-2 text-white/80 text-[11px] font-bold rounded-full px-5 py-2.5">
+         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+         توصيل تال باب الدار
        </div>
      </div>
 
-     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3" style="animation:fadeInUp .7s ease .5s both">
-       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="#D4AF6A" stroke-width="2"/></svg>
-         جودة بريميوم
-       </div>
-       <span class="hero-rule"></span>
-       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 14a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M6 3l4 4H2L6 3z"/><path d="M18 3l-4 4h8l-4-4z"/></svg>
-         خلصي حتى تقلبي سلعتك
-       </div>
-       <span class="hero-rule"></span>
-       <div class="flex items-center gap-2 text-white/65 text-[11px] font-semibold tracking-wide">
-         <svg class="w-3.5 h-3.5 fill-none flex-shrink-0" stroke="#D4AF6A" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-         القياس مجاش؟ نبدلوه ليك
-       </div>
-     </div>
    </div>
 
    <div class="absolute bottom-0 left-0 right-0 h-px pointer-events-none" style="background:linear-gradient(to right,transparent,rgba(212,175,106,.5),transparent)"></div>
