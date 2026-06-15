@@ -33,7 +33,7 @@ tailwind.config = {
 <!-- META PIXEL -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
+fbq('init','2347884935738822');fbq('track','PageView');
 </script>
 <style>
 /* ===== RESET & BASE ===== */
@@ -1069,7 +1069,7 @@ const PRODS = [
     id: 2,
     name: 'صندلة أوربان العصرية',
     sub:  'ديزاين شبابي — ثلاث أحزمة على نعل ضخم',
-    price: 179, old: 219,
+    price: 179, old: 199,
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> جديد',
     desc: 'ديزاين عصري بثلاث أحزمة قابلة للتعديل على نعل ضخم ومريح. ستايل قوي يواتي الاستعمال اليومي مع راحة فابور.',
     colors: [
@@ -1104,7 +1104,9 @@ const PRODS = [
       { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-1.png' },
       { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-2.png' },
       { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-3.png' },
-      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' }
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' },
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-5.png' },
+      { name:'بني شوكولا', hex:'#8B5E4A', img:'./images/tolba-black-zara-6.png' }
     ],
     sizes: ['37','38','39','40'], oos: [], stock: 8
   }
@@ -1139,6 +1141,16 @@ function nav(page, prodId) {
   } else if (page === 'checkout') {
     if (!cart.length) { nav('cart'); return; }
     renderCheckoutSummary();
+    if (typeof fbq !== 'undefined') {
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      fbq('track','InitiateCheckout',{
+        content_ids: cart.map(i => String(i.pid)),
+        content_type:'product',
+        num_items: cart.reduce((s,i)=>s+i.qty,0),
+        value: total,
+        currency:'MAD'
+      });
+    }
   }
   updateBadge();
 }
@@ -1217,6 +1229,16 @@ function renderProductPage(id) {
   if (!p) return;
   pdCurrent = 0; pdTotal = p.colors.length; pdQty = 1;
   pdSize = p.sizes.length > 1 ? p.sizes[1] : p.sizes[0];
+
+  if (typeof fbq !== 'undefined') {
+    fbq('track','ViewContent',{
+      content_ids:[String(p.id)],
+      content_type:'product',
+      content_name:p.name,
+      value:p.price,
+      currency:'MAD'
+    });
+  }
 
   if (p.colors[0]) { const img = new Image(); img.src = p.colors[0].img; }
 
@@ -1356,6 +1378,15 @@ function addToCart(goCheckout = false) {
   if (existing) { existing.qty += pdQty; } 
   else { cart.push({ pid: curProdId, name: p.name, color: p.colors[pdCurrent].name, size: pdSize, price: p.price, qty: pdQty, img: p.colors[pdCurrent].img }); }
   saveCart(); updateBadge(); popBadge();
+  if (typeof fbq !== 'undefined') {
+    fbq('track','AddToCart',{
+      content_ids:[String(curProdId)],
+      content_type:'product',
+      content_name:p.name,
+      value:p.price*pdQty,
+      currency:'MAD'
+    });
+  }
   if (goCheckout) { nav('checkout'); }
   else { showToast('✓ تمت الإضافة للسلة!', '#1A1A1A'); }
 }
@@ -1457,7 +1488,17 @@ function submitOrder(e) {
     items: cart.map(i => `${i.name} (نمرة ${i.size}) ×${i.qty}`).join(' | ')
   };
   fetch(GSHEET, { method:'POST', mode:'no-cors', body: JSON.stringify(order) }).catch(()=>{});
-  if (typeof fbq !== 'undefined') fbq('track','Purchase',{ value:total, currency:'MAD' });
+  if (typeof fbq !== 'undefined') {
+    const eventId = 'order_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+    fbq('track','Purchase',{
+      content_ids: cart.map(i => String(i.pid)),
+      content_type:'product',
+      contents: cart.map(i => ({ id: String(i.pid), quantity: i.qty, item_price: i.price })),
+      num_items: cart.reduce((s,i)=>s+i.qty,0),
+      value: total,
+      currency:'MAD'
+    }, { eventID: eventId });
+  }
   cart = []; saveCart(); updateBadge();
   openSM();
   setTimeout(() => { document.getElementById('orderForm').reset(); nav('home'); }, 5500);
