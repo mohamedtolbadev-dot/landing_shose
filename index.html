@@ -460,7 +460,7 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
 <header class="border-b border-white/20 py-3 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-[0_4px_24px_rgba(0,0,0,.2)] backdrop-blur-sm" style="background: #302F2F;">
   <!-- Logo -->
   <button onclick="nav('home')" class="flex items-center gap-2 flex-shrink-0 bg-transparent border-0 cursor-pointer p-0">
-    <img src="logo.png" alt="Tolba Store" loading="eager" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'" loading="lazy">
+    <img src="./logo.png" alt="Tolba Store" class="h-10 md:h-12 w-auto object-contain rounded-full border border-white/30" onerror="this.style.display='none'">
     <span class="text-white font-black text-lg leading-none hidden md:block drop-shadow-sm">Tolba<span class="text-white/50 font-semibold"> Store</span></span>
   </button>
 
@@ -495,10 +495,10 @@ svg path, svg rect, svg circle, svg polyline, svg polygon, svg line, svg ellipse
 
         <!-- Hero Product Slideshow -->
     <div class="absolute inset-0 overflow-hidden" id="hero-slideshow">
-      <div class="absolute inset-0 hero-slide active" style="background-image: url('images/tolba-brown-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('images/tolba-black-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('images/tolba-black-suede-1.png'); background-size:cover; background-position:center 40%;"></div>
-      <div class="absolute inset-0 hero-slide" style="background-image: url('images/tolba-black-zara-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide active" style="background-image: url('./images/tolba-brown-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-suede-1.png'); background-size:cover; background-position:center 40%;"></div>
+      <div class="absolute inset-0 hero-slide" style="background-image: url('./images/tolba-black-zara-1.png'); background-size:cover; background-position:center 40%;"></div>
     </div>
 
     <!-- Dark overlay with warm sand tint -->
@@ -987,9 +987,9 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-2.214-4.166-1.213-7 0 0-4 3.5-4 8 0 3.5 2.5 6 6 6 3.5 0 6-2.5 6-6 0-4.5-4-8-4-8 1.001 2.834-.141 4.857-1.213 7-.5 1-1 1.62-1 3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> الأكثر طلباً',
     desc: 'موديل كلاسيكي مخدوم بسويدي ناعم عالي الجودة، بإبزيمين قابلين للتعديل ونعل فلين مريح. خفيفة على رجلك نهار كامل، وتواتي أي لبيسة.',
     colors: [
-      { name: 'بني زيتوني', hex: '#6F5742', img: 'images/tolba-black-1.png' },
-      { name: 'بيج',        hex: '#D9C7AE', img: 'images/tolba-black-2.png' },
-      { name: 'أسود',       hex: '#1A1A1A', img: 'images/tolba-black-3.png' }
+      { name: 'بني زيتوني', hex: '#6F5742', img: './images/tolba-black-1.png' },
+      { name: 'بيج',        hex: '#D9C7AE', img: './images/tolba-black-2.png' },
+      { name: 'أسود',       hex: '#1A1A1A', img: './images/tolba-black-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 12
   },
@@ -1001,9 +1001,9 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> جديد',
     desc: 'ديزاين عصري بثلاث أحزمة قابلة للتعديل على نعل ضخم ومريح. ستايل قوي يواتي الاستعمال اليومي مع راحة فابور.',
     colors: [
-      { name: 'أسود',     hex: '#1A1A1A', img: 'images/tolba-black-suede-1.png' },
-      { name: 'بيج',      hex: '#E3D5BC', img: 'images/tolba-black-suede-2.jpg' },
-      { name: 'بني غامق', hex: '#4A3324', img: 'images/tolba-black-suede-3.png' }
+      { name: 'أسود',     hex: '#1A1A1A', img: './images/tolba-black-suede-1.png' },
+      { name: 'بيج',      hex: '#E3D5BC', img: './images/tolba-black-suede-2.png' },
+      { name: 'بني غامق', hex: '#4A3324', img: './images/tolba-black-suede-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 8
   },
@@ -1015,9 +1015,9 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
     desc: 'سويدي فاخر بتفاصيل ذهبية أنيقة تعطي لمسة راقية. إبزيم عريض قابل للتعديل ونعل مريح يواتي اللبيسة العصرية والكلاصيكية.',
     colors: [
-      { name: 'كاميل',    hex: '#BF9264', img: 'images/tolba-brown-1.png' },
-      { name: 'بيج فاتح', hex: '#D8C3A5', img: 'images/tolba-brown-2.png' },
-      { name: 'أسود',     hex: '#1A1A1A', img: 'images/tolba-brown-3.png' }
+      { name: 'كاميل',    hex: '#BF9264', img: './images/tolba-brown-1.png' },
+      { name: 'بيج فاتح', hex: '#D8C3A5', img: './images/tolba-brown-2.png' },
+      { name: 'أسود',     hex: '#1A1A1A', img: './images/tolba-brown-3.png' }
     ],
     sizes: ['37','38','39','40','41'], oos: [], stock: 5
   },
@@ -1032,10 +1032,10 @@ const PRODS = [
   desc: 'صندلة أنيقة بخامة جلدية ناعمة وتصميم عصري مريح مستوحى من أحدث الصيحات. خفيفة وعملية وتناسب مختلف الإطلالات.',
 
   colors: [
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: 'images/tolba-black-zara-1.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: 'images/tolba-black-zara-2.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: 'images/tolba-black-zara-3.png' },
-    { name: 'بني شوكولا', hex: '#8B5E4A', img: 'images/tolba-black-zara-4.png' }
+    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-1.png' },
+    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-2.png' },
+    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-3.png' },
+    { name: 'بني شوكولا', hex: '#8B5E4A', img: './images/tolba-black-zara-4.png' }
   ],
 
   sizes: ['37', '38', '39', '40'],
@@ -1089,7 +1089,7 @@ function renderProducts() {
   grid.innerHTML = PRODS.map(p => {
     cardIdx[p.id] = 0;
     const imgs = p.colors.map((c, i) =>
-      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
+      `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2214%22%3E${p.name}%3C/text%3E%3C/svg%3E'" loading="lazy">`
     ).join('');
     const dots = p.colors.map((_, i) =>
       `<div class="card-dot${i===0?' on':''}" onclick="event.stopPropagation();cGoto(${p.id},${i})"></div>`
@@ -1172,12 +1172,12 @@ function renderProductPage(id) {
   const allSizes = [...new Set([...p.sizes, ...p.oos])].sort();
 
   const mainImgs = p.colors.map((c, i) =>
-    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.style.display='none'" loading="lazy">`
+    `<img src="${c.img}" alt="${p.name} ${c.name}" class="g-img${i===0?' on':''}" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23f5f5f4%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23a8a29e%22 font-family=%22Arial%22 font-size=%2218%22%3E${p.name}%3C/text%3E%3C/svg%3E'" loading="lazy">`
   ).join('');
 
   const thumbs = p.colors.map((c, i) =>
     `<div class="thumb${i===0?' on':''}" style="width:68px;height:68px" onclick="pdGoto(${i})">
-       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" onerror="this.parentElement.style.background='#e7e5e4'">
+       <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover block" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23e7e5e4%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E'">
      </div>`
   ).join('');
 
@@ -1564,315 +1564,7 @@ function showToast(msg, bg) {
 renderProducts();
 updateBadge();
 
-// ============================================
-// حل محلي لتحسين الصور وتقليل حجمها
-// ============================================
 
-(function() {
-  // 1. تحويل الصور إلى تنسيق WebP تلقائياً (إن كان المدعوم)
-  function supportsWebP() {
-    const canvas = document.createElement('canvas');
-    return canvas.toDataURL('image/webp').indexOf('image/webp') === 5;
-  }
-
-  const useWebP = supportsWebP();
-  
-  // 2. إنشاء صورة مصغرة (Thumbnail) لكل صورة أصلية
-  function createThumbnail(imgElement, maxWidth = 300, maxHeight = 300) {
-    return new Promise((resolve) => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      
-      let width = imgElement.naturalWidth;
-      let height = imgElement.naturalHeight;
-      
-      if (width > height) {
-        if (width > maxWidth) {
-          height *= maxWidth / width;
-          width = maxWidth;
-        }
-      } else {
-        if (height > maxHeight) {
-          width *= maxHeight / height;
-          height = maxHeight;
-        }
-      }
-      
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(imgElement, 0, 0, width, height);
-      
-      // محاولة تصدير كـ WebP أو JPEG بجودة 70%
-      const format = useWebP ? 'image/webp' : 'image/jpeg';
-      const quality = 0.7;
-      const thumbnailUrl = canvas.toDataURL(format, quality);
-      resolve(thumbnailUrl);
-    });
-  }
-
-  // 3. تقليل جودة الصور في الخلفية (للمتصفحات الحديثة)
-  async function optimizeImage(imgElement) {
-    // لا تعالج الصور التي تم تحسينها مسبقاً
-    if (imgElement.dataset.optimized === 'true') return;
-    
-    // تجاهل الصور الصغيرة جداً أو SVG
-    if (imgElement.width < 50 || imgElement.src.includes('.svg')) return;
-    
-    try {
-      // انتظر تحميل الصورة الأصلية
-      await new Promise((resolve) => {
-        if (imgElement.complete) {
-          resolve();
-        } else {
-          imgElement.addEventListener('load', resolve, { once: true });
-        }
-      });
-      
-      // إنشاء نسخة مصغرة للصورة
-      const thumbnail = await createThumbnail(imgElement);
-      
-      // تخزين الصورة الأصلية مؤقتاً
-      const originalSrc = imgElement.src;
-      
-      // استبدال الصورة بالنسخة المضغوطة (فقط إذا كانت أصغر)
-      if (thumbnail.length < originalSrc.length * 0.7) {
-        imgElement.src = thumbnail;
-        imgElement.dataset.original = originalSrc;
-      }
-      
-      imgElement.dataset.optimized = 'true';
-      
-      // إضافة تأثير تحميل ناعم
-      imgElement.style.opacity = '0';
-      imgElement.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => {
-        imgElement.style.opacity = '1';
-      }, 50);
-      
-    } catch (error) {
-      console.log('تحسين الصورة فشل:', error);
-    }
-  }
-
-  // 4. معالجة جميع الصور في الصفحة
-  function optimizeAllImages() {
-    const images = document.querySelectorAll('img:not([data-optimized="true"])');
-    
-    // معالجة الصور المرئية أولاً
-    const visibleImages = [];
-    const hiddenImages = [];
-    
-    images.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 200) {
-        visibleImages.push(img);
-      } else {
-        hiddenImages.push(img);
-      }
-    });
-    
-    // معالجة المرئية فوراً
-    visibleImages.forEach(img => optimizeImage(img));
-    
-    // معالجة المخفية عند التمرير
-    if (hiddenImages.length > 0 && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            optimizeImage(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      });
-      hiddenImages.forEach(img => observer.observe(img));
-    }
-  }
-
-  // 5. ضغط الصور في الخلفية للعناصر الديناميكية
-  function setupImageObserver() {
-    // مراقبة إضافة صور جديدة ديناميكياً
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === 1) {
-            if (node.tagName === 'IMG') {
-              optimizeImage(node);
-            } else if (node.querySelectorAll) {
-              node.querySelectorAll('img:not([data-optimized="true"])').forEach(optimizeImage);
-            }
-          }
-        });
-      });
-    });
-    
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  // 6. إضافة مؤشر تحميل للصور
-  function addLoadingIndicator() {
-    const style = document.createElement('style');
-    style.textContent = `
-      img[data-optimized="true"] {
-        transition: opacity 0.3s ease-in-out;
-      }
-      img:not([data-optimized="true"]) {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: skeleton-pulse 1.5s ease-in-out infinite;
-      }
-      @keyframes skeleton-pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // 7. تقليل جودة صور الخلفية (Hero Slideshow)
-  function optimizeBackgroundImages() {
-    const heroSlides = document.querySelectorAll('.hero-slide');
-    heroSlides.forEach(slide => {
-      const bgImage = slide.style.backgroundImage;
-      if (bgImage && bgImage.includes('url')) {
-        const url = bgImage.slice(5, -2);
-        // إضافة معاملات تحسين للمسار (للمتصفحات التي تدعمها)
-        if (url.includes('.jpg') || url.includes('.png')) {
-          // محاولة تحويل إلى WebP على الطاير
-          if (useWebP) {
-            const webpUrl = url.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-            // اختبار إذا كان WebP متوفر
-            const testImg = new Image();
-            testImg.onload = () => {
-              slide.style.backgroundImage = `url('${webpUrl}')`;
-            };
-            testImg.src = webpUrl;
-          }
-        }
-      }
-    });
-  }
-
-  // 8. حفظ الصور المضغوطة في localStorage Cache
-  const imageCache = new Map();
-  
-  function cacheOptimizedImage(url, dataUrl) {
-    if (imageCache.size > 50) {
-      // حذف أقدم 10 صور
-      const keys = Array.from(imageCache.keys());
-      for (let i = 0; i < 10; i++) {
-        imageCache.delete(keys[i]);
-      }
-    }
-    imageCache.set(url, dataUrl);
-    
-    // محاولة حفظ في localStorage (حد حجم 5MB)
-    try {
-      const cacheData = JSON.parse(localStorage.getItem('img_cache') || '{}');
-      if (Object.keys(cacheData).length < 20) {
-        cacheData[url] = dataUrl;
-        localStorage.setItem('img_cache', JSON.stringify(cacheData));
-      }
-    } catch(e) {}
-  }
-  
-  function getCachedImage(url) {
-    if (imageCache.has(url)) return imageCache.get(url);
-    try {
-      const cacheData = JSON.parse(localStorage.getItem('img_cache') || '{}');
-      if (cacheData[url]) {
-        imageCache.set(url, cacheData[url]);
-        return cacheData[url];
-      }
-    } catch(e) {}
-    return null;
-  }
-
-  // 9. التنفيذ عند تحميل الصفحة
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      addLoadingIndicator();
-      optimizeAllImages();
-      setupImageObserver();
-      optimizeBackgroundImages();
-    });
-  } else {
-    addLoadingIndicator();
-    optimizeAllImages();
-    setupImageObserver();
-    optimizeBackgroundImages();
-  }
-  
-  // إعادة التحسين عند تغيير الصفحات (SPA)
-  const originalNav = window.nav;
-  if (originalNav) {
-    window.nav = function(page, prodId) {
-      originalNav(page, prodId);
-      setTimeout(() => {
-        optimizeAllImages();
-      }, 100);
-    };
-  }
-})();
-
-// ============================================
-// تقليل جودة الصور في معرض المنتجات
-// ============================================
-(function() {
-  // إضافة خاصية تحميل تدريجي للصور
-  function progressiveImageLoad() {
-    const images = document.querySelectorAll('.g-img, .thumb img, #pd-g .g-img');
-    
-    images.forEach(img => {
-      if (img.dataset.progressive === 'true') return;
-      
-      // حفظ الرابط الأصلي
-      const originalSrc = img.src;
-      
-      // إنشاء نسخة منخفضة الجودة للتحميل السريع
-      const lowQualityImg = new Image();
-      lowQualityImg.crossOrigin = 'Anonymous';
-      
-      // إذا انتهى تحميل الصورة الأصلية، ضع نسخة منخفضة الجودة
-      if (img.complete) {
-        createLowQualityVersion(img, originalSrc);
-      } else {
-        img.addEventListener('load', () => {
-          createLowQualityVersion(img, originalSrc);
-        });
-      }
-      
-      img.dataset.progressive = 'true';
-    });
-  }
-  
-  async function createLowQualityVersion(img, src) {
-    try {
-      // إنشاء صورة منخفضة الجودة (بلير)
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      
-      canvas.width = 20;
-      canvas.height = 20;
-      ctx.drawImage(img, 0, 0, 20, 20);
-      
-      const lowQualityUrl = canvas.toDataURL('image/jpeg', 0.1);
-      
-      // إضافة تأثير بلير للصورة المنخفضة
-      img.style.filter = 'blur(0px)';
-      img.style.transition = 'filter 0.3s ease';
-      
-      // تخزين الرابط الأصلي
-      img.dataset.highQuality = src;
-      
-    } catch(e) {}
-  }
-  
-  // تنفيذ بعد تحميل الصفحة
-  setTimeout(progressiveImageLoad, 500);
-})();
 </script>
 </body>
 </html>
