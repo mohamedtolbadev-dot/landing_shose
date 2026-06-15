@@ -870,9 +870,9 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
       <div class="text-xl font-black text-charcoal" id="sticky-price">199 درهم</div>
       <small class="text-xs text-muted line-through" id="sticky-old">219 درهم</small>
     </div>
-    <button onclick="addToCart(true)" class="flex-1 btn-primary text-charcoal rounded-xl py-3.5 text-sm font-black max-w-[200px] flex items-center justify-center gap-2">
-      <svg class="w-4 h-4 stroke-charcoal fill-none relative z-10" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      <span class="relative z-10">اطلبي دابا ←</span>
+    <button onclick="addToCart()" class="flex-1 btn-dark text-white rounded-xl py-3.5 text-sm font-bold max-w-[200px] flex items-center justify-center gap-2">
+      <svg class="w-4 h-4 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      اضيفي للسلة
     </button>
   </div>
 </div>
@@ -974,10 +974,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(196,164,132,.1
           </div>
           <div>
             <label class="block text-xs font-bold text-charcoal3 mb-1.5">رقم الهاتف *</label>
-            <input type="tel" name="phone" required
-              pattern="^(0[67]\d{8}|(\+212|00212)[67]\d{8})$"
-              title="رقم هاتف مغربي صحيح: 06/07 XXXXXXXX"
-              placeholder="06/07 XXXXXXXX"
+            <input type="tel" name="phone" required placeholder="06/07 XXXXXXXX"
               class="w-full border-2 border-stone-200 rounded-xl px-4 py-3 text-sm font-semibold text-charcoal focus:outline-none focus:border-sand bg-cream2 transition-all">
           </div>
           <div>
@@ -1224,12 +1221,12 @@ const PRODS = [
     badge: '<svg class="w-3.5 h-3.5 stroke-current fill-none inline-block align-text-bottom" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> محدود',
     desc: 'صندلة أنيقة بخامة جلدية ناعمة وتصميم عصري مريح مستوحى من أحدث الصيحات. خفيفة وعملية وتناسب مختلف الإطلالات.',
     colors: [
-      { name:'منظر أمامي',   hex:'#8B5E4A', img:'./images/tolba-black-zara-1.png' },
-      { name:'منظر جانبي',   hex:'#8B5E4A', img:'./images/tolba-black-zara-2.png' },
-      { name:'منظر خلفي',    hex:'#8B5E4A', img:'./images/tolba-black-zara-3.png' },
-      { name:'تفاصيل النعل', hex:'#8B5E4A', img:'./images/tolba-black-zara-4.png' },
-      { name:'لقطة علوية',   hex:'#8B5E4A', img:'./images/tolba-black-zara-5.png' },
-      { name:'لقطة قريبة',   hex:'#8B5E4A', img:'./images/tolba-black-zara-6.png' }
+      { name:'بني كاميل',  hex:'#8B5E3C', img:'./images/tolba-black-zara-1.jpg' },
+      { name:'بني سويدي',  hex:'#6B3D28', img:'./images/tolba-black-zara-2.jpg' },
+      { name:'كاميل',      hex:'#C4854A', img:'./images/tolba-black-zara-3.png' },
+      { name:'بني جلد',    hex:'#7A4A2E', img:'./images/tolba-black-zara-4.png' },
+      { name:'أسود سويدي', hex:'#1A1A1A', img:'./images/tolba-black-zara-5.png' },
+      { name:'أسود',       hex:'#2D2D2D', img:'./images/tolba-black-zara-6.png' }
     ],
     sizes: ['37','38','39','40'], oos: [], stock: 8
   }
@@ -1655,8 +1652,6 @@ const GSHEET = 'https://script.google.com/macros/s/AKfycbyaEfE2SWlm_SC48Vn_EGCvz
 function submitOrder(e) {
   e.preventDefault();
   if (!cart.length) return;
-  const btn = e.submitter || document.querySelector('#orderForm [type="submit"]');
-  if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري الإرسال...'; }
   const fd = new FormData(document.getElementById('orderForm'));
   const rawTotal  = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const totalQty  = cart.reduce((s, i) => s + i.qty, 0);
